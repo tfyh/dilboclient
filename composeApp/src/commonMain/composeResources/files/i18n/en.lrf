@@ -1,0 +1,5208 @@
+HP00DE|  error: 
+9Jk1j0|
+|<!-- START OF content -->
+|<div class="w3-container">
+|<h3>
+|Data record display for an archived data record<sup
+|class='eventitem' id='showhelptext_Archiv'>&#9432;</sup>
+|</h3>
+|<p>archived from the table: %1<br>
+|Time of archiving: %2<br>
+|Reference (archiveID): %3<br>
+|%4</p>
+|</div>
+|<div class="w3-container">
+|<table>
+|<tr>
+|<th>Data field</th>
+|<th>Value</th>
+|</tr>
+OoZfSs|A one-time password can be requested again at any time.<br>To do this, simply log in from the beginning.
+foQQVH|Above the pictures click on "Browse ...", select pictures, click on "Upload" and<b>wait</b>. 10 -50 seconds per image. This page will not update until the upload is complete. It is better not to upload more than 5 pictures (not more than 20 MByte) at once.
+nO9bzi|
+|<p>After deleting the permanent password, you can login again with a<a
+|href="../forms/login.php">NEW</a> one-time password<b>HERE.</b>A new permanent password can then be set under "My Profile".</p>
+IknQ2j|
+|<!-- START OF content -->
+|<div class="w3-container">
+|<h3>Data record display for a deleted data record</h3>
+|<p>deleted from the table: %1<br>
+|Time of deletion: %2<br>
+|Unfortunately, automatic recovery is not possible.
+|</p>
+|</div>
+|<div class="w3-container">
+|<table>
+|<tr>
+|<th>Data field</th>
+|<th>Value</th>
+|</tr>
+rtBEhk|<p>Dear %1 %2,</p>
+a8iDlL|
+|<p><a href='?cdir=%1'>Here</a>go to the next upload. </p>
+zdAPKK|Login error.<br>Already %1 failed attempts. Please try again, but it takes longer with each attempt.
+VIxLAS|Password<br><i>can only be set for new users and users with the role 'bths'.</i>
+IGCugZ|Please help to improve the software by passing this information to your support team.<br>Thank you!
+v0PFwa|The permanent password can be deleted<a href='../forms/reset_password.php'>HERE.</a>
+BkDaPm| Delete password. Do not change the password entry for delete.
+QRqTTI| parsing 
+Gg90pW|#Error mkdir failed on directory '%1'
+6qoA8U|#Error while opening the '%1' file.
+Cd30Mz|#Error: decoding unmasked backup '%1' failed.
+g1Qw1Z|#Error: Import aborted because of a syntax error in the import file.
+tAzk9C|#Error: Import aborted because the following columns of the import file are missing in the target table:
+UB62oq|#Error: Import aborted. Import file must have a column %1.
+AkIopi|#Error: masked backup '%1' not available.
+5qjixH|#Error: Target directory '%1' for unzipping already exists, aborted.
+XFt9AM|#Error: Zip path '%1' doesn't exist.
+iU8UQg|#Line %1 The data field %2 must be unique, but there is another record with the same value and the ID %3.
+VtVRHk|%1 backup files with a total size of %2 MByte
+CGJnuw|%1 Backup-Archive totalling %2 MByte.
+Tu6j0f|%1 Bytes were uploaded.
+HlAWGl|%1 could not be deleted.
+RTVMQw|%1 could not be deleted.
+MMIW9a|%1 records in %2 tables found.
+GsvRx8|%1 was changed from '%2' to '%3'.
+J8QheD|%1 was changed from '%2' to '%3'.
+ETWO97|%1 was deleted.
+aHoVZc|%1 was deleted.
+82Hnmk|'%1' is too big. Replaced by upper limit '%2'
+O0EFCI|'%1' is too big. Replaced by upper limit '%2'
+IL4ihl|'%1' is too small. Replaced by lower limit '%2'
+XtsZfd|'%1' is too small. Replaced by lower limit '%2'
+c6AQAt|'%1' is written ... 
+RNkGtP|(%1 data records with %2 columns each).
+RyaYQ8|(Can be made available on request).
+HpsAcF|(empty)
+IHwVLV|(empty)
+WjRsQw|(empty)
+izUp6M|(empty)
+pMMn46|(empty)
+gEQmZw|(Number: %1)
+ETueWs|*import this zip archive:
+ElhHP7|*Upload this file:
+01G01O|</div>
+0AZsbD|DataRemoteClientReceiveTimeout
+0BLvy2|efaBoathouseTwoColumnList
+0BlL0z|OutputCsvQuotes
+0BpN3r|DataFileLockTimeout
+0CB0cs|LastModified
+0FGCR2|Crew17Id
+0PZaTr|LastModified
+0Wguyh|</div>
+0YzvAP|FineForTooLittleClubwork
+0ZE6im|Crew20Id
+0e6Tnj|WidgetMeteoAstroShowWeatherCurWind
+0etQ1B|ButtonStartSession
+0fVBlk|LastModified
+0juAWe|LastModified
+0kuLi1|LastModified
+0sq5vV|LastModified
+0uOEFo|EfaStartsCounter
+0vNc73|FilterBoatOwnerAll
+0w2Ey2|StartDate
+0yfOi3|LastModified
+10b4EI|ClubLogo
+15T6xf|LockEfaToTime
+190imV|InputAllowOnlyKnownPersons
+1DsmpQ|efaBoathouseExtdToolTipInitialDelayMsec
+1ILnBg|PrintPageMarginLeftRight
+1L8mxL|PersonId
+1QvV5t|NotificationWindowTimeout
+1R8jLr|LastModified
+1UgPai|BoatListShowPopup
+1hrdbr|StorageUsername
+1jFweL|CustUsageCanoeing
+1jl7HW|gui_letztesjahr
+1mPMP7|LastModified
+1sw8Fh|WidgetMeteoAstroLayout
+1ziWz8|InputCommentsHotkeys
+206nSt|DataRemoteEfaServerPort
+261rSv|TimeTo
+26TYqX|FixedByPersonId
+27vZ9V|KanuEfb_FullSync
+29ot1x|efaBoathouseFilterTextfieldBoatsNotAvailableList
+2AolKC|EfaBoathouseWindowFixedPosition
+2B89nn|InputSkipDestination
+2JE55b|TimeFrom
+2JU9LW|Crew24Id
+2JiFWQ|ReportTime
+2Q0LPy|Crew21Name
+2ctIo0|AdvancedEdit
+2f9Tzy|Crew12Id
+2fnm9F|BoatCaptainAutoSelect
+2gTQi0|Editing options
+2haau7|efaBoathouseFilterTextfieldBoatsNotAvailableList
+2pM43w|LastModified
+2slZ1l|FirstName
+2umvYc|EfaBoathouseFontSize
+2vDqvF|InputDistanceNotEditableForKnownDestinations
+2z6dZT|LastModified
+32H2OM|WidgetHtmlScale
+32nv63|LastModified
+38399C|InputCheckAllowedPersonsInBoat
+38U6fz|EfaCloudURL
+3AKCeC|PrintPageHeight
+3Ayedd|LastModified
+3EXyxw|NotificationEmailUsername
+3FzxKs|InputDistanceNotEditableForKnownDestinations
+3J4xVF|SyncKanuEfb
+3MkIQG|BoatCaptainAutoSelect
+3NUJvi|LastModified
+3NY2Ne|StartSessionTimeAdd
+3QKRS6|LastModified
+3U08eC|ValidFrom
+3VJtbH|Crew23Name
+3aV26G|LastModified
+3dEpUq|KanuEfb_FullSync
+3eai9Y|LastModified
+3g9WvS|ChangeCount
+3ij2MD|EditBoatReservation
+3nAdiQ|LastModified
+3pxxCF|BoathouseId
+3qKFpd|DebugTraceTopic
+3vJhdt|LastModified
+40xQHR|InputCheckMinGroupPersonsInBoat
+44c5pC|LockEfaToTime
+44xZnN|LastModified
+45umhF|LastModified
+46KNJI|AllCrewNames
+4BYw5r|WidgetMeteoAstroWarnTimeBeforeSunset
+4EZtXv|Membership
+4HNkBx|StartSessionMustSelectDestination
+4PjW7X|WidgetMeteoAstroShowWeatherCurText
+4Q08by|LastModified
+4UFgmy|NotificationEmailPassword
+4Vtp70|DataRemoteEfaOnlineUsername
+4YERsO|ChangeCount
+4dRDMs|LastModified
+4dRoEV|SessionGroupId
+4dcw0y|AddressStreet
+4gFB2M|LastModified
+4gMTkP|ChangeCount
+4hsuqJ|DataRemoteEfaServerPort
+4hy1Qt|FilterGenderAll
+4lYdAh|Crew15Name
+4lziHL|TypeVariant
+4t5jnT|ReservationLookAheadTime
+4tPamW|Crew8Name
+4udw3N|SortingOrder
+4yGw45|LastModified
+54U7Rn|WidgetMeteoAstroWarnTimeAfterSunset
+54lWnx|OptionOnlyMembersWithInsufficientClubwork
+56gT27|FilterStatus
+57IhRH|ChangeCount
+59WtSW|LastModified
+5GTBae|WindowDialogMaxWidth
+5GzcxX|AddressStreet
+5Ieyrm|result_codes
+5RZOum|CompOutputRules
+5SgoAw|InputAllowOnlyKnownBoats
+5WK7fy|NotificationEmailPassword
+5ZBlr6|RepairCosts
+5aO9ii|ChangeCount
+5c7Vyz|Français
+5fDLu2|AllowMembersAddNames
+5fnY7T|AggregationAvgDistanceBarSize
+5gkgxs|AllowMembersPrivateBoatReservation
+5jTL2F|EfaBoathouseWindowAlwaysOnTop
+5mF54T|InputAllowOnlyKnownDestinatins
+5nzTDv|BoatListIndividualOthers
+5vglrA|SerialNo
+5wvFiG|AllowMembersBoatReservation
+5zyRzW|BoatListShowOnMultiDayOrRegattaBoatsAsNotAvailable
+611PRK|WatersNameList
+65O0A8|ShowInList
+65jzLE|CurrentStatus
+69DZC3|LastModified
+6FTtHI|Crew13Id
+6HQ3kF|ReservationLookAheadTime
+6PxnSU|LastModified
+6RUANo|EndDate
+6RXsUB|WidgetMeteoAstroLatitude
+6S2eqN|LastModified
+6TIKkg|LastModified
+6USSVx|LastModified
+6WpTnT|AllCrewIds
+6Ysnhr|MinAge
+6bg8Xy|DataRemoteCacheExpiryTime
+6fg1BF|LastModified
+6gGGMq|GUI_NACHNAME
+6kmmyb|WidgetMeteoAstroWarnDarkness
+6lYHKL|AllowMembersBoatReservationEdit
+6lp1WX|LastModified
+6mao4d|LastImportDirectory
+6o9AFT|ProgramWebbrowser
+6r979r|PrintPageMarginTopBottom
+6rZDST|LastModified
+6wxirh|LastModified
+72JKd8|CronTab
+72ogLw|StartDate
+77gvXM|</div>
+78FUDY|DateTo
+7KNETB|OutputType
+7PSzfc|LastModified
+7WUKUR|FilterFromToBoathouse
+7b9ki2|LastModified
+7fEIrG|NotificationErrorAdmin
+7gIAyY|Crew20Name
+7hFgGb|boatreservations
+7hOCQk|WidgetMeteoAstroLongitude
+7i2qOJ|BoatListToggleToPersons
+7m2pto|LastModified
+7pvxLX|FilterMinSessionDistance
+7tNOHh|LastModified
+7uSO1T|DefaultSessionType
+7vtD2v|RequiredGroupId
+7y9sUR|UpdateEfa
+80W0zF|LastModified
+83ivQO|ButtonLateEntry
+8Bv3vc|BoatCaptain
+8CDIVp|EfaExitExecOnExit
+8DL5Lg|BoatListShowPopup
+8EISLw|NameAffix
+8EUvmk|WidgetMeteoAstroLatitude
+8JjDZ8|WindowScreenWidth
+8Jmoc5|BoatId
+8KhTW5|FilterPromptBoat
+8eSXMX|WidgetNewsEnabled
+8iX8uV|AdministerProjectLogbook
+8ihX39|PurchasePriceCurrency
+8jcjFy|DataPreModifyRecordCallbackEnabled
+8kjmDk|EfaStartsCounter
+8mOc64|Boathouse
+8oTCGq|ButtonFinishSession
+8qQEHT|noValues
+8qukmn|SpellingCheckNames
+8rnZGr|LastModified
+8uLVpO|CoxId
+8vPeua|LastModified
+8wH4vR|WidgetMeteoAstroPosition
+8wxU5N|_2022
+8x8zct|LastModified
+8yCWq6|NotificationLastWarnings
+8yH0MS|gui_letztesdatum
+9F07Ct|LastProjectEfaBase
+9F1Sak|PostfixPersonsWithClubName
+9FAHcr|FreeUse2
+9Jn9I9|LastModified
+9Ru84u|DataRemoteEfaServerEnabled
+9ZTyIA|SESSION
+9aKhGf|Crew23Id
+9cF52L|InputSkipComments
+9dKuAT|FilterBoatCoxingAll
+9fehAs|EfaExitIdleTime
+9gN76D|MsgReadAdmin
+9jGAFF|LastModified
+9ne1RI|AdminLastOsCommand
+9o7ClA|LastModified
+9oZ8Ti|StorageType
+9omvkn|WidgetMeteoAstroShowWeatherLocation
+9pp0qz|ClubLogo
+9qfQPD|ACTION_TYPES_ADDALLDEFAULT
+9wJekS|ExcludeFromClubwork
+A0R3MD|CustUsageRowingBerlin
+A3L9gV|NotificationEmailSecurity
+A5saDb|persLogbook
+A6dYtB|AllowEnterEndDate
+A6vnAT|InputSkipDestination
+ACOn5K|LastModified
+AEQ0WW|StoragePassword
+AFUXep|NotificationEmailServer
+AGlVhN|OptionTruncateDistance
+AHKdTN|WidgetHtmlHeight
+AHdG46|WindowScreenHeight
+AItAf0|LastModified
+ALzFcH|GENDER
+ANMwAh|Crew11Name
+ATu62O|AdminEmail
+AYEiFn|LastModified
+AgpEBB|LastModified
+Ahdq1u|InputSkipTime
+Ai0tY0|MsgReadAdmin
+AnsJ44|WidgetMeteoAstroPopupExecCommand
+AqXMeC|LastModified
+Ar026I|ShowLogbookFields
+AvtxLB|FinishSessionTimeSubstract
+AwdmDA|InputAllowOnlyMaxCrewNumber
+B4BXEJ|PersonName
+B6jWpJ|Crew16Id
+B894VP|DebugTraceLevel
+B9shnU|LastModified
+BCmeUI|EfaBoathouseTablesAlternatingRowColor
+BEgSCt|WidgetMeteoAstroShowWeatherFcTemp
+BJSjRt|WidgetMeteoAstroShowWeatherFcTemp
+BJt3LE|LastModified
+BPC6Lc|CustUsageRowingGermany
+BSrg3f|ShowBoatNotCleanedButton
+BXyIPk|LastModified
+BYYsFO|gui_version
+Bdl6qC|NameFormat
+BdzV0M|LastModified
+BfV7s2|MustEnterWatersForUnknownDestinations
+BgBhry|efaBoathouseTwoColumnList
+Bhyx3S|EfaBoathouseFontStyle
+BiD31Y|BoatId
+BkolRT|WidgetAlert-WidgetEnabled
+Bl0UTY|LastModified
+BmxUG6|PurchaseDate
+Bt4FOl|WidgetMeteoAstroShowSunrise
+BtSPXO|ProgramWebbrowser
+Bz0doK|DataRemoteClientReceiveTimeout
+C1jo0E|LastModified
+C3tJUD|StatisticCategory
+C4GkIm|ChangeCount
+CBaGeG|LastModified
+CBnHvT|FreeUse1
+CGFrGc|LastModified
+CKnVGE|OptionListAllNullEntries
+CO0w3H|ExcludeFromStatistics
+CVwt5K|Crew7Id
+CWeRVh|ChangeCount
+CfWEop|FixTime
+CgfDGY|RegionalAssociationName
+Cgi5TQ|DefaultValueComments
+Ch4cBw|Crew18Name
+CjqYz1|EditDestinations
+CjrwWt|WindowScreenHeight
+Cml9s2|TranslateLanguageBase
+CoepH7|LastProjectEfaCli
+CpFG6F|LastModified
+CsqCyt|WidgetHtmlWidth
+Cu6IVR|DataRemoteLoginFailureRetryDelay
+Cux7pM|EfbId
+CvDHhG|ChangeCount
+CvJNYV|LastModified
+Cwdukl|LastModified
+D27Lrf|ValidFrom
+DDPZKi|ProgramAcrobatReader
+DHHZwr|TouchScreenSupport
+DHSvtk|NotificationEmailSignature
+DIo1Uz|LastModified
+DKcWF1|Crew24Id
+DObQml|DataFileSynchronousJournal
+DSmCUs|BoatListShowReservedBoatsAsNotAvailable
+DXx4jV|DataFileLockTimeout
+Dce9Xw|LastModified
+DeXlzJ|CurrentLogbookEfaBase
+Dlmqyk|LastModified
+DozTQu|ChangeCount
+Dqfrlm|AddressCity
+DqqxLA|InputCheckMinGroupPersonsInBoat
+Dr4wsu|LastModified
+Ds7EEK|ValidFrom
+DuvBrY|ButtonAdminMode
+EC2JJW|EditClubwork
+EE4rVE|KanuEfb_SyncTripsAfterDate
+EEVZoX|LastModified
+EJdgxn|FilterByPersonText
+EK3oOL|EndTime
+EKSaLd|CoxName
+ENkZHo|DataRemoteEfaOnlineUpdateInverval
+EON716|EfaExitRestartTime
+EPnvPZ|AutoSetOnAge
+ESQJfs|LastModified
+ETaOmO|FilterBoatType
+Ea4HWd|DestinationName
+EaNSpG|LastModified
+EeY5lX|LastModified
+EfC9qC|Crew6Id
+Elpm1Z|MustEnterDistance
+EmIOPq|efaBoathouseHeaderForegroundColor
+EmsALi|PrintPageOverlap
+Ep7oAp|LastModified
+EqQNIi|FilterSessionType
+ErPAPJ|InputAllowOnlyKnownWaters
+ErjmE9|BoatListShowOnMultiDayOrRegattaBoatsAsNotAvailable
+EtSRj8|WidgetMeteoAstroTemperatureScale
+EthYKN|LastModified
+Ew0m8e|FilterNameContains
+EykW9O|ShowLastFromWaterNotificationText
+F0grcs|WidgetMeteoAstroUpdateInterval
+F9I8mj|WidgetMeteoAstroHtmlPopupUrl
+FFISjc|ProgramAcrobatReader
+FIxdmJ|ValidFrom
+FKuhU9|MaxAge
+FKvbw1|WidgetMeteoAstroWarnTextDarkSoon
+FMhw1D|FilterOnlyOpenDamages
+FOlmET|LastBoatDamageReminder
+FRlv2C|ShowLogfile
+Fcc4td|Crew3Name
+FdRGAt|WidgetHtmlEnabled
+FffM95|ChangeCount
+FmA59c|ShowFields
+FnfcAX|LastModified
+FqQZ05|Boathouses
+Frsr1w|InputAllowOnlyKnownWaters
+FvSssP|cgig
+Fzkl3v|NotificationBoatstatusAdmin
+G3Vt28|LastModified
+G4MLAW|NotificationEmailSignature
+G6gWGG|FilterBoatCoxing
+G6kcUU|ChangeCount
+G8YZHi|LastModified
+GAzi7d|LastModified
+GJL7l0|LastModified
+GLDnIa|Crew2Id
+GMi9sZ|ExecCommand
+GOKyix|WidgetMeteoAstroWarnDarkness
+GVoPRo|DataRemoteEfaOnlineUpdateInverval
+GbVts9|DebugTraceTopic
+GdFOxe|InvalidFrom
+GusziW|LastModified
+GvquEf|LastModified
+Gw7pMh|LastModified
+H4ewS7|ProjectName
+H6ZnGJ|gui_signatur
+H8lCaV|DataRemoteEfaOnlineUrl
+HDoBBi|FilterOnlyLogbook
+HDqx5Q|FreeUse3
+HEAt0D|StartDate
+HLAzum|ButtonHelp
+HOlN9d|LookAndFeel_ButtonFocusColor
+HOsOEX|LastModified
+HQ6qP9|ACTION_ADDTYPES_CANOEING
+HRcjLZ|AllowedGroupIdList
+HRvIyr|LastModified
+HSnsJg|LastModified
+HYFFeY|LastModified
+Hanqwo|ShowLastFromWaterNotificationText
+HcC3lI|DataFileSaveInterval
+HgGp3a|LastWatersTemplateHash
+HjMTNZ|EditBoatStatus
+Hmg5S9|InputMustSelectBoatCaptain
+Hmxyhe|LookAndFeel
+Hn7YSg|agig
+HoNUlE|LastModified
+HpYw2A|LastModified
+Ht77M0|PrefixDestinationWithWaters
+Httm4M|InputSkipTime
+HvAIVv|InputWarnOnlyCriticalBoatDamages
+I5Cszq|WidgetMeteoAstroWarnTimeBeforeSunrise
+ICTUFL|LastModified
+IE0LPs|LastModified
+IEwS1P|ReportedByPersonName
+IIOLVn|gui_anzabzeichen
+IIkrfu|StartDate
+IJrwX2|BoatId
+IMr3iM|LastModified
+INGiVb|LastModified
+IOsBB4|WidgetMeteoAstroShowWeather
+IYQe74|TouchScreenSupport
+IaPZMK|InvalidFrom
+Ibnz03|NotificationWarningBoatMaintenance
+Icqn6V|LastModified
+IdiDFG|LastModified
+Iis138|LastModified
+IkZNA4|KanuEfbUrlLogin
+InUVjX|InputHideUnnecessaryFields
+IniQJJ|EditBoatStatus
+Iw58vB|EfaBoathouseWindowAlwaysOnTopBringToFront
+IyDoXf|FreeUse1
+IzLW8R|MembershipNo
+J47NfF|efaBoathouseBoatListWithReservationInfo
+J6YeJ6|WidgetHtmlUrl
+JInZc2|FilterByGroupId
+JNtzxP|OptionSumGuestsByClub
+JVZlrA|efaBoathouseHeaderBackgroundColor
+JY2WVK|FilterCommentsInclude
+Jb4Zdt|Crew4Id
+JmRXCo|LastVariant
+JnCRdB|Crew5Name
+JtSZ2r|DestinationInfoShowForInput
+JuWWsR|NameAffix
+JyTYru|VirtualBoat
+K3J5Xm|WidgetMeteoAstroPosition
+K3xmT8|LastModified
+KBAdz0|EditLogbook
+KD2GoS|_headline
+KG9bZg|LogbookDisplayEntriesDefaultNumber
+KHO0oI|LastModified
+KHV1ZR|CurrentLogbookEfaBase
+KI7G9v|ButtonCreateStatistics
+KNudaw|LastModified
+KQWwQQ|PrintPageMarginTopBottom
+KRWzwa|LastModified
+KSChhu|LastModified
+KW8A6g|AdminEmail
+KZ9KcH|InputSkipComments
+KZemq1|EfbSyncTime
+KcGfdD|LastModified
+KccvJU|EfaExitExecOnAutoExit
+Keeawa|DataMirrorDirectory
+Ki8qKC|EditBoatDamages
+Kk0vEp|AutoCompleteListShow
+KnFUrr|RC_WeissBlau
+Kp4zdi|WindowOffsetY
+L3PVYt|CustUsageRowingGermany
+L3Pt2V|LastModified
+L4jFBD|DebugTraceLevel
+L4mu8j|AggregationDistanceBarSize
+L96v16|LastModified
+LD4ER4|EditPersons
+LDGjQw|LockEfaFullScreen
+LDS7k4|EditAdmins
+LGKEFG|WidgetMeteoAstroWarnTextDarkNow
+LGbxtq|WidgetAlert-WidgetEnabled
+LIylon|LastModified
+LPDH3Y|OutputFile
+LiZX4G|Crew15Id
+Lj0Z8V|ButtonMessageToAdmin
+LnoWom|DefaultValueComments
+LoD7C6|LastModified
+Ltab66|EfaExitExecOnAutoExit
+Lx3iUX|LogbookDisplayEntriesMaxNumber
+LxG8MQ|LastModified
+LyRL6N|DefaultCrewManualSelect
+M0ubdX|InputColorizeFields
+M5Oaml|LastModified
+M6S6Ge|CronTab
+MATazz|LastModified
+MBWrlU|LastExportDirectory
+MElQlA|ButtonSpecialCommand
+MHA8nn|ButtonBoatReservations
+MHgTfD|FreeUse3
+MJufuq|InputShortcutAutoGenerate
+MPDHzi|WidgetMeteoAstroHtmlPopupHeight
+MUnMyh|Crew9Id
+MXx1CI|LastModified
+MYl4S2|BoatName
+MaHIuo|LastModified
+McJ8eY|ExcludeFromStatistics
+Mcb7fM|MemberOfDRV
+MjR3wb|LastModified
+MqMUDX|LastName
+MvRT7W|WidgetNewsScrollSpeed
+N0Y6HF|WidgetMeteoAstroIncludeHtmlPage
+N3VnHS|Crew19Name
+N4D5eh|LastModified
+N6rTFn|EfbId
+N8GKDi|AddressCountry
+N9qeiu|LastModified
+NGUlx1|AllowEnterEndDate
+NHS750|BoatId
+NSOU4J|LastModified
+NSuCoY|LastModified
+NTEIFq|LastModified
+NVEVjs|DataRemoteIsOpenExpiryTime
+Nb5EvL|Crew10Id
+NbugDi|LastModified
+Nhrr2B|EditDestinations
+NiO9qQ|LastProjectEfaBase
+NjeLRe|TypeCoxing
+NmgcyK|LastModified
+NnijAK|DataFileSynchronousJournal
+No7eSs|ButtonMessageToAdmin
+NrrYKS|BoatListIndividualOthers
+Nuhwi8|GUI_ANZKMAB
+NwtlB8|weeklyReservationBehaviour
+NyAxGh|AdministerProjectLogbook
+NzPo6B|EditFahrtenabzeichen
+O0JWry|GENDER
+O1GQIg|LastModified
+O1ZGUp|LastModified
+O1nPfJ|FirstLastName
+O5OgVF|EfaBoathouseFontStyle
+O6motN|efaBoathouseFilterTextfieldStandardLists
+O9dJan|GUI_STATUS
+OBm6XU|Inrigger
+OKH2ny|LastModified
+OMBhUG|AddressZip
+OMFnXD|LastModified
+OQWZ0I|KanuEfb_SyncUnknownBoats
+OScMU6|_headline
+OZ6GTG|StartTime
+OZknwG|ExecCommand
+Ocp6q6|RemoteAccess
+OjGapX|MemberIdList
+OqQpBQ|Crew1Id
+OvMkJo|LastModified
+P0YpJt|select config_error
+P0iBzE|Inrigger
+P0s5U4|WidgetMeteoAstroUpdateInterval
+P3ymy2|LastModified
+PF1r9V|BoatsNotAvailableListSize
+PHDeHp|Crew7Id
+PJdyMk|WidgetMeteoAstroShowWeatherCurImage
+PKG460|KanuEfb_SyncTripsAfterDate
+PLIvFy|Concessions
+PMBhtO|Crew5Id
+POWoY3|NotificationEmailUsername
+PPJWrY|InputStrictUnknownPersons
+PUgd1s|LogbookDisplayEntriesDefaultAlsoIncomplete
+PcldIr|Crew11Id
+Pgc3ND|Crew18Id
+PgjG7A|BoatCaptain
+PiE35r|ChangeCount
+PiVFTL|LastModified
+PiuBRR|Boathouse
+PmvtLe|LastModified
+PpBV8Z|LastModified
+PrFIIl|InputWarnOnlyCriticalBoatDamages
+PsvvJF|EfaVersion
+PuINAq|EfaRegistrationChecks
+PyANgL|LastModified
+PzMjxs|EditGroups
+PzQgX7|FilterBoatRiggingAll
+Q0Gr2g|LastModified
+Q76wK3|CompYear
+QB3nwc|EditCrews
+QBFROk|ShowLastFromWaterNotification
+QBdxYu|LastModified
+QC1Knr|WidgetMeteoAstroEnabled
+QDpMuC|NotificationEmailFromEmail
+QER6Jx|SellingDate
+QEu6cw|ButtonHelp
+QH5Vco|LastName
+QH8isg|NotificationErrorAdmin
+QJYggO|StatisticKey
+QLmV6W|PrintPageWidth
+QQhlDo|WidgetMeteoAstroShowWeatherLocation
+QTI8fj|LastModified
+QmaXG1|LastModified
+QpdhLP|WidgetMeteoAstroIncludeHtmlText
+R08H9q|MaxCrewWeight
+R2qCu0|DefaultDestinationId
+R6tks9|ShowLogfile
+RBGHBF|GUI_ANZABZEICHENAB
+RC0vfo|WidgetMeteoAstroShowSunrise
+RJPLuf|EditPersons
+RJiTcp|COXING
+RLZxa0|DeveloperFunctions
+RLsmk8|InputStrictUnknownPersons
+RM0E8T|BoatCaptainShow
+RRWtxI|LastModified
+RTTr2l|efaBoathouseHeaderUseHighlightColor
+RYXnV7|SessionType
+ReBZk1|ButtonCreateStatistics
+RfKlm0|InputShortcut
+RgAcQI|LastModified
+RgozBC|LastModified
+RjBqer|LockEfaFromTime
+RjfPB6|AggregationCoxDistanceBarSize
+Rl1aOC|GENDER
+RnSgQH|LastModified
+RnbwiL|LockEfaFromDate
+RpBSqa|InputNonAllowedPersonNames
+RuOMzN|BoatListToggleToPersons
+Ry4sSi|gui_nachname
+S178oH|LastModified
+S528DL|_2022
+S89glk|WidgetMeteoAstroShowWeatherCurTemp
+S8osAH|ButtonSpecialCommand
+S9t3uR|DefaultVariant
+SEmXhL|LookAndFeel
+SH7kCX|ExitEfa
+SOmCoU|ReplyTo
+SRBxqx|LastModified
+SVa53Y|InputColorizeFields
+SXoABI|DataRemoteEfaCloudSynchIntervalSecs
+SgtZYk|AllowMembersExitEfa
+Sk78Sr|InputAllowOnlyKnownDestinatins
+SkLbfi|MemberNo
+SsbTfu|DestinationInfoShowForInput
+StZMV4|WidgetNewsScrollSpeed
+StfA7P|WidgetMeteoAstroShowWeatherCurImage
+Su1eol|LastModified
+SylNPJ|LastModified
+T0MPui|PubliclyAvailable
+T1P9GC|BoatVariant
+T8xKKG|DataRemoteIsOpenExpiryTime
+T9RSHN|LastModified
+TAJb5v|LastModified
+TAQxpb|ClubworkRequiresApproval
+TBfc0f|EditBoatDamages
+TFxgXS|LastModified
+TJLNr6|LocaleDateFormat
+TPNkt2|StoragePassword
+TSXlOq|MsgMarkReadAdmin
+TXRbqz|Manufacturer
+TckYW2|DefaultCrewAutoSelect
+TdCVF8|LastModified
+TfiE80|DataAuditCorrectErrors
+TjTgiC|LastModified
+TkwlZm|CoxId
+Tkzqho|WidgetNewsEnabled
+TmAS9f|ShowOtherFields
+TvXRX2|LockEfaToDate
+TxOmXL|WidgetMeteoAstroShowWeatherCurTemp
+TyiBTq|ShowBoatNotCleanedButton
+TzWdBs|OutputCsvSeparator
+U1didO|PrintPageOverlap
+U3LOGz|OnlyInBoathouseId
+U4umXP|ACTION_ADDTYPES_ROWING
+U6s9jf|select 0=?;1=no options available
+UIFmWF|PassedLocks
+UIHNxo|FilterBoatSeats
+USEsgN|ManufactionDate
+USQwRb|ChangeCount
+USdiel|LockEfaToDate
+UWBfFh|LastModified
+UXeAoV|LookAndFeel_ButtonFocusColor
+UaTeBc|ProjectID
+UfDicX|ChangeCount
+UhptCe|DebugLogging
+UiQwdf|LastModified
+UlGF30|LastModified
+Upsti9|BoatText
+UrnG4Z|WidgetMeteoAstroShowWeatherCurWind
+UsSZO9|BoatUsageBan
+Uw8opN|InputNotEditableTime
+UxqmCs|MustEnterWatersForUnknownDestinations
+V0v52f|LastModified
+V2Xhdg|ButtonShowHotkeys
+V3OA7Q|EfaVersionLastCheck
+V3acxU|NotificationMarkReadAdmin
+V4INkt|Crew7Name
+VB1MzY|StorageLocation
+VFNCZ5|Crew21Id
+VFbX5O|TranslateLanguageWork
+VHDj71|LastModified
+VNVOH4|DestinationVariantName
+VRNzWN|WidgetNewsText
+Va8VKm|WatersIdList
+Vhx3Ee|AddressStreet
+VmxRxa|Crew2Id
+VndmID|NotificationErrorBoatMaintenance
+Vo6BtA|Crew18Id
+VpbzBz|LastModified
+VqTWao|ActiveDays
+Vyem9J|EditCrews
+VzZDAP|EfaBoathouseWindowAlwaysOnTop
+W0SUJF|efaBoathouseFilterTextAutoClearAfterAction
+W2taRK|AutoCompleteContainsMode
+W3UG7a|WidgetNewsText
+W4sBQl|NotificationEmailPort
+W6nTE6|TypeType
+WADkFn|BoathouseId
+WCw8i4|StartDate
+WDb22v|Français
+WF1uho|FilterStatusAll
+WGE6Ka|PostfixPersonsWithClubName
+WKCZmI|Crew16Id
+WMBVP7|LastModified
+WPa4iy|efaClub
+WQzYAi|GUI_SCHLUESSEL
+WSUmxR|CompOutputShort
+WTbTRt|EfaExitRestartTime
+WUPrM3|UpdateEfa
+WVTGsq|PrintPageWidth
+WXvYQC|gui_anzkm
+WYTmUt|Crew14Id
+WdWv40|LastModified
+WdeTgz|AddressCity
+Wk8oUE|EfaBoathouseFontSize
+Wlvyfs|LastModified
+WwmSax|LastModified
+WycgSw|LastModified
+X1dhU9|LastModified
+X3wcnq|LastModified
+X5zzVL|MsgReadBoatMaintenance
+XAn2Kd|InputHideUnnecessaryFields
+XJ1gKq|Crew4Id
+XJgOmK|LastModified
+XN1WKp|Inrigger
+XPKPPk|Crew12Id
+XPTVld|LastModified
+XRjhsc|FinishSessionTimeSubstract
+XfvXJ8|NotificationWarningBoatMaintenance
+XgW90m|LastProjectEfaBoathouse
+XoJHPo|AdvancedEdit
+Xolj0P|WindowOffsetX
+Xq4t8j|WindowDialogMaxHeight
+XtmcNW|InputAllowOnlyKnownBoats
+XxJu7P|ButtonShowLogbook
+Xzhxpv|_headline
+Y18nyf|DataRemoteEfaOnlinePassword
+Y2fVCz|EfaCloudURL
+Y2vSum|Crew16Name
+Y6Vy5J|
+|</div>
+|
+|<div class="w3-container">
+Y7uVAb|NotificationEmailSubjectPrefix
+Y8goKN|PersonId
+Y9T0IU|LastModified
+YDFQX7|ChangeCount
+YHMwXW|WidgetHtmlHeight
+YIHMJV|EfaExitExitTime
+YNtuUg|OptionDistanceWithUnit
+YP6u9p|Crew5Id
+YQdg2s|WatersIdList
+YfIFLS|WidgetMeteoAstroEnabled
+YhMuWg|LocaleDefaultDistanceUnit
+YlPwB7|AdditionalWatersInput
+YsZqri|LockEfaPage
+Yu04rQ|LastModified
+Yx5oO6|EndDate
+YxdCrA|AdminName
+YxrvqI|BoatListShowReservedBoatsAsNotAvailable
+YzWJOY|
+|</table>
+|</div>
+Z48Sww|DataBackupDirectory
+Z9wqp0|DefaultCrewManualSelect
+ZNfcTW|WidgetMeteoAstroWarnTimeBeforeSunrise
+ZRs6kY|LastModified
+ZZO6hH|gui_status
+ZaGbWV|FirstName
+Zbyx29|LastModified
+Zcc9Ck|LastModified
+Ze43Yf|EfaRegistrationChecks
+ZeOkSt|AggregationSessionsBarSize
+ZfKSi2|LastModified
+ZqxY2I|WidgetHtmlUpdateInterval
+ZrhmDQ|GUI_JAHRGANG
+Zu578N|LastModified
+ZvSVFU|GUI_ANZABZEICHEN
+Zvpird|LastModified
+ZwrGy4|ExitEfa
+ZjgTv2|[efa] New boat reservation for boat %1.
+Q49rLD|[efa] New boat reservation for boat.
+5KSMXt|[efa] New message to ADMIN from %1, subject:
+J33vQj|[field with data key]
+pUUKZR|[key field with central correction]
+m5fazU|[list of object IDs]
+pRZsYG|[not available]
+VpjI4B|[not defined]
+75hzYb|[several possibilities]
+YXYsQR|[undefined]
+Ct5cWh|A * in front of a field identifier indicates that a record is required.
+Q8hY5U|A * in front of a field identifier indicates that a record is required.
+SqKLVH|A * in front of a field identifier indicates that a record is required.
+RUZrAo|a branch for the configuration tree
+gaaxai|a catalog of all objects used by the dilbo application
+XtZapR|A change from context: %1 to %2 is not allowed. The session was terminated.
+pCUN5Y|a compilation of the modification type and the changed values
+6OmLBb|a configuration object
+xN8W5B|a contact for checks
+WAIZ9Z|a date without the time fraction between 1000-01-01 and 2999-12-31
+1ylTZz|a definition of options to sort, filter or display the data
+30YunW|a definition of options to sort, filter or display the data
+BfXzcV|a definition of options to sort, filter or display the data
+DsscC2|a definition of options to sort, filter or display the data
+HkYJtv|a definition of options to sort, filter or display the data
+dYCSdK|a definition of options to sort, filter or display the data
+fFdPTQ|a definition of options to sort, filter or display the data
+gMdBxn|a definition of options to sort, filter or display the data
+hL8JXa|a definition of options to sort, filter or display the data
+pha71d|a definition of options to sort, filter or display the data
+q2dn4D|a definition of options to sort, filter or display the data
+uw8FPe|a definition of options to sort, filter or display the data
+wSt6nR|a definition of options to sort, filter or display the data
+z1zkcp|a definition of options to sort, filter or display the data
+zONzbh|a definition of options to sort, filter or display the data
+VeaNed|a description of the work done
+OJyI8o|a dilbo (user) Preferences object instance
+uCpZSW|a dilbo ‚Application‘ object instance
+44Xnpr|a dilbo ‚Archiving‘ object instance
+NkAxDv|a dilbo ‚Associations‘ object instance
+gjKT0H|a dilbo ‚Boat variant‘ object instance
+O61lC8|a dilbo ‚Catalog item‘ object instance
+oxrvY3|a dilbo ‚Client synchronisation‘ object instance
+Dx4OBv|a dilbo ‚Club‘ object instance
+WUshOF|a dilbo ‚communications‘ object instance
+ROrQMY|a dilbo ‚Container‘ object instance (UI)
+JQpOmb|a dilbo ‚Habits‘ object instance
+RVh00J|a dilbo ‚Location‘ object instance
+zjT0Zb|a dilbo ‚Logbook‘ object instance
+mUHgi4|a dilbo ‚Mailer‘ object instance
+qODgrr|a dilbo ‚Maintenance‘ object instance
+JF1AZ6|a dilbo ‚Operations‘ object instance
+pDoBx4|a dilbo ‚PDF‘ object instance
+8NQluN|a dilbo ‚Personal logbook‘ object instance
+Y3ve7o|a dilbo ‚Profile‘ object instance (UI)
+I3si5T|a dilbo ‚Provider‘ object instance (UI)
+PzL74A|a dilbo ‚publically available information‘ object instance
+buM3DY|a dilbo ‚publicaly visible tripdata‘ object instance
+TvbhVS|a dilbo ‚Type catalogs‘ object instance
+luJNlG|a dilbo ‚user interface‘ object instance
+ByFOua|a dilbo ‚Workbook‘ object instance
+UQRns8|a dilbo ‚Workflow notifications‘ object instance
+IK6lBG|a floating point number (default is 32 bit)
+pdfAGv|a high precision floating point number
+ncH3n3|A is a number, B not.
+Bczhcw|A is a single value, but B an array.
+sF4MkY|A is a single value, but B an array.
+QYQwlG|A is a string, B not.
+y5iS0B|A is a string, B not.
+B8udF2|A is an array, but B not.
+Q3220i|A is an array, but B not.
+KH8xj4|A is boolean, B not.
+xitScV|A is boolean, B not.
+lEUpOn|A is Date, B not.
+K8RkEM|A is DateTimeImmutable, B not.
+qQXEIR|A is float, B not.
+YA9xLD|A is integer, B not.
+EMt2mp|A is null, but B is not null.
+kSCib2|A is null, but B is not null.
+8qn1n1|A is object, B not.
+JiCPzn|A is object, B not.
+wMABQI|A is object, but not a Date. No comparison implemented for other objects.
+OHYGer|A is object, but not a DateTimeImmutable. No comparison implemented for other objects.
+aiXMzd|a list of types allowed to be added, e.g. [int,float]. Leave empty to forbid any children.
+LEswoB|a long integer number - in PHP represented as String ! (max: 9223372036854775807)
+NY2pjM|A new boat damage record has been entered in efa for boat %1 by %2.
+ha2Cdj|A new boat reservation for boat %1 exists on %2.
+0za9nH|A new message to the admin is present from %1, subject:
+1i7RuY|a pipe separated list of resources to use
+B8ZysN|a pipe separated list of resources to use
+IdraCF|a pipe separated list of resources to use
+JvXwbq|a pipe separated list of resources to use
+KBx4W5|a pipe separated list of resources to use
+Stp3HG|a pipe separated list of resources to use
+UGfYiu|a pipe separated list of resources to use
+Ur8TSM|a pipe separated list of resources to use
+VBmUzp|a pipe separated list of resources to use
+ZbeHQs|a pipe separated list of resources to use
+aeENaB|a pipe separated list of resources to use
+mZDLvN|a pipe separated list of resources to use
+nq33GF|a pipe separated list of resources to use
+sfcQty|a pipe separated list of resources to use
+yo7k3D|a pipe separated list of resources to use
+yxn8R3|A record with %1 '%2' already exists in table %3.
+iHgePQ|a reservation number
+PJaxsz|a standard 128 bit UUID, like ‚6ba7b810-9dad-11d1-80b4-00c04fd430c8‘
+NleMXL|a String of less than 4096 characters
+Kf38QT|a String of less than 65536 characters
+1yFI99|a template to render the data
+4kCMWF|a template to render the data
+BJ4PrV|a template to render the data
+BRqF87|a template to render the data
+D2r28Z|a template to render the data
+Fc0rcv|a template to render the data
+Jy7c0n|a template to render the data
+L3hM8W|a template to render the data
+Lp87d9|a template to render the data
+MUBISR|a template to render the data
+YUGXck|a template to render the data
+c6dzvO|a template to render the data
+dsCy3X|a template to render the data
+qX35xj|a template to render the data
+ygLKWF|a template to render the data
+UYJ0Pd|a text to explain what this item is used for. Will be provided als form help text, will be translated.
+N7zwJX|a time, either time of day or period between -99 and +99 hours
+waAoy8|a twelve characters random unique id
+cgLCXG|A unique id of this data item. Will be used to build the hierarchy in the configuration tree.
+lt3gwh|a unique object identifier of the work done (efa legacy)
+2b82y9|A-Gig
+DrfflD|A-Gig
+LBCa1w|A-Gig
+a5jVKD|LastImportDirectory
+a5rD6h|LocaleDefaultDistanceUnit
+a5yypd|ACTION_TYPES_RESETTODEFAULT
+aBNurK|MsgMarkReadBoatMaintenance
+aDNeJc|LastModified
+aNilnm|LastModified
+aONdzb|LastModified
+aQHlsW|LastModified
+aS4aas|MustEnterDistance
+aT1kQX|DataRemoteLoginFailureRetryDelay
+aUlgiC|TypeDescription
+aVkxz0|Nederlands
+abiaCc|BoatDamageEnableReporting
+3XfFZR|Abmelden
+zD9aCz|Abort now.
+uhcKky|aborted, see sys_db_audit.log
+Jxu9uW|Abzeichen
+QqsVTJ|abzeichen
+7r9O3Y|AbzeichenAB
+Xz3Mt2|abzeichenab
+l5E880|Access statistics
+hNikUk|Access to this information was not allowed.
+UU8ZrV|Accesses last %1 days
+ybUN02|Account
+DYvvBo|Acronym
+zXIYml|acronym
+y88UFO|Action add types canoeing
+WjAbHL|Action add types rowing
+hib5Yr|action links
+CJj78y|Action types add all default
+qwjeE2|Action types reset to default
+F7t6Jn|Action
+i05ndF|Action
+uRHqUh|actions
+2IHJZD|active
+8FZFZz|add a record
+wPzFyf|Add record
+v9J11o|add types
+JolXHh|Add
+2KFOT2|addable types
+kx8iiD|Added admin record.
+tNKKVB|Added admin record.
+H5p5xA|Added auto increment property to `%1`.`%2`.
+xw01aj|Added column `%1`.`%2` with current definition.
+S1nQio|Added unique property to `%1`.`%2`.
+fFE4NL|additional waters input
+RWzyuw|addr additional
+54Nc4L|addr city
+HNlaBt|addr country
+OyuQS0|addr street
+I8Qe4e|addr zip
+Vf3bI4|Address, city
+tgLUhc|Address, city
+La3LeR|Address, street
+PQdH3g|Address, street
+GKtmv8|Address
+1at3tF|Admin e-mail
+HY3J3V|Admin e-mail
+j7UHdI|admin last os command
+Nyy57C|Admin name
+gQ4Izy|Admin name
+85zHwf|admin
+8RaUEt|Administer
+1VN7Pt|administrator
+8G79ta|Administrator
+CT9Fys|administrator
+HfKWJ9|administrator
+dQ3PQG|Administrators are also deleted with the exception of '%1'.
+LAntsZ|administrators
+mIJlp8|administrators
+DYyaQ7|AdminName
+pouUPe|admin
+6iUVoV|Advanced editing functio...
+T3tqLo|Advanced editing functio...
+8MYKLF|After clicking on the "Upload" button, nothing happens to this page at first. It will only be updated after the upload has been completed.
+1yDSbE|After the test mailing the message can be edited further.
+JmUHGQ|Afterwards, logging in with a NEW one-time password is possible again, which also gives you the option of setting up a new permanent password.
+1Hbi5c|Age in days:
+TCnjRe|Age in days:
+y10Kn9|Age in days:
+z1pAGR|Aggregations
+d3o4EA|Album not found. Cancel.
+8Ty9HO|Alert-Widget
+fdTAyS|all sessions
+RQQrsE|Alle Nutzer
+pRx0Le|Alle Nutzer
+cd71Yk|allow display of the boats available report
+8Zd75V|allow display of the boats not usable report
+Xn0KFG|allow display of the boats on the water report
+9P1aDt|allow display of the boats reserved report
+y5DtNd|allow enter end date
+nKQWja|allow members add names
+bKUAho|allow members boat reservation edit
+gcpC6F|allow members boat reservation weekly
+7Qe1ph|allow members boat reservation
+uBAOQb|allow members exit efa
+56h6lF|allow members private boat reservation
+Xp1UAx|Allow
+entgRR|allowed group uuids
+kITYeC|Allow
+amQDeV|ClubworkRequiresApproval
+6EoZZ1|an affix to the name
+N3ClPw|an affix to the name
+Kr71pH|an identifier String, containing only a..zA..Z0..9_, it shall not start with 0..9, but due to efa legacy this is allowed.
+1hmAzF|an integer number (default is 32 bit)
+usHKvV|An invalid form sequence number or form sequence token was specified.
+3Ju6sc|An overview of the currently assigned permissions
+5pIFfg|An up-to-date security concept is created from the application, which can be used for documentation in accordance with the GDPR. Please note that the security concept only concerns the application. The security of the web server must be documented elsewhere or secured by an appropriate GCU.
+9dBgWW|An upgrade cannot be undone. It is therefore recommended to pull a backup of the code beforehand
+HS5S4A|analog clock
+Q3Kiql|Analyse or modify tables and records
+CW7uhM|anonymous request for not a form: %1/%2
+Kh3f7P|anonymous role
+8FHeg0|anonymous
+MOlhLN|any applicable rule, like password security, IBAN check etc.
+MoFoKm|API access statustics
+Pz9VW9|api
+ghvURJ|app configuration
+XAGeqf|app name
+BGYyj0|app url
+tg2LqL|Application configuration error: gallery '%1' not defined. Please check with your administrator.
+3MjQY3|Application configuration error: list not defined. Please check with your administrator.
+4t2ytU|Application configuration error: list not defined. Please check with your administrator.
+eG3R6d|Application configuration error: list not defined. Please check with your administrator.
+2VPYMf|application objects
+rcxg1I|Application overload
+vQqH1u|application settings
+KAmt6x|application tables
+KWQvhQ|Application
+GL5oKY|approval mark
+LcjQdN|approved by
+XMqs5E|approved on
+TKKGMK|approved
+cbtdbj|Approved
+aqqUiL|LastModified
+dhimlx|arbitrary comments
+vQfPRI|archived records of a table
+LFjF4k|archived uid
+i0VBLI|archived
+k1f72d|archive
+4SGK9n|Archiving
+zChQWz|Archiving
+hRa7Lj|ascending number provided by the data base and used for change control by the tfyh framework
+I99caQ|ascending number
+moYtc5|ascending number
+Un4xdT|asset owner
+Th1rpd|Asset status options
+IVmONR|asset status
+fZxA3b|asset subtype
+XCI9Vj|asset type
+FadK7Y|Asset types
+OoJaFH|asset variant
+Z0Q2Ht|asset variant
+7wLp7B|asset
+MEJn0T|asset
+ZpJhPG|assets uuids
+J70Rr2|assets
+bPMhjp|assets
+flV1lj|assets
+fuGic5|assets
+iLRBEh|assets
+6h5SfZ|association
+EIMaWO|Association
+CbcL4v|Associations
+YNWYRr|Associations
+mlOh7N|Attachment 1:
+8dh5sK|Attachment 2:
+hv0TyN|Attachment:
+rHyH4e|ATTENTION: After 10 minutes the session ends, if no a new page is called up.
+0Q3eYq|Audit completed.
+yDwhyh|Audit completed
+6ePLG9|Audit for database %1
+3bUCT8|Audit the data base
+3aIZhf|author
+WP2gSG|Author:
+dOH4gJ|author
+1GPSPQ|Authorisations overview
+UW9vbC|Authorisations overview
+nOchmJ|Author
+sfhaia|author
+yDZ1Sv|author
+8gYmat|auto complete contains mode
+bND1WI|auto complete list show
+jnJCJL|Auto complete
+vLm562|Auto new logbook date
+SXwEcP|autoincrement
+c19I5S|autoincrementing id
+gzuGuA|Automatically mark messages to admin as read
+AkkvVW|Automatically mark messages to boat keeper as read
+Pj1aLk|available boats
+De1RPi|available for download as csv.
+FMJhl1|available
+Isll4Y|available
+xf8yxL|Average
+axe5Mc|LastModified
+aycH1Y|EditBoats
+azfsYj|DataRemoteEfaCloudSynchIntervalSecs
+NO8HPX|B-Gig
+Pf2yJS|B-Gig
+qF1Xh0|B-Gig
+b1Ebik|DataRemoteEfaOnlineEnabled
+b1tjR3|LastModified
+b5Wn1e|LockEfaLocked
+b61435|SessionTypeDefault
+b7IPbT|WindowCentered
+b7aV5g|LastModified
+bCsViK|DefaultCrewAutoSelect
+bFV3GO|LastModified
+bG2bOs|EditStatistics
+bGDa9h|AutoCompleteContainsModeEasyFindEntriesWithSpecialCharacters
+bIxNiY|JavaVersionLastCheck
+bNnasv|noValues
+bQshYR|CompOutputAdditionalWithRequirements
+bUVQY0|LastModified
+bWLtQE|AggregationDurationBarSize
+bZn7dl|EndDate
+baB2mQ|EndDate
+OdDC93|Back to previous setting
+j5CpiO|Back to standard colours
+ulXKGl|Backup check
+UAsVwN|Backup completed
+7itWPt|backup filename
+jivK7Y|Backup import log
+wyBzeb|Backup skipped by configuration.
+Al0R30|Backup-filename
+Qy1BZE|Backup
+qwRXWe|Backup
+0mGwCy|Backups
+5RmyrN|badges
+BbmPwy|badges
+T4IzT5|badges
+XxqKaX|badges
+YI4c5u|badges
+oh3iN7|barque
+tOzfsU|barque
+uHLEQG|barque
+yAxwZH|barque
+znreYH|base64/json encoded multilevel array
+pNX1mj|BaseStatus
+bbib6M|ChangeCount
+tcVMpJ|BE CAREFUL. THERE IS NO WAY TO RESTORE THE REPLACED DATA.
+s0IJfr|Because this mail could not be sent to anyone, it was not saved in the sent mails.
+bew8Mn|EfaBoathouseTablesAlternatingRowColor
+bg4nE2|MessageId
+bhtVhe|WidgetMeteoAstroWeatherLocation
+bimL8H|LongValue
+ASO3pq|birthday
+vXBbts|Birthday
+boSIDr|FilterGender
+6oialB|boat affix
+xjIgJU|boat affix
+T7TS2f|boat captain (position)
+Zm1EQO|boat captain (position)
+yp6CXT|boat captain auto select
+nqnYU4|boat captain default
+rdR98h|boat captain show
+JyfXB3|Boat captain
+UPM2ie|Boat construction
+kNVX2b|Boat coxing
+T5rium|boat damage enable reporting
+4Je6Ur|boat keeper
+I2it7i|boat keeper
+USCuny|boat list display destination for boats on the water
+60Tq0L|boat list individual others
+f3ifJF|boat list show on multi day or regatta boats as not available
+Vg8JzZ|boat list show popup
+VFr8v6|boat list show reserved boats as not available
+EUnRQo|boat list sort by rigger
+2baca4|boat list sort by seats
+GrQKeH|boat list sort by type
+TQuJs4|boat list toggle to persons
+CUeeUS|Boat list
+vGxOgQ|boat name
+wMG0QG|boat name
+RCBnd3|Boat rigging
+44UdCb|Boat seating
+ELiBmi|boat type
+fCVvmQ|boat type
+s6i5Ps|boat type
+25iWqu|boat usage ban
+h3QK3i|Boat variant
+KJVdkc|Boat variants
+3lHvNg|Boat,CurrentStatus,BaseStatus
+zkm1hq|Boat,DateFrom,DateTo
+wOD59L|Boat,Description
+86mTKl|Boat
+LATQCn|Boat
+hGWrlQ|boat
+IjO77z|Boathouse id
+BBFJDv|Boathouse identifier
+iLpbVk|Boathouse id
+Jo6uqI|boathouse
+lxUT6h|boathouse
+vZ5FJA|boathouse
+lusU0e|boat
+bhx2Y1|boats not available list size
+lEOHuR|Boats not available
+xzhtwo|Boats not available
+mYiQgl|Boats not usable
+yN49L2|Boats not usable
+cDlfAu|Boats on the water
+wAmxf9|Boats on the water
+8Xlwfb|Boats ranking
+lcKYi0|Boats ranking
+0qy3Ok|Boats reserved
+mA9rVk|Boats reserved
+6vEnbZ|boats table
+C0jRAi|boats
+GU7W1m|boatstatus
+ymS6hW|Boat
+0ZpEIT|body
+JRDj96|body
+QidFnd|body
+anuoDH|booked
+x8z9wo|booked
+4igrr0|boolean A is not(boolean B).
+ofZjXx|boolean A is not(boolean B).
+Vyfkad|Boote reservieren
+8dde5z|bottom list
+0a0Es8|bottom menu
+bpYaBZ|LastModified
+bparbF|LastModified
+brPNED|DeveloperFunctions
+QF011V|branch
+HY5ek8|Bulk transactions of the last %1 days
+EJN8bL|Bulk transactions
+gfFUcy|button admin mode
+GvOzWP|button boat reservations
+p48XHh|button cancel session
+Bb7uWE|button clubwork
+Q4IRUe|button create statistics
+HrP5HO|button finish session
+Q7KwQ4|button help
+Y82kof|button late entry
+O0rGLd|button message to admin
+MYmW4L|button show hotkeys
+Tkl2MT|button show logbook
+mKyZDh|button special command
+azxA0F|button special
+URq44Y|button start session
+9gW6eu|Button
+bwgmtX|efaBoathouseHeaderForegroundColor
+bympSb|LastModified
+7y4t7R|C-Gig
+87T26b|C-Gig
+RSbXPJ|C-Gig
+c7smhw|EfaRegistrationProgramId
+c85vJx|NameFormat
+c8XVkX|Crew24Name
+cAOC2M|LastModified
+cEK5cW|OptionIgnoreNullValues
+cLhC4V|EfaVersionLastCheck
+cMJxYj|ChangePassword
+cUu68r|RegionalAssociationName
+cVHMLr|Crew12Name
+cVnMsN|UnknownBoat
+cWYKaZ|LastModified
+cXD7jc|ButtonCancelSession
+cYGhk7|SpellingCheckNames
+cZT0cy|Crew3Id
+cZs2iQ|LastModified
+rsPBxh|cancelled by
+0Jb2Qk|cancelled on
+AQ6jNh|Cannot insert record.
+4vF8NA|Cannot update record.
+v7A0HT|Catalog item
+ey9S8D|Catalogue of lists
+G9VWCf|Category
+vKw9sL|Cause
+OZGFzr|CAUTION: A configuration import will always replace the complete existing configuration.
+fK6t7h|CAUTION: A data import usually will delete and reload the complete data base.
+cdzKPW|maxversions
+ceQcMR|LastModified
+WWXNTT|Central European time
+tYh9jK|Central European Time
+QQRAVY|Change and app info|warnings|failures log entries cleansing completed
+YpUO6w|Change checked message.
+KDNuD3|Change colours and font
+elJM8q|Change configuration parameters
+1BzK7N|Change count
+1dL3HF|Change count
+1gr399|Change count
+1lJvNH|Change count
+1rNZbV|Change count
+1uwLpb|Change count
+24YEw9|Change count
+2Nqycj|Change count
+2cMhiC|Change count
+2hm30z|Change count
+35bo8T|Change count
+3CXw2D|Change count
+41JNgc|Change count
+47vE1H|Change count
+4JLlRq|Change count
+4bCheC|Change count
+4twjDR|Change count
+58riy4|Change count
+66Vt4d|Change count
+6RRzQd|Change count
+6pZYTv|Change count
+6sSJze|Change count
+6tz1qK|Change count
+7FTRyE|Change count
+7RAmzO|Change count
+7UvGdj|Change count
+7cIPK7|Change count
+7jhs8R|Change count
+7q3SkU|Change count
+8nYxYy|Change count
+8x7cJs|Change count
+9VnzM1|Change count
+9gBS6L|Change count
+9w5fMa|Change count
+A3OUFd|Change count
+AOhbXf|Change count
+AQVBSA|Change count
+Al4Qy3|Change count
+AyGuYm|Change count
+B8GAzF|Change count
+BASRZi|Change count
+BVJxWU|Change count
+BVVNFi|Change count
+BawKOm|Change count
+BmqNpC|Change count
+BybHDh|Change count
+CSsyas|Change count
+CUHryl|Change count
+CkxZ36|Change count
+CnPPaz|Change count
+Cp71lV|Change count
+Ct0xrK|Change count
+D96R5C|Change count
+Ei2Lhq|Change count
+EsPc7a|Change count
+F1u1zK|Change count
+FLxAVi|Change count
+FR6a0j|Change count
+FapXYz|Change count
+GCgGKX|Change count
+GGWkHL|Change count
+GMMMOD|Change count
+GSgmJv|Change count
+GotukL|Change count
+HHkP0r|Change count
+HJWcXX|Change count
+HWGuGn|Change count
+HbO5rt|Change count
+I1pDIX|Change count
+I2dL5U|Change count
+I38SLL|Change count
+I50ZuQ|Change count
+I7BOAy|Change count
+Ict8qr|Change count
+IjMpAy|Change count
+J4TuOl|Change count
+JEcYaN|Change count
+JIQHGF|Change count
+JLEoAm|Change count
+JP5FHD|Change count
+JW1xga|Change count
+JjCTzT|Change count
+K1gGgw|Change count
+KR9EGu|Change count
+KSaeVD|Change count
+L8F6Po|Change count
+LEu9me|Change count
+LHVB93|Change count
+LHyPhe|Change count
+LRknow|Change count
+MFentz|Change count
+MLGPs1|Change count
+MZtss3|Change count
+Mikj42|Change count
+MtnF11|Change count
+NPSmkp|Change count
+NT5YdD|Change count
+NVZV5D|Change count
+Ng9a5V|Change count
+NqBzpG|Change count
+OEHLH1|Change count
+ONWKlV|Change count
+OnSMxP|Change count
+PJS1Kk|Change count
+PLMt4F|Change count
+PgMCFI|Change count
+Q3tyVo|Change count
+Q66PWj|Change count
+QI3NB3|Change count
+QJYlUH|Change count
+RAfmBb|Change count
+RBwNBR|Change count
+RHOePG|Change count
+RR2qHc|Change count
+RweTLN|Change count
+S5A425|Change count
+SIJrWd|Change count
+SM5fIy|Change count
+SMELua|Change count
+SlcHE2|Change count
+SnYRYn|Change count
+TAIsgM|Change count
+TKResi|Change count
+TSuKek|Change count
+TVChuk|Change count
+TVFg4A|Change count
+TjKUR5|Change count
+TqxjCk|Change count
+Tv8Mj0|Change count
+TzLW0m|Change count
+U9EoLY|Change count
+UFmQ9n|Change count
+UJfOPg|Change count
+Uaq9nV|Change count
+UlmlL9|Change count
+Uxhhfm|Change count
+V7zOhS|Change count
+VCJsLZ|Change count
+VKSbbW|Change count
+VOTkz8|Change count
+VThvYA|Change count
+VaTYV9|Change count
+VoYnBF|Change count
+WOSxhS|Change count
+Wgdv6F|Change count
+WkZKWZ|Change count
+WpFF8F|Change count
+XH0DQK|Change count
+XMRNxK|Change count
+XlKj4w|Change count
+XtaRZn|Change count
+XtwbR4|Change count
+YlBkF7|Change count
+YqoL7Y|Change count
+Yz2JKo|Change count
+ZIl07X|Change count
+ZWZXg3|Change count
+aDmkEZ|Change count
+aFTpp9|Change count
+aP8MwI|Change count
+aRmLYU|Change count
+aVQIJy|Change count
+aclvtN|Change count
+ad3oRk|Change count
+agULYs|Change count
+axLJ9m|Change count
+bFQG81|Change count
+bU8vqx|Change count
+blYDOs|Change count
+blrnjm|Change count
+bpvPsx|Change count
+cJvamB|Change count
+cLr5zQ|Change count
+dUWqz8|Change count
+dX34xV|Change count
+ea9bVk|Change count
+f7Zupd|Change count
+fD5SG7|Change count
+fHyBsD|Change count
+fSOTDd|Change count
+fdytFU|Change count
+fu6Ed9|Change count
+gAoTGe|Change count
+gPoJ5x|Change count
+gXX1Fw|Change count
+gZdqgJ|Change count
+gj5JQZ|Change count
+gjzSzJ|Change count
+hcHZLB|Change count
+iAQGfc|Change count
+iRILDk|Change count
+iotEuv|Change count
+izPFAV|Change count
+jKWxNq|Change count
+jS9tcp|Change count
+kBPMVc|Change count
+kFupfb|Change count
+kR3grE|Change count
+kTZXOC|Change count
+kU7bHj|Change count
+kod9qA|Change count
+kxNbFO|Change count
+lHco9a|Change count
+lU6R5k|Change count
+luKFCU|Change count
+m4lQOV|Change count
+mQNb7R|Change count
+nDeRdU|Change count
+nbV4NP|Change count
+nethth|Change count
+nrj3Bk|Change count
+o3DlsA|Change count
+pKqkE7|Change count
+pQTI1E|Change count
+pTco0C|Change count
+pkoGuB|Change count
+prXU1d|Change count
+q1fa9N|Change count
+qLpAok|Change count
+qOUvKv|Change count
+qdvpTS|Change count
+rUEGYB|Change count
+rW731t|Change count
+rgkiIO|Change count
+rl6Rwq|Change count
+ruBMBL|Change count
+sDfG3D|Change count
+sNtuio|Change count
+sXyRkD|Change count
+suv8lC|Change count
+tMGrIJ|Change count
+tYZ0XU|Change count
+tnOdYF|Change count
+tobwIk|Change count
+txY3sK|Change count
+u6QeSk|Change count
+u6pivA|Change count
+uDspLc|Change count
+utkFly|Change count
+vIE2En|Change count
+vkyR7V|Change count
+vmDSSH|Change count
+vqKwQp|Change count
+w0oxyb|Change count
+w91YQJ|Change count
+wLc4I9|Change count
+wNSNhB|Change count
+wPADu6|Change count
+wWIseX|Change count
+wyPSn6|Change count
+xIdYAo|Change count
+xU9FQV|Change count
+xUeyon|Change count
+xeHTRn|Change count
+xragUz|Change count
+yAIZEd|Change count
+yEKswj|Change count
+yOUOnD|Change count
+yXxf48|Change count
+ybwIQC|Change count
+yhXgum|Change count
+z75YvU|Change count
+zWKTyO|Change count
+zgRvvP|Change count
+tbfG3a|change my profile
+e1szHW|Change of profile data at efaCloud by user #
+aJZS7V|Change password
+n9txXC|Change password
+ErLqsR|Change profile now
+IZjKgK|Change profile
+xBbzbd|Change record
+VL3y28|Change the application configuration here. Change the theme at %1. The data base access must be configured during installation.
+c1Kttz|Change the message.
+Sni5v9|Change the profile of %1
+Alpzz7|Change theme
+G4gfja|Change users now
+giCPgj|Change your personal profile
+08PFcm|change
+0gI9lN|Change
+sNh3bq|Changed column `%1`.`%2` to current definition.
+gjYPBf|Changed ID:
+MZUBHS|changed uid
+uReLCv|Changelog (auch für Security-Concept)
+vfuEZQ|changelog columns
+MHMkLP|changelog name
+jkjFR8|Changes to data
+whDEyZ|changes within records of a table
+84qqTb|Changes
+E6z7DI|Changes
+eDlcRp|changes
+DkY0nv|characters long.
+XBFzrv|Check the box for pictures and click "Download" under the pictures. All the pictures will be provided in a zip archive which, depending on the browser settings, may be written directly to the "Downloads" folder.
+3MS3H9|Checkbox checked
+nMSzXi|Checkbox unchecked
+RHFSbA|Checking the result
+gAGdJs|children:
+8MzpFP|church boat
+9EXKic|church boat
+lOvd1Y|church boat
+tO6TGi|City
+txEEgQ|City
+ErZvL9|claim
+vlF5r7|Claim
+cRiA2r|class of form input
+p4z2js|Cleansed obsolete sessions. Remaining:
+O00zsH|Client Configurations:
+uecpM1|Client request.
+TDuaQK|Client synchronisation
+3f1zwM|closed:_
+lsbpkz|Closing '%1': No such api session to remove.
+SToa2j|club house
+UFw212|club house
+vJWQTM|Club information
+1hLsF3|club logo
+CnBGsZ|club logo
+kScAYD|club logo
+GZPbNd|club name
+mkQ56z|Club name
+oIdZfk|club settings
+0bOClt|Clubs
+h05I6K|Clubwork age in days
+nDUnSt|Clubwork age in days
+rKTnK7|Clubwork age in days
+3CkWxy|Clubwork carry over done
+36F2Es|clubwork requires approval
+KqvJwg|Clubwork
+WY1CWF|clubwork
+s25gRN|clubwork
+cmokTr|LastModified
+cnevup|AdditionalWatersInput
+SfVSSr|color
+wUp3Nb|Color
+CS3ieI|colour application
+xmC7bW|colour value
+dIF5oo|column handling rules
+NhDB0B|Columns
+fK2tDd|Columns
+I1zoq3|Comment
+8njxdh|comments
+szaXON|Comments
+2zbzk8|common fields
+AxJOaB|common fields
+DZhl1F|common fields
+GnHaTt|common fields
+KCTsEV|common fields
+ODsxKh|common fields
+Qq4hXC|common fields
+QvAbxC|common fields
+UHoEWO|common fields
+WvdOw5|common fields
+rc02SG|common fields
+vJPo4g|common fields
+xaRk0g|common fields
+xopwK1|common fields
+oiGoJ3|Communication error at client
+H6LuRb|Communication
+65ENLJ|communications
+6QCftb|Completed update_table_layout(%1).
+HAqb4l|completed. File size
+vOXx8v|completed
+lt6nJP|concessions mask
+a3vo5p|configuration branch for dilbo usage: ACTION_
+KE4Aac|configuration branch for dilbo usage: Address
+sN4LF1|configuration branch for dilbo usage: ADDTYPES_
+A14hEy|configuration branch for dilbo usage: Administer
+tTyV0A|configuration branch for dilbo usage: Admin
+9HgnyX|configuration branch for dilbo usage: Alert-Widget
+IEXHhp|configuration branch for dilbo usage: Allow
+zBYwS7|configuration branch for dilbo usage: Allow
+dEp2xp|configuration branch for dilbo usage: AutoComplete
+L2TLs1|configuration branch for dilbo usage: BoatCaptain
+MQp8QL|configuration branch for dilbo usage: Boathouse
+Uvbqjc|configuration branch for dilbo usage: BoatList
+m16Dyt|configuration branch for dilbo usage: Button
+qH6I05|configuration branch for dilbo usage: Clubwork
+cSFoeM|configuration branch for dilbo usage: CurrentLogbook
+SxNFJM|configuration branch for dilbo usage: CustUsage
+1O3wen|configuration branch for dilbo usage: Data
+pWJ2bK|configuration branch for dilbo usage: Debug
+rafLPM|configuration branch for dilbo usage: Default
+fVTC9E|configuration branch for dilbo usage: Edit
+xp1c7R|configuration branch for dilbo usage: EfaBoathouse
+5hnz3J|configuration branch for dilbo usage: EfaExit
+hWqAQb|configuration branch for dilbo usage: EfaRegistration
+yxaBm7|configuration branch for dilbo usage: EfaVersion
+wkXSOc|configuration branch for dilbo usage: GlobalAssociation
+Bbq0rp|configuration branch for dilbo usage: Html
+WnYPqN|configuration branch for dilbo usage: Input
+DJ2Vxl|configuration branch for dilbo usage: KanuEfb
+Sz5qXR|configuration branch for dilbo usage: Last
+RLDyD2|configuration branch for dilbo usage: Locale
+LwkMuc|configuration branch for dilbo usage: LockEfa
+dPHNCA|configuration branch for dilbo usage: LogbookDisplayEntries
+tPlN2U|configuration branch for dilbo usage: MeteoAstro
+Z51ixu|configuration branch for dilbo usage: Msg
+ITJLi4|configuration branch for dilbo usage: MustEnter
+XvCHTH|configuration branch for dilbo usage: News
+Yb0unG|configuration branch for dilbo usage: Notification
+jr1PA9|configuration branch for dilbo usage: Print
+NsY1gH|configuration branch for dilbo usage: Remote
+I4OPOa|configuration branch for dilbo usage: Show
+XYwu9P|configuration branch for dilbo usage: Storage
+g9oHaW|configuration branch for dilbo usage: Translate
+GFnMdT|configuration branch for dilbo usage: TYPES_
+XRIwoM|configuration branch for dilbo usage: Widget
+7cjVGo|configuration branch for dilbo usage: Window
+Qu5QM1|configuration branch for dilbo usage: Window
+jtlDMv|Configuration dump:
+QES6P2|Configuration editor
+3VwQtV|Configuration error.
+YG4BuC|Configuration error.
+qaczPb|Configuration error.
+nbJ0aO|Configuration mismatch in autoincrement column handling and sql indices for table %1
+XfN4qO|Configuration mismatch in unique column handling and sql indices for table %1
+VHAcVh|configuration table name
+7BVGfL|configuration values imported.
+UETSE9|configuration values imported.
+lTdLce|configuration values imported
+3DtcXL|configuration
+R7RsS0|Configuration:
+D1Lxz8|configuration
+ENED05|configuration
+GX1KkL|Configuration
+H9tW8m|configuration
+VshrlN|Configuration
+c2S7Zr|configuration
+zTIzYu|Configuration
+1S8Z8J|Configure efa
+E2E47c|Configured jobs
+xsfC72|Configured jobs
+BN4UxH|Connected as
+7DhJc1|Connection
+rH1lEJ|Connection
+hpz1IT|Construction site
+GAOZev|Contact
+KjeCap|contact
+AhfVQf|Container
+04UraV|contents provider
+2CRQV6|contents provider
+2D8yLV|contents provider
+4J8JKw|contents provider
+5S9teg|contents provider
+9MnTvU|contents provider
+9coVAk|contents provider
+BgxoH6|contents provider
+BoE6wG|contents provider
+H6hec5|contents provider
+LB2VIH|contents provider
+MM3g7t|contents provider
+NVNePn|contents provider
+QfFdzK|contents provider
+S4Z91W|contents provider
+T5vfso|contents provider
+WERe3b|contents provider
+WcBbyw|contents provider
+aN5BOi|contents provider
+bOSgb8|contents provider
+eNw4M2|contents provider
+gubqpG|contents provider
+hutilZ|contents provider
+jllcnX|contents provider
+vXKcvc|contents provider
+yZf4ai|contents provider
+zHtWix|contents provider
+gcFhev|Continue to change user.
+3oww70|continue
+YfDoBA|Continued
+MQEsnc|Correct now - Wait - takes up to 5 minutes!
+URJSm4|Correction failed for '%1'
+8N2N5h|Count of accesses
+8fGF1t|Count of non-privileged roles:
+OPc8WE|Count of privileged roles:
+MzZXhV|Count of records
+Yp1lPb|cox
+2T08yz|coxed 2 scull
+UD27VC|coxed 3 scull
+Gn3k3j|coxed 4 scull
+iLpt9a|coxed 4 sweep
+dPCTeL|coxed 4x scull
+uHGcKb|coxed 8 sweep
+JWKPQO|coxing
+K7WvO2|coxless 1 scull
+Deh3Tn|coxless 2 sweep
+xfsrCI|coxless 2x scull
+3Q3eku|coxless 3 scull
+pfe017|coxless 4 sweep
+o9WWZa|coxless 4x scull
+c2EPFk|coxless 5 scull
+s5zjJx|Cox
+yOMZoX|Create a child item for
+JX3YTz|Create a new period record
+ms8K9B|Create a new period record
+jwq0iS|Create a new user
+aZq6n1|Create backup
+oy7YtQ|Create backup
+6tNZ2D|Create data protection concept for the application
+1eVBQR|create new period
+P3jCTC|Create statistics
+sZjqJQ|Create statistics
+wpf4AI|Create table `%1` with all columns according to the current layout.
+qhZ5Sv|created by
+RO5t0k|created on
+Tix00e|created:
+WRvThr|Creating empty new table `%1`... 
+K6OO1w|Creating new session file 
+E6UQMV|crew groups
+gXMgBV|crew groups
+OMg9N8|crew
+FImRVX|crews uuids
+2JredZ|Crews, maximum 24 members
+7WScxb|crews
+GHccKN|crews
+IHGLkc|crews
+Qrkyxq|crews
+XMwoo5|crews
+eteUEX|crews
+YQKmsG|cron tab
+rhWBec|Cronjobs started (time last run: %1)
+csDxpK|ButtonClubwork
+ctrcl1|LastModified
+rKu96z|Current clubwork efaBase
+1FcVOB|Current clubwork efaBoathouse
+bXaw1N|Current logbook efaBase
+zEZ9gr|Current logbook efaBase
+Fo9hxG|Current logbook efaBoathouse
+mOnwGl|Current logbook efaBoathouse
+tjv7Il|Current logbook
+tO6SOM|current value
+Fkzrl9|Current web session user '%1'
+ZC5KSz|Currently installed:
+5DTJs0|currently no entries.
+RhsDe3|cust usage canoeing germany
+kVmam6|cust usage canoeing
+fLnRYJ|cust usage rowing berlin
+M8eoR4|cust usage rowing germany
+u8WiZR|cust usage rowing
+YZ7ev7|Custom usage
+cv4qmu|EditFahrtenabzeichen
+cvEEKO|LastModified
+1dcjnZ|D-Gig
+4hYEDy|D-Gig
+FTAJN7|D-Gig
+d4O7ZK|EfaBoathouseWindowFixedPosition
+d7NoeF|LastModified
+d9EpeK|GUI_VORNAME
+d9sZYc|LastModified
+dCMFP6|LastModified
+dCdHUa|ACTION_TYPES_ADDALLDEFAULT
+dCk9vn|WidgetMeteoAstroIncludeHtmlPage
+dDlQcT|WidgetMeteoAstroPopupExecCommand
+dHQ1Jw|gui_letztekm
+dQeWAo|italiano
+dRJhKF|LastModified
+dSztCo|LastModified
+dTVr8B|LastModified
+dTdOFz|DateFrom
+dVvKJx|InputNonAllowedPersonNames
+dXn29p|DataFileSaveInterval
+d6cHHm|Daily backup
+oTQpJP|Daily backup
+Ida7sx|Damage age in days
+m7qso7|Damage age in days
+mljXaE|Damage age in days
+iH2dRq|damage notification and repair information
+4i28Ys|Damage number
+769Yt3|Damage severities
+ZBuhvQ|Damaged boats
+oZkMb8|Damage
+50TLgp|damages
+MaVc5i|damages
+NgSSft|damages
+ZSJjAN|damages
+wYJfFp|damages
+tElzBH|Damage
+yaRbu4|DANGER ZONE!
+f7KKzr|data audit correct errors
+LLV3wM|data backup directory
+c6Z279|Data base audit
+vCGSbJ|Data base connection error:
+R51PFL|Data base connection failed:
+s2Mkwj|Data base connection successful, but test statement 'SELECT 1' failed.
+NUSssM|Data base manipulation cancelled. User not valid.
+5Ca1BA|Data base manipulation prohibited for unkown user '%1'.
+mMnBAj|Data base manipulation prohibited for User '%1'. Insufficient access priviledges.
+h0EUOC|Data base reset was skipped.
+zMDnsc|data base socket
+4YsmYP|Data base statement '%1 ...' failed. Error: '%2'.
+IJxXoI|Data base was reset.
+2Cdisv|Data changes
+7e8PvY|data descriptor
+tcl0p5|data file lock timeout
+H4azSb|data file save interval
+duWz6L|data file synchronous journal
+7NaapI|data layout
+xWrcA6|data mirror directory
+znL64f|data pre modify record callback enabled
+HZU3e0|data remote cache expiry time
+REvl4b|data remote client receive timeout
+1ZmQEC|data remote efa cloud synch interval secs
+SRLadf|data remote efa online enabled
+pJpmu5|data remote efa online password
+FQa6tW|data remote efa online update inverval
+e2AirQ|data remote efa online url
+owYUyT|data remote efa online username
+NihfTQ|data remote efa server enabled
+1VIazG|data remote efa server port
+jWolr3|data remote is open expiry time
+NS9vLf|data remote login failure retry delay
+yxtlEE|data structure
+Qkc02h|data type
+VqquM5|data type
+I2igq8|data types
+yalySQ|Data validation failed. Findings are '%1'
+PfeK14|Data
+A9f60R|Database connection failed
+7lryij|Database error. Unable to deleted record with uid '%1' of table '%2'. Not found.
+zhlDnH|Database error: %1. Failed to create a trash entry. The record was not deleted.
+6nchtK|Database error: %1. Failed to delete record in '%2'.
+tZT02P|Database error: %1. Failed to insert record into '%2'.
+Jq2YEP|Database error: %1. Failed to update record in '%2'.
+5pH8pE|Database update command failed. Error message:
+ovvgCX|Data
+ZTpM5O|date and time between 1000-01-01 00:00:00 and 2999-12-31 23:59:59
+sJaCgN|Date of agreement for contract data processing, provided in the security concept
+87d6Pq|Date of agreement for contract data processing
+GVwDG3|Date of agreement for contract data processing
+uSKtHu|date plus time
+6fCAua|date
+gDeoVF|Date;
+A1BDLZ|Date
+AHuXHg|date
+FPuc1j|Date
+IjHzpx|Date
+bk08ih|Date
+eCGctK|Date
+Gh6rpp|datetime A != datetime B.
+z5G34s|datetime A != datetime B.
+1PeXp2|day of week
+gRY42P|db layout version target
+dcZW8T|Crew17Name
+ddMON8|LastModified
+deQYf6|InvalidFrom
+ihdtPy|Dear 1
+eEUD9N|Dear 2
+BuXeTn|Dear 3
+x8SrYA|Dear receiver,
+9WE0Vy|debug logging
+xhXR6R|DEBUG MODE
+XIzzqE|Debug support
+L8F45v|debug trace level
+jrknfp|debug trace topic
+zBPp3D|Debugging on
+DNkmyb|debugging slows down operations and creates a lot of stored data, but may be needed for bug tracing.
+NapRG7|Debugging
+yD1kir|Debug
+w1eFbl|decoded:
+vfeF47|default boat uuid
+EffMT1|Default clubwork target hours
+9QCGC4|default crew auto select
+Seevxn|default crew manual select
+wQseut|default crew uuid
+O5lHM8|default destination uuid
+FiBcau|default session type
+0xYU7a|default value comments
+L2Rm6H|default value
+66KTYC|default variant
+Uz8pfN|Default
+WgWscA|Define the respective type option in the location_types catalog.
+yu9T3e|Delete data base '%1' at '%2' now
+P8NqjU|Delete database %1
+MyjroH|delete directory, if empty
+wWNgrt|delete existing data tables
+c32XmM|Delete file
+6Eagok|Delete password
+2OKHJj|Delete record
+oVRldL|delete record
+eaMVsh|Delete the permanent password for the your account. Afterwards you may request a new one time password.
+S0Ejhn|deleted records of a table
+kI31f3|deleted uid
+186NmO|deleted
+ZhA2bs|Deleted
+cYxjf6|Deleted
+jFKYnH|deleted
+nnr8fD|Deleted
+oZg6V1|Deleted
+IH9RiO|Deleting %1 %2 Record with current values:
+rve23X|Deleting old code
+sOovvb|Deleting the permanent password is only possible with the specification of a stored e-mail address.
+10KpjQ|Description
+7GK5lM|Description
+B9EOmx|Description:
+HLddF2|Description
+Mm3AQ8|description
+OJFiWA|Description
+RPI1Ai|Description
+Uchlbk|Description
+VezllF|description
+ffhHm7|Description
+oAghre|Description
+vTuJMH|description
+RPjUUE|destination areas
+we0nQ4|Destination areas
+p5mrre|destination info show for input
+1TB0uL|Destination
+D74J4B|destination
+MI1DGQ|destination
+Sr1Yoe|destination
+HJ6A6c|Destinations ranking
+i84JdW|destinations uuids
+6WFnDi|destinations
+ETKdEp|destinations
+FAc5j2|destinations
+NdSmAs|destinations
+U2G9Sj|destinations
+ZNqtK5|destinations
+k1aGJk|Destroying session '%1'.
+koWndZ|details on the waters record
+BbZKd9|details
+zXr5fp|Details
+11UA2w|deutsch
+DRdyHW|developer functions
+di0FuD|EfbId
+Y0Rn4h|dilbo default for portrait
+ssebrB|dilbo default layout
+ZRiV34|dilbo starten
+QlQLyw|dilbo user ID - or -
+ZNvHsT|direct access
+hX0dDX|Directory
+6ZuoWl|Disability
+CWyUVf|disability
+HsLEZm|Display boat damages
+CHVtwP|Display changed profile of the user.
+UJVwF1|Display damages
+OcXcYL|Display details
+xPsURf|Display logbook etc
+gsC0TF|Distance (in km)
+FybboM|Distance
+RF1L2R|distance
+a75PCW|distance
+cAOo7x|Distance
+leU4yu|Distance
+vtaU6d|distance
+dkNIBd|GUI_ANZKM
+dlX5sJ|WidgetMeteoAstroTemperatureScale
+RGjcvy|Done. For the audit protocol please refer to /log/sys_db_audit.log
+WPilW7|Done:_
+ag2Cwk|Done
+AB5WD4|don’t know
+uA2gK9|double eights
+Pv7QdS|double eigths
+FLWIGL|double fours
+MkyB6e|double fours
+LZd1Os|double scull
+dbZ7Nw|double sixes
+qoXuGi|double sixes
+E65AT4|double sweep
+fx6ie2|double twos
+cmjKme|Download file
+2FZhhA|Download:
+YEcCUE|Download
+TQrqJw|Drop table `%1`.
+TuOggl|Dropped obsolete column `%1`.`%2`.
+zQY162|Dropped obsolete index  `%1`.`%2`.
+2p7kEh|Dropping table `%1`... 
+v3yFkK|DRV badges year
+vBvTyY|DRV waters year
+dttNqx|EditBoats
+uTPBBb|Duplicate child name %1
+2IFi0b|Duplicate local name %1
+dyoX1h|LastModified
+dz2miP|Window
+XuLDfD|E-Gig
+gDnvq7|E-Gig
+v8ERYV|E-Gig
+Gi8zAx|E-Mail address
+e3cU6j|WidgetMeteoAstroWeatherLocation
+e4RKAP|DataBackupDirectory
+eEu9Fz|LastModified
+eGGIMP|AllowMembersPrivateBoatReservation
+eJkcx0|LastModified
+eOCoE5|LastModified
+eQWTF3|LastModified
+eSC653|LastModified
+eVILpB|LastModified
+eYSjG6|LastModified
+jvNIEJ|Each change to data is recorded, the last 100 days are shown here. Use permitted only for the regulated purpose.
+ebpDvO|EfaBoathouseWindowAlwaysOnTopBringToFront
+s0Odak|Edit a %1-record
+OWSuib|Edit a record
+jbQYTe|Edit a session
+ekEdXU|Edit boat damage
+yjcHsC|Edit boat damage
+JFuCvv|Edit boat reservations
+pZrLxw|Edit boat reservations
+e5wrSn|Edit boat status
+oikgKg|Edit boat status
+Z5XeVo|Edit boats
+cRhG3B|Edit boats
+A59Lce|Edit club work
+MzlCVf|Edit club work
+xvXgBT|Edit concessions
+fJoONH|Edit groups
+nvOfhI|Edit groups
+7j6J2V|edit list
+bUVaU4|Edit logbook
+yLqaSI|Edit logbook
+92WEDQ|Edit period start
+gutWog|Edit period start
+5t1be9|Edit persons and status
+PGiNJp|Edit persons and status
+93jvhu|Edit preferences
+wNsRmC|Edit record of %1
+ksiydS|edit records for table badges
+DDSKDo|edit records for table clubworkbook
+QHHAjT|edit records for table configuration
+GZUrvf|edit records for table crews
+Y9BcCy|edit records for table damages
+tfHkPn|edit records for table destinations
+0TgzzP|edit records for table groups
+6ajv6E|edit records for table logbook
+Rkjire|edit records for table messages
+id9RSh|edit records for table persons
+VX06al|edit records for table reservations
+hMqkqt|edit records for table resources
+hHbyBI|edit records for table waters
+TwVcUk|Edit targets and waters
+u1JaEE|Edit targets and waters
+5Iv3eY|Edit teams
+T1hdJ5|Edit teams
+dfp5Dx|Edit trip badges
+ijdEKz|Edit trip badges
+xkZBMr|edit workflow flag
+sRRAWO|Edit workflows
+DVfjoK|Edit
+NQxnXT|Edit
+UMH7ln|efa admin name
+gU4smK|efa boathouse boat list with reservation info
+oildPt|efa boathouse change logbook reminder
+DYROI9|efa boathouse extd tool tips
+pF1WHE|efa boathouse filter textfield boats not available list
+RbpD0Y|efa boathouse filter textfield standard lists
+bh4pi3|efa boathouse font size
+JcU3kV|efa boathouse font style
+Hj5kor|efa boathouse header background color
+N9EIUE|efa boathouse header foreground color
+pOxCL7|efa boathouse header use highlight color
+J5NNAE|efa boathouse tables alternating row color
+bgbsdk|efa boathouse tables show tooltip
+PNDBVj|efa boathouse two column list
+B3zNgp|efa boathouse window always on top bring to front
+jujNvl|efa boathouse window always on top
+Ty6yaN|efa boathouse window fixed position
+2Ukm0D|efa boathouse window maximized
+om348q|efa boathouse
+hAq1LW|efa damage number
+8ihJ7G|efa exit exec on auto exit
+r7WOD5|efa exit exec on exit
+C9ESzg|efa exit exit time
+H8IV4U|efa exit idle time
+NrjsXc|efa exit restart time
+KieTLu|efa exit
+8mjIlI|efa Reference client
+2ugY62|efa registration checks
+6mzz18|efa registration program id
+Lj23ul|efa registration
+OqALxY|efa starts counter
+JSDqsH|efa version last check
+qnAne1|efa version
+viRSen|efa version
+DlmMzA|efa2 configuration objects
+RNZSmO|efa2 import
+Prp8Wg|efa2 tables
+WLdTSc|efaCloud application configuration
+64hzBR|efaCloud password to retrieve efaCloud configuration and data, if available
+W2wpqV|efaCloud Security Concept
+JwyWs2|efaCloud server connnect failure %1: %2
+KpqSaw|efaCloud tables
+h1eHfR|EfaCloud URL
+wKU1CH|EfaCloud URL
+IhHr4G|efaCloudDemo
+MgQGLb|efaWeb: Reservierungen lesen
+7JSa5m|eFB ID
+NcwQSc|eFB ID
+j74zFU|eFB ID
+egD5h7|LastModified
+eggBgs|Crew22Id
+ehVv4F|BoatsNotAvailableListSize
+ehc7mk|_2024
+eiF1oQ|BoatListSortByRigger
+eiSMKP|ButtonAdminMode
+eiVSta|RC_WeissBlau
+JRSkol|eights
+W9cSBI|Eights
+4dfgsM|Ein * vor einer Feldbezeichnung gibt an, dass ein Eintrag erforderlich ist.
+CA54op|Einloggen
+HHSpU2|Einmalkennwort
+ek9aQe|WindowScreenWidth
+ellacp|Crew17Id
+6cZFHd|EMail
+6vwG5v|email
+LMFCXE|EMail
+o6uwfU|Email
+eiCoTk|empty data fields
+7zx0jm|empty Id and Name for '%1'
+P1cjVY|Empty identifier.
+HE2ICg|Empty identifier
+Oju3Ki|empty table
+uLDW4W|empty
+8DhT84|Enabling of the daily backup. This will required significant time to perform.
+Sqicxm|End a session
+rfLzuX|End at
+vnotSi|End at
+FBJtd4|End date
+GcPHam|End date
+ojJcjM|End date
+PNrmaK|End on
+X2325y|End on
+QSgzbn|end
+keUPkK|End
+tGufyM|end
+vnSBNn|English
+H6xh5s|enter a value.
+4V0WXc|entry id
+9Eu3qa|entry id
+ULkBMx|EntryId
+Ic8Hy1|EntryNo
+GtIhLH|equal
+CbG7UM|equality check failed due to unrecognized type of A: '
+Wxhd4A|equality check failed due to unrecognized type of A: 
+zk0z7u|equal
+erE2nB|efaBoathouseFilterTextfieldStandardLists
+erFUek|CustUsageCanoeingGermany
+I67maK|Ergo
+caoGHK|Ergo
+iZLlbt|Ergo
+r7tvGr|Ergo
+wFIbik|Ergo
+3vkMSJ|Error checking data:
+edML3Q|Error executing database SELECT statement.
+WWu9LQ|Error in squence of forms.
+EvZXbc|Error updating record in %1. Could not find record with key:
+2dhcic|Error with
+6HrzgB|Error: File '%1' not found.
+8XihSu|Error: File '%1' not found.
+vB1jX7|Error: User does not have sufficient rights to initialise the database.
+NLNSFH|Error:
+SYTWdF|Error
+UCOyeY|Error
+nQeqPT|Error
+qZ10EG|Errors
+esIs5f|LastModified
+etljAs|LastModified
+euhrfQ|VirtualPerson
+evbjy7|LastModified
+iX6ImJ|Example Headline 1
+DybBcu|Example Headline 4
+HsHWSA|Example Link
+8DfXOI|exclude from clubwork
+NcFzNZ|exclude from competition
+dqWwXm|exclude from history
+5RYjmC|exclude from statistics
+DIIwUV|exclude from statistics
+cLe6AE|Execute operating system command
+tZTCqr|Execute operating system command
+sBBcUy|Executed data base statement for User '%1': %2.
+XHF0eU|Exit efa
+yQK4N5|Exit efa
+w96wp3|Expanding %1 files from zip archive
+FRILfy|experimental functions
+elEmp3|explanation
+bPubzT|Explanatory text
+1zKW1z|Exporting.
+bF1lPH|Extend period end
+yjZn8H|Extend period end
+XRBVGE|external id
+t32eUO|Extra '%1' removed.
+fBJNgp|Extra child item 
+sDUfIr|Extra child item 
+6H3gWj|Extra field in B.
+XPWCVX|Extra field in B
+2trQTF|Extracting boat variant options out of %1 boat records.
+f3I94r|LastModified
+f7UQTL|KanuEfb_SyncUnknownBoats
+fATqfU|LastModified
+fCe0LG|Crew1Id
+fGByJm|LastModified
+fHGTMO|LastModified
+fNyhMc|LastModified
+fQZGPE|LastModified
+fRZ4CF|WindowDialogMaxWidth
+hHFnF7|Fahrten in das Fahrtenbuch {logbook#1} eintragen
+G5CEJV|Fahrten in das Fahrtenbuch {logbook#2} eintragen
+79Lf96|Fahrten in das Fahrtenbuch {logbook#3} eintragen
+sj8TKA|Fahrten in das Fahrtenbuch {logbook#4} eintragen
+tE2GJN|Fahrten in das Fahrtenbuch {logbook#5} eintragen
+2spwUX|Fahrten in das Fahrtenbuch {logbook#6} eintragen
+qEp2mg|Fahrten in das Fahrtenbuch {logbook#7} eintragen
+V2qTeF|fahrtenabzeichen
+AyLVcb|Fahrtenbuch anzeigen
+EnE7JF|Fahrtenbuch {logbook#1}
+vKGgZB|Fahrtenbuch {logbook#2}
+os0Vzb|Fahrtenbuch {logbook#3}
+w2KqXg|Fahrtenbuch {logbook#4}
+mOn74j|Fahrtenbuch {logbook#5}
+7L0EKb|Fahrtenbuch {logbook#6}
+pzLvQR|Fahrtenbuch {logbook#7}
+GKykYZ|fahrtenheft
+Mr5HTp|Fahrtenheft
+sHmiya|Failed data base statement for User '%1': %2
+|   Error: '%3' in %4.
+hVTaaQ|Failed 
+N2Co3F|Failed to add default admin No 1142. Table '%1' not empty
+7vRDMJ|Failed to add default admin record: 
+QR0NE4|Failed to find record with Id '%1' in table %2 for update.
+geDnMi|Failed to load efa2boats-file. There will be no boat variants.
+3Srdaj|Failed to read existing session file:
+GP3RV9|Failed to retrieve data %1.
+fposcc|Failed. Reason:
+BqT8Qu|Failed:_
+H4WzFD|Failed
+Sz2rY8|false
+fc53gy|LastModified
+fdMcr8|SyncKanuEfb
+fdycR5|NotificationLastWarnings
+ArSeoS|female
+XNpP37|female
+2law1v|Fessions
+ffvz3H|publicInfo
+fhihP8|AllowMembersAddNames
+oFp0pA|Field '%1' of record is missing in dilbo %2 table.
+avyj0D|Field
+0SC9ay|File does not exist.
+5Crr2x|file permissons for
+Vu1bh5|file permissons for
+Wy3oFO|File size limit exceeded. Maybe you need to check the limits with your web service provider.
+RdDQSD|File storage
+JCP71T|File: %1.  User after session check with appUserID %2, role: %3.
+5gYbSn|files parsed
+D3tUon|files to remove before upgrade
+wdLerX|File
+Rhz5mZ|Filter in column:
+6M8iob|Find a dilbo person
+JLWDeX|Find
+zu2YnS|Find
+R8SOQq|Fine for too little clubwork
+MCaV2X|finish session time substract
+TY6MFV|First name - or -
+1plUcT|first name
+43cYsK|first name
+PU7fh8|First name
+Y4qNDN|First name
+M11jKF|fives
+NY9FhA|fives
+wCxK28|fixed by
+iIoI5m|fixed line phone
+uKBmF1|fixed line phone
+5Kmxvp|fixed on
+twupc5|fixed
+fjJdQn|LastModified
+XghpfG|Flag
+tf4jR2|flag
+YgV1U0|float A != float B.
+qBIi8s|floating point number (64bit)
+N3zJZS|floating point number
+fmCyGL|CompPercentFulfilled
+fmfEV3|LastModified
+fnlBYA|LastModified
+foHip7|efaBoathouseHeaderBackgroundColor
+jxhLJ9|Footer text
+UTmyA8|For importing an ID must be specified in each record. Records that have an existing ID will be overwritten, including deletions. Records with an empty ID will be created.
+ffkuoc|For the search, at least one field must contain an entry.
+K7m1tH|for weekly reservations
+0kFZ0X|Forbidden directories access check ...
+cvkxK3|forbidden dirs
+S81unZ|Forbidden to use reserved name %1
+obg4CF|Form data key '%1' does not correspond to a field key of form %2, step %3
+Im6RzC|Format error in '%1'.
+T0EpKy|Format error in '%1'
+7Natch|Format for ‚td‘
+Dp1r1c|Format for ‚td‘
+BWjYPr|Format for ‚th‘
+xyM8WL|Format for ‚th‘
+FoUakd|Format for ‚tr‘
+kkLcYY|Format for ‚tr‘
+v9Y9Xk|Format:
+budaf5|fours
+lQt4SA|fours
+QmZI3x|Framework configuration check ...
+KRcKUb|framework settings
+R9ajlm|free use 1
+WMfvNl|free use 1
+oRgZBm|free use 1
+Ii46wC|free use 2
+y4Dz9K|free use 2
+zeOCoD|free use 2
+10BTtm|free use 3
+EJYjbK|free use 3
+YIC5iv|free use 3
+C3bKnx|from the file
+EIQA63|from when
+mymSDY|From:
+yhYGfZ|From:
+K0yTVr|From
+imJWX5|from
+ftNYTX|StartIsBoathouse
+lJpyEt|Full text search
+89IQJO|fully usable
+QTuLpA|fully usable
+kgufgC|Function
+aRC0en|further empty fields:
+tmmMX3|further not empty fields:
+pn9DHz|Future reservations
+fzORil|OptionShowValidLastTrip
+g30j7q|LastBoatDamageReminder
+g7ijyD|LastWatersTemplateHash
+gDBHyE|LocaleDateFormat
+gKTneO|WidgetClockEnabled
+gQhIqz|LastModified
+gRhMJb|NotificationMarkReadBoatMaintenance
+gT6nJE|KanuEfbUrlLogin
+gUHo9f|OutputHtmlUpdateTable
+gdPIbc|gui_anzabzeichenab
+SbtoKZ|Get a configuration file
+OrvMhQ|get as csv-download file:
+k2AOXj|Get for Javascript
+giXKwj|efaBoathouseBoatListWithReservationInfo
+9eUxY1|Global association login
+oBQ5Pq|Global association member number
+DiqqXC|Global association name
+KPAFci|Global association name
+zQOJhZ|Global association name
+hBiN1m|global association
+glvZdu|OutputEncoding
+goIagX|LastModified
+grT4sj|EditLogbook
+iTj3F5|groups in crew
+UFcLvx|groups uuids
+Be16mx|groups
+YjOq8e|groups
+fzbSv4|groups
+jPse16|groups
+kZ2lm5|groups
+r0oQO1|groups
+UCmEOc|guest
+uk11Z6|guest
+gyZPfi|LastModified
+h2UoAU|TranslateLanguageBase
+h4640B|LastExportDirectory
+h4zovR|LastModified
+h5H4oD|LastModified
+h8JCR2|EditGroups
+hABdwD|LastModified
+hHdM42|AutoCompleteContainsMode
+hNW8Ee|StartDate
+hPKMSU|FixDate
+hPmRBV|
+|</div>
+hVlste|EfaVersion
+hWCzVp|LastModified
+haFLAm|AllowMembersBoatReservationWeekly
+jRBat5|Habits
+mTItFe|Habits
+UcowVm|Handle api session
+UgRFql|Handling error. You are not allowed to delete your own person record.
+hb0Lec|ButtonShowHotkeys
+hcBXmo|SellingPrice
+dF0DWJ|Hello %1 %2,
+9fGTH0|Help on application usage
+5NwTuL|Help
+NAOKEm|Here are the last %1 mails to %2.
+ImbQDK|Here is the result of the audit of the database.
+gxNfWP|Here you can change the data of a user.
+c7f8JL|Here you can find a cloud user by entering some user related information.
+RY7v3l|Hier bitte das eben Dir per E-Mail gesendete Einmalkennwort eintragen, um dich zu autorisieren.
+c02HGj|Hints:
+DxQx6B|history fields
+ufSvki|history
+hlZkp4|StatisticType
+hnGjGC|Crew22Name
+hnvlmx|DataRemoteEfaOnlineEnabled
+hoK0OF|gui_jahrgang
+Ymh3Us|Home
+0IXYj3|horizontal orientation
+2SWHEf|horizontal orientation
+3PAedW|horizontal orientation
+7sXs69|horizontal orientation
+AjH7Jv|horizontal orientation
+CGFQdF|horizontal orientation
+NVTpnp|horizontal orientation
+Nxc1yu|horizontal orientation
+PxhsKh|horizontal orientation
+QspAJU|horizontal orientation
+T8LkLn|horizontal orientation
+Ux12Gl|horizontal orientation
+akOa4V|horizontal orientation
+b8jVMi|horizontal orientation
+eLriqM|horizontal orientation
+fGNab5|horizontal orientation
+gCnrKt|horizontal orientation
+ghD0OA|horizontal orientation
+mlcA2j|horizontal orientation
+nMvQ00|horizontal orientation
+rLbIC3|horizontal orientation
+v0NdAp|horizontal orientation
+4ATfKF|Hoster
+e5f94Q|Hoster
+yQysUI|Hoster
+M3qtH4|hours
+nnXrty|Hours
+MzCIkc|Housekeeping tasks
+hqI6K8|ChangeCount
+hrlB4Y|ChangeCount
+hsXzYE|StartSessionTimeAdd
+htORNa|ButtonLateEntry
+qrMNsF|html download
+kBOOwL|Html
+hyRUB9|LastModified
+hzPWer|Crew14Id
+RZZubx|I am also happy to receive feedback on the application, suggestions and requests. This form goes to 'dilbo.org'.
+CxPfCd|I am sure and I know what I do.
+MOvHFw|I don't really know.
+i3sAZ7|LastModified
+i4CEqX|efaBoathouseFilterTextfieldEasyFindEntriesWithSpecialCharacters
+iAlU9S|VirtualReservationDate
+iFLIy6|ChangeCount
+iHgiAl|AllowMembersExitEfa
+iNJut0|EfaBoathouseTablesShowTooltip
+iOrkZz|LastModified
+iS6NyX|InputMustSelectBoatCaptain
+iUX4a6|FilterCommentsExclude
+iVOsAl|JavaVersionLastCheck
+iavpC4|Crew10Id
+JxRDmv|Id at efa2persons
+2SrcAr|Id
+4s08XW|Id
+BXLDC3|Id
+CwJSjY|Id
+LOWEsI|ID
+LUMYzc|Id
+MXs2hL|ID
+NvzX4b|Id
+PrTGkD|Id
+idQMTW|LastModified
+RhLuSe|Id
+U0ndA1|Id
+Um89xR|identifier
+uDTvoB|Id
+ieoVOp|LastModified
+gvdW5g|If a permanent password is defined, you cannot use a one-time password.
+KiFMhh|If the user ID (top field) is entered, the rest is ignored.
+ceLd6k|If You go for it the data are gone and lost, no way to restore.
+ihKKZY|EditAdmins
+ikrC8x|LastModified
+ilM5Z8|WidgetHtmlPosition
+4kkzns|Image was recognized.
+FVkWAh|Import an efa backup archive
+1D3Z9U|Import backup
+LCt9Qm|Import backup
+o1uX4R|import configuration
+8c2YpB|import data
+dj2gr0|Import efaBackup
+17392l|Import table
+elFKdn|Importing %1. %2 records:
+LKteOp|Importing the admins configuration
+MVk9OQ|Importing the configuration-configuration
+L4Mkdc|Importing the efaCloud configuration
+8c3xMn|Importing the projects configuration
+O19Vr8|Importing the types configuration
+jYMtPN|In the boat:
+o6WA71|In the first step, please select the distribution list to receive the mails with this addressee.
+FFjdFF|In the next step, the table is uploaded and imported as shown. Please confirm that the import should be carried out.
+Kzbcet|In total %1 tables with %2 records
+5Bd5LG|In Total %1 users.
+AkTh7r|In Total %1 users.
+0gJ1yz|in total [%1*%2] records * columns in %3 tables.
+qHF8o7|in total:
+QzwDXO|Info type not recognized:
+NWE4ur|Information on data protection
+y6vpqj|Information, warnings and errors with ID of the triggering user.Everything taht is logged by the application. The displayed information may contain personal data and may only be used in the regulated purpose.
+Y1BObA|Information
+1HO6kz|Init, login and error statistics collected (last step).
+RfjVOh|Init, login and error statistics collected.
+PCoQ4y|initialization
+Gx0v1D|input allow only known boats
+v7pCki|input allow only known destinatins
+4ql6VF|input allow only known persons
+A7lkyd|input allow only known waters
+wCqroB|input allow only max crew number
+kTcSf1|input check allowed persons in boat
+gmbrMd|input check min group persons in boat
+4rHR8F|input colorize fields
+mMETCe|input comments hotkeys
+oqy4YU|input distance not editable for known destinations
+c9bsMk|input hide unnecessary fields
+cE4qse|input must select boat captain
+I3WNvC|input non allowed person names
+6TNzdz|input not editable time
+arI1Vr|input shortcut auto generate
+XbQkaI|input shortcut format
+KoWMWK|input show hints
+3jOSfg|input skip comments
+NZukOG|input skip destination
+oSBMDB|input skip time
+Iyug2x|input strict unknown persons
+5RC4jn|input warn only critical boat damages
+5DKGNl|Input
+MmPEku|insert record
+wwM2JD|Inserting admin %1 record into '%2' table
+CWEDJn|Inserting:
+b5wSVV|Installed at:
+kfB6Rx|Installed PHP modules check ... 
+WE4FYR|insurance value
+yobRgF|integer (64bit)
+jCvlcK|integer A != integer B.
+jFc7LF|integer
+cq6KYu|Invalid call
+va4j2V|invalid character in identifier: %1.
+GWrjW8|Invalid child name %1
+ckQubu|Invalid context switch
+GUOWvb|Invalid field id in settings_tfyh:
+piSUBy|invalid from
+tolDeM|invalid from
+WVta4w|Invalid identifier: %1.
+4iXMSi|Invalid identifier: 
+2D9pBg|Invalid mail distribution list
+hfr2Zo|Invalid mail distribution list
+X6z2gz|Invalid name of set in record
+CiS32d|Invisible
+JYrsp9|Invisible
+LqBzZj|Invisible
+XSrmYT|Invisible
+lLweAz|invisible
+s3RMiw|invisible
+ioOeqe|LastModified
+iqLnON|LastModified
+isyHqH|InputNotEditableTime
+43SSV8|It does not matter whether the letters are written in upper or lower case.
+HxsB1x|It is possible that %1 also runs without these modules, but this has not been tested.
+Fy3Nzi|It was no longer possible to determine the cause of the error.
+3MhYFA|item edit form template
+hCOXX2|Its global assocoation, like DRV
+wdaPnt|Its regional association like NRWRV
+iwM6xk|NotificationMarkReadAdmin
+iznNrT|Crew8Id
+j4qMSO|total_distance
+j5naZ2|WidgetMeteoAstroHtmlPopupWidth
+jDGG5u|LastProjectEfaCli
+jN5N1n|RIGGING
+jNT5ie|Crew3Id
+jTwNnt|LastModified
+jU2sge|InputShowHints
+jV0xVc|WindowDialogMaxHeight
+jVL70G|BoatCaptainDefault
+jWOBtm|LastModified
+HFZxrT|java timestamp
+Df4Ch1|java version last check
+jblrQI|DefaultClubworkTargetHours
+jbzs4R|LastModified
+jc50Qo|InputShortcutAutoGenerate
+jdwxjs|GlobalAssociationName
+jfOHzp|dgig
+jfzkLl|WindowOffsetY
+jjE1eW|LastModified
+jkIyS6|WidgetClockEnabled
+jkZptb|InputShowHints
+jnJKHl|Crew9Name
+jnqEmn|DataAuditCorrectErrors
+joHLQ4|InputCommentsHotkeys
+jteIOV|FixedByPersonName
+jvOUdP|LastModified
+jy5T4Z|BoatListSortByType
+jyrjqr|LastModified
+k4O21x|ProjectName
+k6Cwmm|WidgetHtmlWidth
+kAg9IT|SessionTypeDefault
+kGnH1T|LastModified
+kHrP4C|LastModified
+kIEfqd|LastModified
+kK3uti|LastModified
+kLRitY|BoatCaptainShow
+kOzEsA|NotificationMarkReadBoatMaintenance
+kPeTfS|Clubworkbookname
+kR2Jo8|LastModified
+kUiWXb|OnlyInBoathouseId
+kYLncj|LastModified
+kZFta4|EndDate
+kiQX4W|kanu efb url login
+93BGIF|kanu efb url request
+J7FETu|kanu efb_ full sync
+JOSRTk|kanu efb_ sync trips after date
+Cxzb31|kanu efb_ sync unknown boats
+HRn5Fz|kanu efb_ tidy x m l
+dUh9lf|Kanu Efb
+kcKoJv|LastModified
+kdSHjW|WidgetMeteoAstroShowWeatherFcImg
+kdUucQ|LockEfa
+6NrPjS|Key date for archiving:
+kgR0Oe|DataPreModifyRecordCallbackEnabled
+kh8d9Y|LastModified
+ki1O05|ButtonBoatReservations
+kiS7sj|BoatListSortByType
+Aqohu4|Kilometer
+MhDtjY|kilometer
+cpSFae|km
+kvPIfI|DataMirrorDirectory
+kwe2gp|ChangeCount
+kzAtEK|boatdamages
+l0A0gZ|DayOfWeek
+l6eOSb|gui_schluessel
+lBUynq|Crew15Id
+lERNp9|KanuEfb_TidyXML
+lFpfiq|WidgetHtmlEnabled
+lGhteb|LastModified
+lGvDK3|WidgetMeteoAstroWarnTimeAfterSunset
+lH14DM|LastModified
+lHHeE5|Crew6Id
+lIzc0X|noListForThisRole
+lP2KV0|LastModified
+lT1kd9|WidgetMeteoAstroShowWeatherCurText
+lT524g|BOAT
+lTLzzu|MaxNotInGroup
+MUuFyi|landscape layout
+Nyf1TX|landscape layout
+Vx9XHD|landscape layout
+rBBZIq|Language code
+DNnRhZ|Language
+ZQGhyK|Language
+p2KiqT|Language
+VTUrs0|Languages
+4fsAVc|last activity not known
+z1kw92|last activity:
+Jyvdxi|last boat damage reminder
+Y7XBMK|Last DRV Fahrtenabzeichen Year
+0AYpeO|Last DRV Waters Year
+yFXiAO|last export directory
+O5rxD5|last import directory
+saQxId|Last logbook switch
+EtVfFE|last modified timestamp
+26oGtd|Last modified
+2Cj6D0|Last modified
+EPHcan|Last modified
+JmL2A1|Last modified
+PGhMCk|Last modified
+PN440B|Last modified
+eo89Tz|Last modified
+NqlSqU|last name
+PXbdAA|Last name
+UvHgWB|last name
+l4txC2|Last name
+ydEB3g|Last name
+R3X95Z|last project efa base
+ZY4OQX|last project efa boathouse
+dEFvdz|last project efa cli
+Auratb|last variant
+99Miqu|Last waters template hash
+fkZc81|Last waters template hash
+qMFtHX|Last
+B1MhuW|late entry
+K1EhUH|late entry
+z5D2q8|Latest backup of %1.
+lcfQOv|WidgetMeteoAstroHtmlPopupHeight
+lcnWGK|FilterByBoatText
+xYyGTN|left part of body
+Og4wxK|left side list
+liKZUc|LastModified
+5YBrdm|Limit period end
+mdAwDZ|Limit period end
+abpdzx|limited usable
+tNjoKN|limited usable
+F7Ctd4|Limiting '%1' for '%2'
+To1Ea4|Limiting '%1' for '%2'
+rUtnGs|list above
+ZmqZlm|List capped after %1 records.
+CBjPta|List configuration not found. Application configuration error.
+477YZi|list of destinations
+SqtY4N|List of tables by size
+RaOL1v|list records
+lnzPKj|Crew22Id
+R74F98|Load defence for
+Bwa5WS|Loading the source code from
+GoIpXR|loading to %1 configuration branch at '%2'
+F4oA4a|local name
+UIRe4E|locale date format
+db2uQ5|locale default distance unit
+Phhgzm|Locale
+JSpfdh|location name
+iFfsOT|location name
+gj5lRY|location of end
+QfU2dm|location of start
+slf0VZ|Location types
+TbizDA|Location
+Lo8RAS|Locations
+kViRb8|lock efa from date
+EIvFFr|lock efa from time
+7FfNWY|lock efa full screen
+GqSMfI|lock efa locked
+6Iu65B|lock efa page
+Tq0NkI|lock efa to date
+ijcDSI|lock efa to time
+yLKQCs|Lock efa
+SirIlb|Log out
+XCjlyh|Log rotation and analysis completed
+9yQeQ1|Logbook #1 for concessions
+I56Qms|Logbook #2 for concessions
+bSfNFO|Logbook #3 for concessions
+8Avgcp|Logbook #4 for concessions
+NgdWGa|logbook display entries default also incomplete
+ZN9DBl|logbook display entries default number
+DiSJk6|logbook display entries max number
+oPqogt|Logbook display entries
+D3RpCa|Logbook information
+XlrYdi|Logbook name
+usBsKL|logbook switch
+1H5XXs|logbook text
+1szz25|Logbook
+93p43P|Logbook
+94Oebc|Logbook
+9fMXc1|logbook
+DkYaZp|logbook
+FQuVzI|logbook
+Fc4Dgy|Logbook
+H0hqoc|Logbook
+I5cqgO|logbook
+XCX6sa|logbook
+fIu6OE|logbook
+KYpTxU|logbookname
+nzpJfA|logbook
+oYmtoe|Logbook
+pAiSZO|logbook
+SBPtZz|Logbooks
+unDD4K|Logbooks
+uKR5Ch|Logbook
+XRkVQO|logged in as '%1'
+cxAly0|Logged off
+RzbZK8|logger
+XPLjLc|Login for registered users
+jF0yKE|Login
+zJ6HDF|logins (login), page calls (init), and errors (error)
+bvy48a|Logoff was successful.
+4RX8ec|Logout
+c0jyjL|logs
+28GKmM|look and feel
+S2CnP7|look and feel_ button focus color
+KIa0GD|lookup reference
+rG1Dp9|lower
+lr2azn|WidgetMeteoAstroWarnTextDarkNow
+lsGkQy|WidgetHtmlUrl
+ltXXxl|GUI_LETZTEKM
+lxX9yr|WindowOffsetX
+m9aP8t|LastModified
+mGRVfp|DestinationAreas
+mJ9Uss|Crew6Name
+mMxVF5|LockEfaFromTime
+mPAWsw|LockEfaFullScreen
+mPNL98|GUI_SIGNATUR
+mRmxz6|kilometerab
+ma5z23|ButtonClubwork
+dBL0Hj|Mail footer
+im6qRb|Mail footer
+MnB369|Mail subscript
+ndSRC7|Mail subscript
+giMoj2|Mail system copies target
+6JB2wM|Mailer
+CnqYHU|mailer
+QvmvUh|Mails to the selected mailing list may not be read by the currently registered user.
+kEhmLD|main body
+I9cjtm|Main location
+1eZw6p|Maintenance
+u7mzai|Maintenance
+zr2idi|Maintenance
+GcAC4o|male
+oqf5QF|male
+8I1Ul0|Malformatted session file:
+RmeZir|Manage admins
+ZYeAnr|Manage admins
+9e5Klm|Manage club workbooks
+ZgG9jR|Manage club workbooks
+KaUT9G|Manage projects and logb...
+WfTEz9|Manage projects and logb...
+RFQsGA|manufaction date
+dn8HGw|manufacturer
+T1s1x8|Mapped %1 damage numbers.
+LSGlmE|Margins
+HGv4Bn|Mark messages to admin as read
+v4Ec59|Mark messages to admin as read
+IICsYQ|Mark messages to boat keeper as read
+euCXaO|Mark messages to boat keeper as read
+sFrCdD|max crew weight
+jpdBlQ|max errors per hour
+ois9NU|max inits per hour
+ZzIvFv|max not in group
+jE9het|maximum concurrent sessions
+5qeszT|maximum session duration
+GYrSxU|maximum session inactivity
+aqVgee|maximum size
+Fz3Z4J|maximum value
+7e8XGU|Maximum
+mb1C22|Nederlands
+mbNwoZ|LastModified
+mbumWy|ButtonShowLogbook
+md9sFE|LastModified
+mdfmJ6|WindowCentered
+gigCYX|Me
+1nKULr|Member Of DRV
+RhddWw|Member Of DRV
+k9t0v0|Member Of DRV
+NgbCLQ|member of groups, max. 300 people
+53QFpB|members
+5bpQ0L|members
+UUzdU8|membership number
+RIT1Ao|menu bar
+nTk2Jv|menu style
+1LPdGM|Menu
+4HbBD5|Message age in days
+hYT7i4|Message age in days
+opmIs7|Message age in days
+rlk5hE|message body
+9U1xAJ|Message destinations
+PXE0oL|message number
+VKMHh2|Message number
+2WKday|message subject
+3lfLrL|Message
+OMRZJ7|Message:
+CkkqkB|message
+snUnPw|messages to the logbook admin or other people
+8lYeOi|messages
+FqnISF|messages
+LdBBaa|messages
+Vismxk|messages
+jWJrn0|messages
+xgI518|messages
+1ASZWE|minimum size (px)
+1Kl8z6|minimum size (px)
+3EvRAr|minimum size (px)
+62RN23|minimum size (px)
+9Rh2u2|minimum size (px)
+CwLvEz|minimum size (px)
+Gl9ooL|minimum size (px)
+ItbrLu|minimum size (px)
+Ld1R6x|minimum size (px)
+NcRW59|minimum size (px)
+SoWtuL|minimum size (px)
+VNnPhK|minimum size (px)
+YbGihH|minimum size (px)
+ZJtGwt|minimum size (px)
+avl3Yi|minimum size (px)
+bdu0tB|minimum size (px)
+cz4LY9|minimum size (px)
+hDtvTC|minimum size (px)
+hEMboJ|minimum size (px)
+kDtZr5|minimum size (px)
+suV6xo|minimum size (px)
+woJcAa|minimum size (px)
+MpNcRI|minimum value
+5W5E6D|Missing %1 file.
+mqIFYg|Missing child item
+ppcb9y|Missing child item
+rgoqVn|Missing field definition in statistics record
+SWDxtq|Missing history column `%1` in table `%2`. Data base insert and update statements will fail. Please fix configuration.
+dAwKF1|Missing name of set in record
+rgqM2t|Missing setting: %1. The application can not start.
+0yaw5j|Missing type definition in statistics record
+dvGVan|missing unit 'km' or 'm' in '%1' for '%2.%3'. Assumed km.
+mjRweA|Crew10Name
+Pww8Pl|model
+jgfmYb|Model
+ynBNkU|modified on
+srezpx|Monitoring
+ZkvC3i|more versions
+5RFUui|motor boat
+Dos1W1|motor boat
+Eh2g2R|motor boat
+IKMNlI|motor boat
+RwxGKX|motor boat
+sMIHre|motor boat
+mtOqUh|LastModified
+muJ308|DestinationId
+muiW0S|MemberOfDRV
+2A3jgB|Multiple records with %1 '%2' already exist in table %3.
+3fFURY|Multiple trips for logbook '%1' with number '%2' on '%3' in the dilbo logbook table.
+2iVv4V|must enter distance
+JG3nLk|must enter waters for unknown destinations
+CORspq|must enter
+muunTt|TransferableClubworkHours
+mvBHUI|WidgetMeteoAstroShowWeatherFcImg
+mw4vFZ|MsgMarkReadBoatMaintenance
+mw5XU5|DataRemoteCacheExpiryTime
+mwsBtX|LastModified
+n3ZC4T|Crew8Id
+n6ky2H|Byte.
+nCg6z9|ChangeCount
+nDakVE|LastModified
+nE9Ok8|NotificationEmailSecurity
+nFcEGP|WidgetHtmlScale
+nFnNxB|WidgetMeteoAstroWarnTimeBeforeSunset
+nIHyU4|Crew2Name
+nINdhq|Crew4Name
+nN1pqp|STATUS
+nUbTAC|LastModified
+nVB0rY|TypeRigging
+na4wUu|ExperimentalFunctions
+AT55Zi|Nachrichten hinterlassen
+ip9DDg|Nachrichten lesen
+fu97I0|Name '%1' is already used by uuid '%2'
+2pnXeO|Name A not equal to name B.
+V0JhTP|Name A not equal to name B.
+CP8U38|name affix
+PfVnYd|name affix
+0aGyds|name as reference to the provider of the contents
+EQ1Xdq|name as reference to the provider of the contents
+ErocQF|name as reference to the provider of the contents
+FPRxzF|name as reference to the provider of the contents
+KKC05J|name as reference to the provider of the contents
+LNmG1x|name as reference to the provider of the contents
+MqQgeT|name as reference to the provider of the contents
+NWUDFG|name as reference to the provider of the contents
+Nb2tQV|name as reference to the provider of the contents
+R5506K|name as reference to the provider of the contents
+WZJmaB|name as reference to the provider of the contents
+hHZmjG|name as reference to the provider of the contents
+jTLIy0|name as reference to the provider of the contents
+k1dV2C|name as reference to the provider of the contents
+mD2k6D|name as reference to the provider of the contents
+nKI6pH|name as reference to the provider of the contents
+oZLANb|name as reference to the provider of the contents
+ofsJzu|name as reference to the provider of the contents
+rC3NLh|name as reference to the provider of the contents
+sw2cXb|name as reference to the provider of the contents
+wnFzY1|name as reference to the provider of the contents
+xPNJEc|name as reference to the provider of the contents
+2bt21a|Name format
+BZdFQ0|name format
+PWcLzX|Name format
+m1LK6t|Name to display
+2HYUBH|Name
+3cCdlO|name
+EFIK3k|Name
+ITnQC5|Name
+QtMS00|Name
+U5GPxO|name
+Y2xSOB|name
+YeYtpw|name
+Zq1miq|Name
+aiSAye|Name
+cl6L3f|name
+edRGHr|Name
+l7dLzx|name
+oMaAZq|Name
+paPlYi|Name
+rNpC90|name
+u7igyZ|Name
+yOhjaN|Name
+nbJl0e|ExcludeFromCompetition
+ned9f8|EfaBoathouseWindowMaximized
+2xog20|never
+jRlk4i|never
+jzvFWz|News
+nfM20k|DataRemoteEfaServerEnabled
+nkrdjS|OnlyWithBoatCaptain
+V01GaK|No %1 list found.
+uL8Ig1|No active web session to remove.
+1tpaxz|No basic data types adding allowed.
+ZH4LGD|No boat specified
+SMOZBB|No changes logged.
+26WMwL|no content found.
+mliI2K|No data type declared to add.
+AZp3UC|No e-mail address is stored for this account.
+pZ1nbk|No efa config files provided.
+cNDfYs|No efa config section provided.
+5gZmqR|No efacloud credentials provided
+8QpdLl|No efacloud project
+4Vpkuw|No file given. Please try again.
+R8XI15|No file specified. Please try again.
+mYd52x|No file specified. Please try again.
+KyVvaE|No image was detected in file #%1 '%2'.
+RFuXPT|no import rule for table '%1'.
+9Qyhtr|no last mysqli error available.
+ZPBjQx|No list definition found.
+bQNlhS|No mail stored for this user, therefore no sending of a one-time password possible.
+U24lUJ|No matching user found.
+I3zknU|No meta data found.
+JjCWn9|No modified data has been entered or there are errors. Therefore, nothing has been changed.
+6gdISg|no more updates, too close to lifetime end.
+pXgPvV|No one-time password can be requested with the user number as account information.
+0xh80B|No one-time password can be requested with the user number as login information.
+355gfL|No one
+DEPfjp|No one
+5LFPnH|No page identification was found in the initialisation during the call.
+vI6UBA|No pictures available in this album.
+d4yKBL|No projects provided.
+KFwEDL|no records found.
+BwU3GN|No server version found. Is this perhaps the localhost?
+M4AobL|No storage, test mode.
+aJJzrZ|No such menu item %1.
+VTLYoN|no such table.
+ynq0Ng|no table configuration available for '%1' table.
+TkfnPp|No update for non-logbook data files. Skipped %1.
+oelARg|no URL to register upgrade available.
+4C9I5e|No users for
+wyHjxb|No users for
+He8Npc|no value type, i.e. for configuration nodes with a value will always being null.
+AYpSu8|no values within
+JTclLO|No version history available.
+Xn806o|No version history available.
+IF1cIg|none
+twQEii|none
+5cjHck|normal session
+AvPKAX|normal session
+9KzdHU|Not allowed.
+CQTQ0R|Not allowed.
+KjzmnU|Not allowed.
+lTNFEv|Not allowed.
+yMxAqF|Not allowed.
+jA4eJf|Not allowed
+WYhCGy|not available
+nqOm9O|not available
+FHyizx|Not found
+1Pq6VT|NOT OK.
+8MAcUu|not set
+QwAiyc|not unique damage number from efa import
+vfv3OD|not unsable
+e5qiYY|not usable
+LlqlPF|not used.
+Ti6aAG|not_yet_
+fiB2y8|not_yet_
+N2DEyA|NOTE: Attachments have been removed and need to be reattached.
+AGFCdm|Note: language settings will only apply with the next click.
+Z1rWgP|Note: Usually the browser caches the colour settings, then the change does not have a visible effect at first. With F5 or &lt;Ctrl&gt;-F5 after the update, the cache can be cleared in most browsers and the new colour setting be applied.
+T8bnu4|Note:
+0eAy3y|Notes
+AhDzmR|notes
+Re0A91|notification boatstatus admin
+EZrVkT|notification boatstatus boat maintenance
+NehXwd|notification copy to
+Vmkle7|notification email from email
+U2zc2d|notification email from name
+3AMSb3|notification email password
+nfGMLY|notification email port
+lu5gRV|notification email security
+O4IanT|notification email server
+BHzJ0b|notification email signature
+rol180|notification email subject prefix
+Le1M75|notification email username
+2co8A0|notification error admin
+3Eg43D|notification error boat maintenance
+WiUh7d|notification last warnings
+jMrW6F|notification mark read admin
+41vvwp|notification mark read boat maintenance
+G82Lsm|notification message to admin default recipient
+9UOkFt|notification warning admin
+JT7Ysn|notification warning boat maintenance
+x4XDyT|notification window timeout
+nGpu8F|notification
+TJuVif|notifications
+WquAqp|notifiy damage to
+tcWuxX|Notify admin message to
+mmBIAf|Notify damage to
+F9Y2oo|Notify damage unusable only
+aY3FHB|notify if not usable only
+R22xcy|notify message to
+7mdafc|Notify reservation to
+jn5WN8|notify reservation to
+rT8wtF|not
+1l4ZE2|number A != number B.
+Jl8rPJ|Number
+e2CD9A|number
+eBgDM8|number
+oDccWh|number
+w171tR|number
+cVYtkK|Numeric start character in identifier: %1.
+4OrTAN|Numeric value required in '%1'
+4j2U0W|Numeric value required in '%1'
+slStrF|Nutzer
+nvddK3|efaBoathouseExtdToolTips
+nxA7VU|LastModified
+nzYOn3|EfaBoathouseChangeLogbookReminder
+nztTHX|gui_vorname
+o2wrT5|NotificationEmailFromEmail
+o3ED74|PrintPageMarginLeftRight
+o3JrIQ|LastModified
+o5fDuq|LastModified
+o7BbcY|InputAllowOnlyKnownPersons
+oDgXdB|AggregationRowDistanceBarSize
+oJelju|WidgetMeteoAstroWarnTextDarkSoon
+oJwGXv|Crew1Name
+oKwcuJ|CurrentClubworkEfaBase
+oMCayt|LastModified
+oOfohI|LastModified
+oPZytR|_headline
+oW68Gp|Reservation
+oXaMfB|GlobalAssociationName
+oYApmm|ChangeCount
+oaZuN1|Crew14Name
+B3vSiZ|object list in [projectroot]/cfg/admins.efa2admins
+GUUPAx|object list in [projectroot]/cfg/types.efa2types
+EglnS0|object list in [projectroot]/data/[projectname].efa2project
+VKNZaw|object list in [projectroot]/data/[projectname].efa2project
+wyoXmm|object list in [projectroot]/data/[projectname].efa2project
+kUFgHW|object type %1 unknown
+rnZUYS|object type %1 unknown
+WdYaFk|Object valid until:
+emKdCs|object
+Wm2Ujs|obsolete
+sQuH9Y|Ok.
+vI1rIC|Ok.
+Zg9SKd|ok
+1XsFx5|on click
+3pU7F8|on click
+5T9G4s|on click
+O44WcE|on click
+QMZTyp|on click
+UTLpF4|on click
+VMHkZ3|on click
+WmBpMz|on click
+ZOJyaT|on click
+ZOj5yH|on click
+acuTUZ|on click
+aoupBe|on click
+iZo0z3|on click
+vfRcaz|on click
+xbNJMH|on click
+EKaJCf|on the water
+Kz84tD|on the water
+KVySUs|on
+CBxZVW|One level higher
+QV5dHL|one time or weekly
+hUYIPd|one time or weekly
+6OMx70|one time
+M4m15E|One-time password for %1 '%2'.
+SUuG3E|One-time password for deleting the password of the application '%1'.
+7G15iQ|One-time password for password reset sent.
+hiQjLL|One-time password sent to user.
+oWUbAw|One
+wjAcgA|One
+onhY7k|NotificationBoatstatusBoatMaintenance
+NZ9P63|Online update
+s5kE9A|Online update
+6vuCGA|Only a user admin is allowed to delete user records.
+xozppP|Only for backup archives efa 2.2.2 and higher.
+dvOhA1|only in boathouse id
+Hxsuol|only notfy damages which prohibit further usage of the boat etc
+zxFKkM|only with boat captain
+qU8H7m|on
+onwS9K|ExperimentalFunctions
+znDABb|on
+Pj5VdW|Oops! A fatal error.
+F3yUPA|Oops, unfortunately the application has crashed.
+0eJxRa|Open damages per boat
+Nmjt8R|open damages
+D0VM1M|Open sessions
+djIhUF|Open
+9v6qNa|Operations responsible
+gt7Owe|Operations responsible
+FVuVpT|Operations Tasks
+xqJFkS|Operations Tasks
+2xPDgm|Operations
+MwVqNf|Operations
+lYBmSv|Operations
+5qx7Bd|option
+Rqkqic|option
+ZiS5as|option
+13OYMR|options
+8F03PT|options
+EBYrND|options
+Jv9pXN|options
+Min9Dh|options
+MnMGen|options
+NFhNTQ|options
+QhuQMl|options
+Qz8ubN|options
+RKO7jn|options
+WyumAi|options
+giokX1|options
+mz5r98|options
+tBrMVy|options
+wcGVIL|options
+vPNvlE|Organizer
+0CY34g|other other other
+53nTR9|other
+6fretj|other
+CCUVpC|other
+FEA3Pb|other
+Ia4u3p|other
+K9vQXC|other
+LtXdC3|other
+M48VwK|other
+MWRaEb|other
+R6Xm3a|other
+VbpHN6|other
+bpSt3C|other
+g7RTge|other
+iXR1pt|other
+jiv8RS|other
+pjLFbA|other
+yuXF8H|other
+5jvc1j|Overload at '%1'. Monitoring period: %2 seconds, limit value: %3 events, waited so far: %4 seconds.
+cpLo7L|Overload diagnostic data. Event was triggered by '%1', for '%2'
+FalTMo|Overview
+IoALDQ|Owner
+ktj8si|ownerid fields
+p3Q5Go|IntValue
+p3ap8D|weeklyReservationBehaviour
+p82u4Y|DataRemoteEfaOnlinePassword
+p9D3Bl|ClubworkCarryOverDone
+pLoS4v|EfaRegistrationProgramId
+pN3dx1|FreeUse2
+pR4mZO|LastModified
+pR60DX|Crew20Id
+pRJnSZ|EfaBoathouseChangeLogbookReminder
+pVxBht|BoatCaptainDefault
+pYJDQi|DefaultCrewId
+pZAFhR|LastModified
+b1CfJu|Page '%1' must be called as a subsequent page from Find record.
+crDZRs|Page '%1' must be called with an existing table name which '%2' is not.
+qRhLL0|Page '%1' must be called with an existing table name which '%2' is not.
+98iCZZ|Page '%1' must be called with an existing uid which '%2' is not.
+8QzwpX|parameter table name
+GL0dtv|parent
+aveC01|Parsing configuration files
+JNawOP|passed locks
+SjwGi5|Password forgotten?
+ZBRHZo|password hash
+1gg8ZC|Password
+P0nVH2|Password
+xY6dR3|Password
+kS4t6V|PDF download
+GzXocl|PDF
+dcIYVF|pdf
+K3Mp55|Pending:_
+pYGgkq|Permission
+VCcc4J|Permissions per role
+Tih9GS|permissions
+udrVVE|permissions
+zErjpE|Person could not be found
+F1eO35|Person gender
+D9IRZd|Person status
+9GipPe|person UUID
+UMvvEm|person uuid
+QupcS9|person
+QfyaT6|Personal logbook
+M8GzW3|Persons age in days
+UkHpF2|Persons age in days
+r5rY6e|Persons age in days
+OzeECc|Persons ranking
+WlxRzd|persons uuids
+2reLjS|persons
+7IVyNe|persons
+CNjIbc|persons
+PdMXIw|persons
+YAvSnc|persons
+tw8Joq|persons
+pgUrra|NotificationEmailFromName
+phr05m|LastModified
+pl2aXd|PrefixDestinationWithWaters
+aG0EhE|places
+RJ96L3|Please add 'von' or similar to the surname (e.g. 'Eckhard' - 'von Hirschhausen').
+dmdcpx|Please add 'von' or similar to the surname (e.g. 'Eckhard' - 'von Hirschhausen').
+AdwVBx|Please at "
+arUUZe|Please enter a valid date at "%2" (not "%2")
+6ytHoP|Please enter a valid email address at "%1".
+2hxIEV|Please find attached the application data backup as configured. Handle these data as defined in your data protection rule set. This usually includes deletion after a short period of time.
+JjAfRD|Please let me know your request or wish regarding the functionality of the application. I will try to help as soon as possible. During holiday periods there may be delays, but normally you can expect a reply in about a week.
+fCWHZq|Please log out and log in now.
+hmrHzL|Please note, that any documentation is provided at %1. There is no separate help information available here.
+d0xnMU|Please note: the process starts with the click on the button immediately and takes only a few seconds.
+TxBnFe|PLEASE NOTE: Use the information provided only for the intended purpose. It is not permitted to pass on lists exported here.
+EuguaU|Please note
+Fiwrt1|Please note
+f8WSn3|Please provide at least three characters to search for.
+sN71rx|Please select the distribution list of which you wnat to read the previously sent mails.
+1ci7d1|Please use the filter or download the complete list.
+CYEWjP|Please use the mail address as account information.
+kL1ygA|Please use the mail address as account information.
+fn5jng|Please use the mail address as login information.
+liKdKf|Pointer:
+BaNPby|portrait layout
+cyZWRG|portrait layout
+wVaW7G|portrait layout
+2RZzXM|Position
+3GkJcW|Position
+3a3qpM|Position
+5lSOlB|Position
+5lrY8j|Position
+7AAi3e|Position
+8gd1b1|Position
+9Bs9W7|Position
+9oruyw|Position
+A0PXf5|Position
+AAbOqB|Position
+AWUl7C|Position
+AmCdaI|Position
+E4rZ8v|Position
+FiuOlu|Position
+GjELS4|Position
+IDE5YQ|Position
+JS8D5J|Position
+LRAPph|Position
+M0tq0a|Position
+NCRSLq|Position
+NYGMks|Position
+OjaxXg|Position
+PXbDX1|Position
+Pawixy|Position
+PfK9ET|Position
+Pij77M|Position
+SJ4ULp|Position
+WXb1z9|Position
+WyyLcC|Position
+XAiZeE|Position
+XD2emD|Position
+aUnfNn|Position
+dIRtji|Position
+e5BF8z|Position
+ftxBZq|Position
+hrH21O|Position
+i5FmBf|Position
+iQLQA0|Position
+khfIES|Position
+mwl8hp|Position
+o4i5Qj|Position
+rMSKpb|Position
+t8Lzi3|Position
+yE71ow|Position
+jNyppd|possible here
+uD3eA6|Post for Javascript
+dB4UZa|Post message
+7vNdV1|Post request time out
+PYiCqk|Postal code
+tjTi8x|Postal code
+4p2OXb|postfix persons with club name
+pq9P2O|efaClubworkBook
+7h26Hb|Preferences
+tuQ6eE|prefix destination with waters
+UPLDAo|print page height
+5R2RoZ|print page margin left right
+eBKXkH|print page margin top bottom
+WWzLfL|print page overlap
+kTYqUK|print page width
+b5s2KV|Print
+5xuAcv|Privilegierte Nutzer (auch für Security-Concept)
+prjUnF|LastModified
+a8gRBK|Profile changed.
+aOhrsi|Profile of %1 %2
+j8pXJK|Profile of
+0eyQX0|Profile
+5rlOQ6|Profile
+tzqQjQ|Profile
+xgwLOU|Profile
+faGcVv|program acrobat reader
+e5NZ7F|program webbrowser
+0JEEsO|project ID
+ZZFCxJ|project ID
+23zQq7|Project name
+H0guIN|Project name
+mXeHbl|Project
+AXnXaC|projects
+M3LyZI|projects
+xw1uFx|Properties
+sC5sYJ|property
+JX2kP6|Provided on %1 by %2 to %3. Forwarding and copying of this list is not permitted.
+L5LuMQ|Provided table name has no match.
+YQ24hk|Provided table name has no match.
+S1GkVK|Provider
+CMC17q|PS: In the user profile, it is possible to store a permanent password.
+ptO68m|LastModified
+mcp7h5|public dirs
+HQJsHw|Public event lists
+R4DpRg|Public rankings
+1tvchB|publically available information
+5fMcWM|publicaly visible tripdata
+FUIhdd|publicaly visible tripdata
+JuEtZD|publicaly visible tripdata
+O1HWlA|Publicly available directories access check ...
+8mpYCq|purchase date
+bfTln2|purchase price currency
+dE2VfR|purchase price
+EF65qb|purge deleted, age in days
+UaLOHn|purge deleted, age in days
+pwPEP2|English
+pwi17c|LogbookDisplayEntriesMaxNumber
+py4VVS|Crew19Id
+pzg0LQ|WidgetMeteoAstroLayout
+q2bNU7|InvalidFrom
+q7Zite|LastProjectEfaBoathouse
+q7iems|LogbookDisplayEntriesDefaultNumber
+q9fMvf|LastModified
+qABcbD|LastModified
+qAcgs8|CompOutputAllDestinationAreas
+qBPFk0|LastModified
+qKtWdF|AllowMembersBoatReservationWeekly
+qOVDsk|NotificationWindowTimeout
+qSltSE|LastModified
+qUjDZL|Crew21Id
+qVDVi6|EditClubwork
+qXxfoE|DebugLogging
+qe9xEo|EditStatistics
+qfNQqg|CurrentLogbookEfaBoathouse
+qgexbS|LastModified
+qiUbiD|database_layout upgraded
+ql79It|ButtonStartSession
+qo64TK|gui_anzkmab
+qrs8fX|NotificationWarningAdmin
+qw5dbZ|ACTION_ADDTYPES_CANOEING
+r4hAAZ|DataRemoteEfaOnlineUsername
+r7D7Rv|BoatListDisplayDestinationForBoatsOnTheWater
+r7TnT0|LastModified
+r8OMUN|ProjectID
+rDqVYh|LockEfaPage
+rGUD5b|FilterBoatOwner
+rGrgnE|StatusId
+rKpWSk|AdministerProjectClubwork
+rMCneT|DateFrom
+rMymg3|AdministerProjectClubwork
+rOEKDc|MsgMarkReadAdmin
+rQ5Gqq|Crew11Id
+rS7zYR|FilterBoatRigging
+rUVId1|WidgetMeteoAstroHtmlPopupUrl
+rUXBlo|ReportDate
+rVRm82|Crew23Id
+rVdnit|AdminLastOsCommand
+rXgKae|LastModified
+rYwkGA|BoatListSortByRigger
+rZKbRq|NotificationErrorBoatMaintenance
+JRnXra|racing boat
+OCW1Hf|racing boat
+JUGcRX|racing
+slYO0u|racing
+rTgJH2|Radio button checked
+SYuuyO|Radio button unchecked
+rbJ5Iz|StorageUsername
+YDLefu|RC_WeissBlau
+GaXXKE|Read messages to Admin
+JIePFu|Read messages to Admin
+E5emZ5|Read messages to boat keeper
+p4vKQS|Read messages to boat keeper
+99XIGm|Read previousl sent mails
+Ij02fx|Read
+vp2UUx|ready.
+5Nu1O6|reason
+LRAfos|reason
+OsHLl9|Reason
+nTIsc0|Rebuild the word index.
+ZmVUvv|Recipient:
+2cCzvW|record history
+UhbQ08|record history
+ivK7vo|record history
+sTP6cS|Record history
+TTKxOm|Record not found.
+S9MHHT|Record to delete was not found.
+NCGgdt|record
+qgCMZi|Record
+C94hEq|Records found.
+jnzy2g|Records
+xhYaXI|Records
+BVnkn9|Regatta
+D7oI6K|regatta
+67aHAM|Regional association name
+JQBvgg|Regional association name
+poQBq6|Regional association name
+2PgU6a|relative size; the layout manager will add all sizes and distribute the space available
+8lh3RQ|relative size; the layout manager will add all sizes and distribute the space available
+AvLXBt|relative size; the layout manager will add all sizes and distribute the space available
+DW8GTS|relative size; the layout manager will add all sizes and distribute the space available
+DXWy3F|relative size; the layout manager will add all sizes and distribute the space available
+GR3EL4|relative size; the layout manager will add all sizes and distribute the space available
+ILBzOp|relative size; the layout manager will add all sizes and distribute the space available
+IOXGvh|relative size; the layout manager will add all sizes and distribute the space available
+IvYsxp|relative size; the layout manager will add all sizes and distribute the space available
+Kn1I2r|relative size; the layout manager will add all sizes and distribute the space available
+R5cvYC|relative size; the layout manager will add all sizes and distribute the space available
+RPZa02|relative size; the layout manager will add all sizes and distribute the space available
+Tp0lZX|relative size; the layout manager will add all sizes and distribute the space available
+UN9h1w|relative size; the layout manager will add all sizes and distribute the space available
+UjGL2O|relative size; the layout manager will add all sizes and distribute the space available
+a3BLBJ|relative size; the layout manager will add all sizes and distribute the space available
+bcHenC|relative size; the layout manager will add all sizes and distribute the space available
+diPbke|relative size; the layout manager will add all sizes and distribute the space available
+qG1E8L|relative size; the layout manager will add all sizes and distribute the space available
+uQjFOz|relative size; the layout manager will add all sizes and distribute the space available
+wwHfRE|relative size; the layout manager will add all sizes and distribute the space available
+zhNs9E|relative size; the layout manager will add all sizes and distribute the space available
+9zuVO6|Remarks
+5MLi2p|Remote access via efaRem...
+gpY7sL|Remote access via efaRem...
+KkvGKo|Remote
+faxh60|Remove period end
+7hyOxK|Removing existing configuration
+B9Tygk|removing files that are no longer needed.
+tpeQge|Removing files.
+AsPYhV|Removing session '%1'.
+legYF5|Removing session '%1'.
+a1tdb6|repair costs
+TrwbS5|Repeat password
+1Psi5w|Repeat your password
+oKmnNP|reply to
+JAsJeI|Report damage
+MNFwIh|Report damage
+8DRVve|reported by
+WRoXOL|reported by
+iEk4vt|reported on
+iyU5b0|reported on
+dn8PHX|Request a reservation
+HxkS2Y|request information
+CKjbUM|Request reservation
+9qXWZ6|requested by
+L56Cvy|required group uuid
+ASEoCr|Reservation age in days
+YJCG9U|Reservation age in days
+dhMW65|Reservation age in days
+t9Vd8o|reservation look ahead time
+ziDGIo|Reservation number
+lOh6TH|Reservation types
+4lfZ7C|reservations
+MIFFvt|reservations
+fgGN4N|reservations
+wJ2Ds6|reservations
+yF2q7D|reservations
+Nn5wAm|Reset data base
+3UZqX9|resources
+3sjTCE|resources
+4lsVr8|resources
+AcgwFi|resources
+NxT1hR|resources
+SyPEMs|resources
+WgYFZx|resources
+Wrl7Mr|resources
+X2spap|resources
+jyCqAD|resources
+k4TapX|resources
+ktH2sb|resources
+mSfHDY|resources
+oafeC0|resources
+vlNYGU|resources
+wiLfGW|Restore version V%1.
+NZBKoN|Restore
+aU12HX|Restore
+AmEL6s|restoring the existing configuration
+e5VOu1|Result of layout check
+elDfgL|result:_
+rSEEGA|results for '%1'
+rhDF8D|BoatListSortBySeats
+FkgqCN|rigging
+RO36fS|right part of body
+nsH72v|right side list
+z7eGHS|Role not allowed.
+P47vFY|Role
+8RhH9W|Roles
+Vkz1Y2|Rolle
+Z4RVra|root node
+MHi2Lg|roundtrip
+z7ItUX|Roundtrip
+bnpkJP|Route
+B9ys2A|Run data base audit.
+TdJY1c|Run housekeeping
+ruuvQ1|LastModified
+ryMovM|LastModified
+ryXVMp|EfaBoathouseWindowMaximized
+rykHAP|efaBoathouseFilterTextAutoClearInterval
+s90mpo|NotificationMessageToAdminDefaultRecipient
+sEWcRb|LastModified
+sF1fXW|FilterBoatTypeAll
+sG7d8G|EfaExitIdleTime
+sKpS0Q|WidgetMeteoAstroHtmlPopupWidth
+sQhqZe|LastModified
+sReqpO|LastModified
+sSQgZa|LogbookDisplayEntriesDefaultAlsoIncomplete
+sUNg1U|BoatListDisplayDestinationForBoatsOnTheWater
+sUSnrj|DefaultBoatId
+cP2YCP|Save period end
+h1DbeX|Save period start
+o9nvp8|Save preferences
+RW8eum|Save record
+iM0FxL|Saving the existing configuration
+sGbUKF|Schadensmeldungen abgeben
+fpHDr9|Schadensmeldungen lesen
+kqaxGb|Schnittstelle testen
+PjhSps|scull
+hcFC59|search for
+XZ0WtK|Search the data base
+oCPI1E|Search the data base
+K0gmHX|seating
+M4P1uK|Security concept created.
+mPoU63|Security Concept
+saSTkk|Select images to upload:
+epwaIX|select use syntax error in form definition.
+7fdAj3|self registered role
+Hjgriv|selling date
+fkFH1n|selling price
+Px52Wy|Send a message
+W5VoZs|Send mails to a distribution list
+wzM12X|Send support request or feedback
+L9ZdPG|Send the API logs and the audit log as well (required for a support request).
+67j6KR|Send token
+3tUUPL|sending backup per mail.
+zmsFb6|Sending failed for: '%1'.
+qnVLLU|sent from
+QJMq5Y|sent on
+3nLdNA|sent to
+1393xk|Sent:
+RL7YhL|sent:_
+akyasw|Sent:
+sBF2Kv|sent
+ms8o75|Sequence
+DsOREl|serial no
+hOqvCZ|Server application
+hjdoBL|Server application
+LFeLuc|Server communication failed for %1 transactions. Cause %2.
+kffirf|Server error
+ANbCrI|Server logs
+rjunmx|Server logs
+kZ6xuS|Server returned status code 500
+fUNLos|server timestamp
+fxsBYz|Service / Feedback
+RHGlRZ|Session context: %1, current: %2
+iFR5El|session groups within efa
+K7p76O|Session inactivity timeout
+n6IV9Y|Session lifetime end
+Wkz0N4|Session terminated.
+4U3YeW|session type default
+5p5bJU|session type
+oazRhT|Session types
+BlgYNu|Session
+YupTiH|sessiongroups
+TVNHaX|Set club logo
+LjCmY9|Set Default for `%1`.`%2` from NULL to %3
+iPXyEn|set the tick.
+gPF94C|Set u for unique and a for autoincrement, if the table field shall be indexed
+6HRhB6|set
+B1rHcp|Settings
+8ThgyP|severity
+Ep3322|severity
+et0N5d|Severity
+yz3Hwq|Show a record
+owhdS6|Show all
+hVHf9A|show archived
+x37v0p|show boat not cleaned button
+FFZAD7|show changes
+xp0Oxi|show deleted
+efjxwi|show filtered list
+feQVi3|Show History
+RWRW1a|show last from water notification text
+cbwk9S|show last from water notification
+1iNUpm|Show log file
+Lmi120|Show log file
+P9P4EV|show my profile
+bY7MJh|Show PHP
+UcNTLA|show versions
+4XQVdZ|Show
+o4nmsu|Show
+tIUwtU|show
+u9WjgW|Shutting down %1. Script started at %2
+ZoXdN3|simple layout
+45r0mM|single object in [projectroot]/cfg/configuration.efa2config
+iP2IpW|single object in [projectroot]/data/[projectname].efa2project
+pwdj3F|single object in [projectroot]/data/[projectname].efa2project
+8A69jr|sixes
+JZi7sG|sixes
+eosDhG|Size (kB):
+NKmdC2|Size check: Tables and records
+sk4nBg|GUI_LETZTESDATUM
+bciyl7|Skip missing %1 %2
+1CBvTO|Skull
+sltWGm|EfaExitExitTime
+sm4yTg|NotificationEmailPort
+s2UBkR|Software Upgrade
+JmUvue|Sorry, that didn't work.
+nLel3k|Sort with one click on the column header (only partial), change from ascending to descending with a 2nd click.
+ugjILe|source code path
+HnJbKK|spelling check names
+QJVT5W|sports type
+bNqq9W|Sports year start
+dL8PNe|Sports year start
+jQVytp|SQL default
+0X6pY6|SQL index type
+4qH4PV|SQL null allowed
+ECaqtw|SQL size
+7D048T|SQL trigger event
+tPpAO6|SQL trigger value
+x4sAVc|SQL type
+CGKrQ9|Stacktrace
+wkGN5N|Start a session
+MxmSoI|Start at
+uJzUER|Start at
+UQwrEI|Start date
+hT2q2w|Start date
+oQNgRV|Start date
+Isyis4|start housekeeping
+8JSjYh|start is boathouse
+d7WN8G|start of monitor period:
+BhDs6f|Start on
+uDdSRJ|Start on
+FgzqGf|start session must select destination
+DEg7nL|start session time add
+0pdLA1|start time
+ERwqmY|start time
+M6Ob7P|Start
+gkRHZQ|start
+h00O8b|Starting audit at:
+7tTMfJ|Starting backup.
+mrO2j6|Starting daily jobs.
+AGz4Iv|Starting existing web session '%1' for '%2' by '%3'
+mSMaVo|Starting init_data_base
+bYhMEv|Starting new api session '%1'
+Z9Ncn1|Starting new session. Currently open are:
+a9ihqL|Starting new web session '%1' for '%2' by '%3'
+8hPspQ|Starting
+YPmPF9|Starting
+mrY3PQ|Starting
+1oXUFv|Startseite
+J8nIbN|Startseite
+yRmL3D|start
+MC2WLj|statistics
+17jwa5|status UUID
+IEmGk6|status uuids
+7TmEzI|status
+QxMwgm|status
+Ym0sqt|status
+nO23bd|status
+rCxMTw|status
+rjHpTL|status
+vhgQsV|status
+1i3aJl|Storage location
+AAcbsu|Storage location
+66rMxh|Storage password
+vgmehu|Storage password
+8zxXlF|Storage type
+yaAuvr|Storage type
+CWfcNZ|Storage username
+vKRcgw|Storage username
+Z09JDF|Storage
+GjE3ZC|Street and No
+GlB32l|Street and No
+fLIzFW|String '%1' too long. Cut to maximum size of %2
+fWxdb7|String '%1' too long. Cut to maximum size of %2
+fkVBQK|string A differs from string B
+gCk9cA|string A differs from string B
+Qig0i8|string
+suA5rV|PurchasePrice
+2yWFRU|Subject:
+HCNOra|Subject:
+XMHPag|Subject:
+ex7gkf|subject
+qqDDzw|Subject
+0LSiZI|Submit
+OymftT|submit
+RstRdk|Submit
+jdsLwu|Submit
+RzeCKC|subscriptions mask
+wTnmiM|Subskriptionen, Mask 
+QTSMja|Subskriptionen
+vsbqU2|successful.
+8bTeiG|Successful
+iiTAZJ|Support requests will not be processed without providing the name and club. The response time is usually less than a week, sometimes longer during holidays.
+L8QRea|Support token
+sw3m4r|Reservation
+T0ZpHz|sweep
+j4bbQx|sweep
+Togf3p|Switch to admin UI
+1bjXER|Synch check period
+CATRWa|Synch check period
+2YqJmX|Synch period
+cTMUDV|Synch period
+AAwQkk|synchronise with KanuEfb
+iSJX3g|synchronise with KanuEfb
+RDUReD|synchronization
+2MLqLN|System mail sender
+F01jyL|System mail sender
+PnEMKA|System messages
+t0poAa|WidgetMeteoAstroShowWeather
+t3fcys|LastModified
+t4fKxN|BoatListSortBySeats
+t61LJD|ChangeCount
+t9WBFl|EndDate
+tCD7Ee|EndDate
+tI8ZB1|FirstLastName
+tKfhFL|NUMSEATS
+tP9luf|maxsize
+tPZ7fG|LastModified
+tPevNL|efaBoathouseExtdToolTips
+tROQC5|FilterByBoatId
+tZ7zaO|ExternalId
+uwYaTR|Table configuration check ...
+0i10mg|Table name;Column name;Data type;Data length
+xRpQLT|Table name;Table versionized;Column name;Data type;Data length;Object ID;Key;Key correction
+m5y8pv|Table of user-driven activities:
+9uQTkS|table to which the archived record belonged
+H0mO4k|table to which the deleted record belonged
+0caAc2|table
+1H6BQN|table
+k55LAo|Table:
+Ae9Of8|table
+IDQDuu|table
+K6ptLS|table
+L8qLgN|table
+QmLSco|table
+R9OcM9|table
+UdGEkO|table
+WWOePq|Table
+dn2yKc|table
+fWgwLL|table
+gkGCdq|table
+lhIhZn|table
+pbnWGq|tablename
+qWakPQ|table
+7m2DRQ|Tables and records
+LWW0VD|Tables and records
+bJ44LM|Tables and records
+nBgz5e|Tables to be imported must show the field names of the database table in the first line, upper/lower case is relevant. If invalid field names are used, the import cannot take place.
+A0zktK|Tables to be imported that consist of exactly one column in which the ID is given will result in the deletion of the complete records with the respective ID.
+vODhXd|Table
+zDmlS7|Table
+zJO8M0|table
+tbYcjt|LastModified
+N03mCJ|technical name
+hPIFLc|Technical name
+Ifh4v2|technical table for autincrement counters
+yml89m|technically
+2XJq02|template
+6Rwddr|template
+9FOsCg|template
+B2FoBO|template
+KbOejD|template
+LzeDW0|template
+Q8q9j6|template
+a7FNrV|template
+fBeeoD|template
+fm1mKv|template
+g8Sn46|template
+nkdrmO|template
+sjkmQL|template
+thyOZU|template
+uaByYt|template
+RhWHn4|Temporary server error detected: 
+6mFYg1|Text
+dNEp9w|text
+tg5Fj2|Crew13Id
+02SBJ9|Thank you for your request. The efacloud.org server reports:
+9tMKlx|The '%1' page must be called with the id of the record to be displayed.
+pYJiV8|The '%1' page must be called with the id of the record to be displayed.
+1SbPIM|the abbreviation of the clubs name
+mNr8kc|the address to notify damages to
+WEbWAm|the address to notify messages to
+CUBg0z|the address to notify reservation requests to
+O31g1E|The application is currently in maintenance until expected:
+E2osXA|the application’s archiving settings
+dlIDJg|the application’s communication settings
+YQ9znM|the application’s maintenance settings
+C87JcE|the application’s operations settings
+LuDYvz|the application’s ‚mailer‘ settings.
+RpruLs|the application’s ‚Notification‘ settings.
+GWBtJW|the application’s ‚PDF‘ settings.
+n5wjE9|the application’s ‚PersLogbook‘ settings.
+kqvRu1|the application’s ‚PublicInfo‘ settings.
+malhtF|the application’s ‚Synchronization‘ settings.
+VbZdm3|the applictions ‚PublicTripdata‘ settings
+N5iYBO|the approver
+F7eWEG|the archived record last values
+wsgJ20|the archived record's unique identifier
+bW1AWB|the archived records change history
+3ycORz|the ascending number of the session per sports year
+Fm1y3F|the asset is to be excluded from statistics
+aPetx5|the asset may only be used with boat captain
+tZ0Nqq|the assets subtype (e.g. A-Gig, racing)
+EfjjJz|the asset’s allowed groups
+QZ5Yo3|the asset’s default crew
+5AMB0A|the asset’s default destination
+sWmt0i|the asset’s default session type
+aLnG9O|the asset’s default type variant
+7W0yee|the asset’s insurance value
+heQHlE|the asset’s last type variant
+Am9pPm|the asset’s manufaction date
+Av1OHi|the asset’s manufacturer
+jitRNr|the asset’s max crew weight
+yNhYIA|the asset’s model
+MM2iqK|the asset’s name
+YjKVAF|the asset’s purchase date
+v3q97C|the asset’s purchase price currency
+oSamSF|the asset’s purchase price
+Izm1WG|the asset’s required group
+XHoDkQ|the asset’s selling date
+UC1NZv|the asset’s selling price
+xMqsx3|the asset’s serial no
+pmMTzE|the asset’s status (available, on the water, booked, etc)
+l5lCHN|the asset’s type (boat, vehicle, trailer)
+NklUon|the asset’s type variant indices
+pZOaBj|the asset’s type variant options
+0mLtWK|The association where efaCloud is used
+L3cge1|the boat captain list position
+AebG0R|The boat is occupied with the booking: %1 from %2 %3 to %4 %5.
+PpJbrz|the boat or other asset damaged
+HCJDdK|the boat or other asset reserved
+g27eyQ|the boat used
+CVUGXF|the boat variant used (different from efa: not the boat variant index, but the boat variant name)
+HEkIeQ|the book of all trips
+qIWVfw|the cancellation time
+rFsm3l|the cancellaton executor
+XEqfJN|the carbon copy address for all notifications sent
+M7N2ns|the catalog of usable UI content providers
+iClm6j|the catalog of usable UI content providers
+h75SLm|the catalog of usable UI layouts, listed as root containers
+olANid|the catalog of usable UI layouts, listed as root containers
+PsLr2A|the catalog of usable UI profiles
+Sg8qur|the catalog of usable UI profiles
+N2MgjZ|The change is immediately transferred to the database and simultaneously registered in the log.
+YWg7T3|The change is immediately transferred to the database and simultaneously registered in the log.
+Gztz2T|the changed record’s unique identifier
+W9F5NE|the class used for the input field.
+MXb6Vp|the club the person is associated to, typically if not the own club
+Y9ctwJ|the Club ‚Associations‘
+bTfYvC|the Club ‚Habits‘
+uQMtKd|the club's full name
+AC6hqs|the clubs homepage URL
+3TiVZ0|the columns to display in the personal logbook report
+B5jPlc|the coxing of this boat, i. e.with or without cox, for options see catalogs
+qsQ71B|the crew names or UUIDs
+A9P8jN|the currently used user preferences for the UI
+LMj9pW|the currently used user preferences for the UI
+4563fT|The daily maintenance routines have been carried out.
+gvvK8s|The data change is %1performed.
+MECqYn|the data management rules to apply for this column like word indexing, ownership definition, list type
+z9JLLb|The database has been recreated. The only admin user is %1.
+jnUMvz|the date and time of the session end
+34ThB3|the date and time of the session start
+E6xABq|the date of the work done
+L5mSVI|the default preferences for a new user
+YIb5od|the default value. If this field contains a string, parsing applies. For dataType string and text, it will be chacked for available translations.
+J0PGb3|the deleted record last values
+yt29Oi|the deleted records change history
+eMT3h1|the deleted record’s unique identifier
+ceZU15|The deletion of the password in the database failed.
+GK9tfc|the destination UUID or name
+YdTDBW|The details of the entry are:
+9hYX9D|the different options for Asset status
+P5B4dM|the different options for Asset types
+VVLokL|the different options for Boat coxing
+B9zJnz|the different options for Boat rigging
+ft49sK|the different options for Boat seating
+JNDKS5|the different options for Damage severities
+SNnUt4|the different options for Destination areas
+JkKGhM|the different options for Languages
+8x4ec0|the different options for Location types
+rxBROI|the different options for Message destinations
+xN1pkc|the different options for Person gender
+VWN7Up|the different options for Person status
+RRVXOt|the different options for Reservation types
+67zrfh|the different options for Session types
+WxFRJt|the different options for the asset sub types like racing, C-Gig
+wWI7WM|the different options for Timezones
+I4mJX6|the dilbo default profile
+mZBGfN|the dilbo user id for that person for login asf
+TAiDHN|the dilbo user role
+baN5tA|the dilbo user’s concession
+piBH0n|the dilbo user’s password hashed
+NLyGCo|the dilbo user’s settings like language, logbook, UI-profile etc.
+UKBru6|the dilbo user’s subscriptions
+YCU44v|the dilbo user’s workflow admissions
+PeQfHu|The directory was created.
+6PGNEG|The display and editing options are shown as links in the result of the search.
+lyrjhq|the distance passed in km
+Gq4P1b|the document's margins
+v9GLZd|the document’s footer text
+EuAbdu|the eFB ID of the boat
+SYSAxI|the eFB ID of the boat
+e4H1FJ|the eFB ID of the boat
+SC6SXl|The email address "%1" is already occupied by %2 %3. It cannot be used twice.
+HrGYEo|the end of the validity period of this record. Sort records by this field in descending order to get the most recently valid record first.
+ysn50P|The entered search texts are searched exactly as a text part.
+KMhSNO|the event on which the data base shall be trigger
+ZjU51G|The File '%1' was uploaded.
+fUMqe5|The File could not be uploaded. Error description: '%1'.
+KLYCCf|The file import was carried out. See what was iomported.
+Fg6pWu|The file upload was successful. See what is to be imported. Please pay attention to import errors.
+9dSKwb|The file was only partially loaded, please try again.
+RC8Q4G|the flag which will allow editing by users
+WOnK0g|The following activity result was recorded:
+8h4mmf|The following changes are to be carried out with the import:
+8gVWmU|The following changes have been carried out with the import:
+9mww2x|The following changes have been made:
+cFEi41|The following changes have been made:
+4SVUF8|The following modules are missing on the server compared to the reference installation:
+w7fPZs|the footer of all generated mails
+fkKgqu|the form template used for editing the configuration item
+7m4ZED|the full name format
+GCD6OA|The full text search looks for the specified text in all entries of a record of the users.
+lSrBza|the hoster, i. e. service provider, running the application, named in the security concept
+CwcQGv|the hours worked
+MmDF9y|the html format of the table tag
+LOqM7C|the html format of the td tag
+CT3fXP|the html format of the th tag
+Biq8LE|the html format of the tr tag
+H3jSfa|The implemented data structure
+yCzEiS|the java time since the epoch, Only used for efa backwards compatibility
+m0N2tS|The layout of the data base matches the current application version.
+Fd0p0U|the left menu bar
+slCqRl|The list '%1' must not be output for the role '%2' or the subscriptions or workflows (%3 %4) allowed for the current user.
+K2xXwe|the list of boat variant types of the club
+xGN4rr|the list of books on clubwork of the club
+uWxE5s|the list of daily jobs to configure
+NznOXv|the list of locations of the club
+NpDT5P|the list of logbooks of the club
+GyWake|the list of publicly available event lists
+ApskpP|the list of publicly available rankings
+NoONqt|the list of type catalogs of the club
+JaWZSJ|the location to which this club workbook belongs
+fQRFm0|the location to which this logbook belongs
+wOmMPf|The logbook
+HQYFyU|the mail address to be used as „from“ for system generated mails.
+OSpHxl|The mails are sent individually, always with only one 'To' recipient. Depending on the quantity, this can take a while and also lead to spam classification on the recipient page. Therefore, please use modestly.
+g5sgQX|the main location of the club to which to go
+SNvCEQ|the main part
+DnzOuP|The maximum identifier length is 64 characters. 
+VfEQj7|The maximum identifier length is 64 characters
+NlSd3l|the maximum length of strings
+lgDz45|the maximum number of people not in group using this asset
+xUlaEi|The maximum password length is 32 characters.
+odHfH6|the maximum value
+JfO4Mf|the membership status of the person
+mQvmev|the menu action %1 is not allowed for the current user.
+RxkkKI|The message was sent to %1 members and saved in the database with the result:
+GLHPzt|The minimum password length is 8 characters.
+0LMRUZ|the minimum size (width or height) in pixels; If the sizing results in less than the minimum size, the container will not be displayed.
+4JD8cw|the minimum size (width or height) in pixels; If the sizing results in less than the minimum size, the container will not be displayed.
+A1GFUQ|the minimum size (width or height) in pixels; If the sizing results in less than the minimum size, the container will not be displayed.
+GkXGWU|the minimum size (width or height) in pixels; If the sizing results in less than the minimum size, the container will not be displayed.
+Gp1j2d|the minimum size (width or height) in pixels; If the sizing results in less than the minimum size, the container will not be displayed.
+JpFyPF|the minimum size (width or height) in pixels; If the sizing results in less than the minimum size, the container will not be displayed.
+LlfkcH|the minimum size (width or height) in pixels; If the sizing results in less than the minimum size, the container will not be displayed.
+OCN3VW|the minimum size (width or height) in pixels; If the sizing results in less than the minimum size, the container will not be displayed.
+PwG9at|the minimum size (width or height) in pixels; If the sizing results in less than the minimum size, the container will not be displayed.
+Q0vNYW|the minimum size (width or height) in pixels; If the sizing results in less than the minimum size, the container will not be displayed.
+RCIwuP|the minimum size (width or height) in pixels; If the sizing results in less than the minimum size, the container will not be displayed.
+a5mRzb|the minimum size (width or height) in pixels; If the sizing results in less than the minimum size, the container will not be displayed.
+ei050T|the minimum size (width or height) in pixels; If the sizing results in less than the minimum size, the container will not be displayed.
+oKSKEz|the minimum size (width or height) in pixels; If the sizing results in less than the minimum size, the container will not be displayed.
+p7aaDZ|the minimum size (width or height) in pixels; If the sizing results in less than the minimum size, the container will not be displayed.
+pssmBI|the minimum size (width or height) in pixels; If the sizing results in less than the minimum size, the container will not be displayed.
+q9yLTa|the minimum size (width or height) in pixels; If the sizing results in less than the minimum size, the container will not be displayed.
+qW7C9p|the minimum size (width or height) in pixels; If the sizing results in less than the minimum size, the container will not be displayed.
+t1Iefj|the minimum size (width or height) in pixels; If the sizing results in less than the minimum size, the container will not be displayed.
+tGctM1|the minimum size (width or height) in pixels; If the sizing results in less than the minimum size, the container will not be displayed.
+vf8XyW|the minimum size (width or height) in pixels; If the sizing results in less than the minimum size, the container will not be displayed.
+wGSaCm|the minimum size (width or height) in pixels; If the sizing results in less than the minimum size, the container will not be displayed.
+hP04vV|the minimum value
+qPKfrG|the name in local language, will be translated
+o8Da6f|the name of the club’s work book
+JNYIiw|the name of the data item. Will bie the column name in tables and the item name in a configuration tree
+5JgHWu|the name of the logbook. Text only, please, no year
+JFBjiB|the number of days after which deleted records are purged from the rubbish bin
+wubamX|the number of people who can enter this boat
+mi5ugY|the number of seconds between two change occured checks
+ifN5oc|the number of seconds between two synchronisation requests
+Nz8G7x|The one-time password '%1' can be used to delete the permanent password of the application for the next %2 minutes.
+ULBtgs|The one-time password could not be sent.
+nbrk4v|The one-time password could not be sent.
+1HuxvX|The one-time password is incorrect or has expired.
+K7CeYe|The one-time password is incorrect or has expired.
+8oDhBF|The one-time password was sent to '%1'.
+PeJo45|The one-time password was sent to '%1'.
+2NgAqV|the orientation of the childrens arrangement; true for inside columns, false for inside rows.
+3IOe8w|the orientation of the childrens arrangement; true for inside columns, false for inside rows.
+40iZV9|the orientation of the childrens arrangement; true for inside columns, false for inside rows.
+4v22nE|the orientation of the childrens arrangement; true for inside columns, false for inside rows.
+67stQ6|the orientation of the childrens arrangement; true for inside columns, false for inside rows.
+9fQYEC|the orientation of the childrens arrangement; true for inside columns, false for inside rows.
+A1SvP0|the orientation of the childrens arrangement; true for inside columns, false for inside rows.
+A8O4xD|the orientation of the childrens arrangement; true for inside columns, false for inside rows.
+BOiRmx|the orientation of the childrens arrangement; true for inside columns, false for inside rows.
+GWdXPe|the orientation of the childrens arrangement; true for inside columns, false for inside rows.
+KWwBTF|the orientation of the childrens arrangement; true for inside columns, false for inside rows.
+LjCUpz|the orientation of the childrens arrangement; true for inside columns, false for inside rows.
+NRqUpN|the orientation of the childrens arrangement; true for inside columns, false for inside rows.
+O1jiKo|the orientation of the childrens arrangement; true for inside columns, false for inside rows.
+O5S5Gh|the orientation of the childrens arrangement; true for inside columns, false for inside rows.
+Xd9MXz|the orientation of the childrens arrangement; true for inside columns, false for inside rows.
+ZYkyu9|the orientation of the childrens arrangement; true for inside columns, false for inside rows.
+lHHcnv|the orientation of the childrens arrangement; true for inside columns, false for inside rows.
+tBx7LV|the orientation of the childrens arrangement; true for inside columns, false for inside rows.
+uGsSsG|the orientation of the childrens arrangement; true for inside columns, false for inside rows.
+vo2CEt|the orientation of the childrens arrangement; true for inside columns, false for inside rows.
+w88GGl|the orientation of the childrens arrangement; true for inside columns, false for inside rows.
+dSsfbD|the owner of the asset
+yR7zed|The password can only be set for new users and users with the role 'bths'.
+655rFb|The password has been changed.
+b25fYT|The password has been changed.
+W37MTN|The password is not secure enough in "%1". %2
+aJ5Cy9|The password must be between 8 characters and 32 characters long.
+iJUmCH|The password must contain characters from three of the following four groups: Numbers, lower case letters, upper case letters, special characters. Permissible special characters are !"#$%&'*+,-./:;<=>?@[]^_`{|}~.
+ObNF6F|The password must contain characters of at least three groups within 
+scIPSc|The passwords must match. The password is not changed.
+xVSLCZ|The passwords must match. The password is not changed.
+5mRVU3|the permissions for the data item modification
+BgxEQA|the person requesting the reservation
+UwzBpl|the person responsible for operation in the club, named in the security concept
+rWtsmX|the person responsible
+57TN89|the person’s adress
+K6v6Rw|the person’s adress
+gk3rGE|the person’s adress
+gx1r9Z|the person’s adress
+ocMCkZ|the person’s adress
+y3KKU4|the person’s birthday
+gqdH1B|the person’s email
+kSbWaI|the person’s first name
+MpDXk4|the person’s gender
+RgucWs|the person’s last name
+60XJqo|the person’s title
+DA6MeJ|The process can take 10-20 seconds.
+4hdqAF|The process is now complete.
+3ggYYL|the provider type
+8OI6aX|the provider type
+HSyVDX|the provider type
+LJwJvG|the provider type
+LRJB3i|the provider type
+TR27aO|the provider type
+dG78GT|the provider type
+e7UYYq|the provider type
+gjnNud|the provider type
+iqhEnb|the provider type
+nY00Vv|the provider type
+o3lTn1|the provider type
+uW1KYO|the provider type
+ufxxJv|the provider type
+xRWptr|the provider type
+3T2ib4|the reason for the reservation
+GkURzg|The record in table '%1' with the record ID '%2' could not be found.
+DOxMof|the records unique identifier
+fZg2zo|The registration must still be completed by the administrator. Only then can a one-time password be sent.
+nKI7OJ|The required field '%1' cannot be updated with an empty value.
+NeU2jA|The required field '%1' must not be empty for new records.
+ycNSKI|the resourcce’s globally unique Id
+D7SPTM|The role '%1' has no permission for action '%2'. Nor within the subskriptions nor workflows a matching permission could be identified.
+G1zcne|the seating like 4x for a skull 4-rowers boat or 8+ for a sweep eight rowers boat, for options see catalogs
+gbm29m|the selected language
+kjqRHi|the selected language
+FDZrap|the selected logbook
+JpeG8Y|the selected logbook
+xS4f0M|The selected mailing list was not found.
+ixCIoQ|the selected UI profile
+mfCJ93|the selected UI profile
+XEHUG4|the selected workbook
+mHga8e|the selected workbook
+7N0gUC|The server respoded with error code '%1'
+DpOAmY|the server time since the epoch in seconds as float. See PHP microtime. Maximum value must be larger than maximum of millis / 1000 to work properly
+9mmdUG|The session is still active, continue with any action from the menu.
+EGWtVL|The session was terminated or the action is not allowed for an anonymous user.
+5dqGwa|The session was updated.
+1yfbUv|the set of up to four actions on click
+21OfKm|the set of up to four actions on click
+6EDnxC|the set of up to four actions on click
+6z98fY|the set of up to four actions on click
+BCWXy2|the set of up to four actions on click
+CmFY1u|the set of up to four actions on click
+FoOwbT|the set of up to four actions on click
+LvzaM5|the set of up to four actions on click
+fUwRYP|the set of up to four actions on click
+fviV1n|the set of up to four actions on click
+tlh5VG|the set of up to four actions on click
+vkLNwl|the set of up to four actions on click
+x6ww91|the set of up to four actions on click
+zEuM7G|the set of up to four actions on click
+zOpg1C|the set of up to four actions on click
+tndDZK|The site is not yet available, we are still building.
+QVV55u|The size of the source code archive is too small. Something went wrong with the download. That's why the process stops here.
+uuZ8U8|The size of the source code archive is too small. Something went wrong with the download. That's why the process stops here.
+c4h4Rj|the sports this logbook is used for
+6hX0Dr|The SQL field definition for creation of the table
+ed2mNI|The SQL field definition for creation of the table
+pVECWY|The SQL field definition for creation of the table
+sueaDh|The SQL field definition for creation of the table
+lmX2RZ|the sql table autoincrementing unique key
+Lj3Tbd|the start of the validity period of this record
+MijYWH|the starting month of the sports year (1 for January, 10 for October)
+mi4Nlx|the statistics settings record
+y3lxHR|the status available fpr persons
+Q2CMAB|the subscript to system generated mails
+cstgfL|the table and id-column to which this field refers
+aCcatt|The table is versionized.
+xo9xjE|The table shows all lists available in the role %1 with the authorisation required to display the list. The list can be accessed by clicking on the description.
+6LAPku|the table to get the data for the provider from
+7zzU9g|the table to get the data for the provider from
+AHiigM|the table to get the data for the provider from
+Hvt4eJ|the table to get the data for the provider from
+XZZpqV|the table to get the data for the provider from
+YpcPqa|the table to get the data for the provider from
+b6Xe8f|the table to get the data for the provider from
+bGiLOG|the table to get the data for the provider from
+bPHrdC|the table to get the data for the provider from
+bzNJ8k|the table to get the data for the provider from
+d3Fx5p|the table to get the data for the provider from
+e3La9r|the table to get the data for the provider from
+qdk0qW|the table to get the data for the provider from
+wpUhbY|the table to get the data for the provider from
+z7pbXN|the table to get the data for the provider from
+2WbAyY|the table which was affected by the change
+kDwo9g|The task was completed. See log for details.
+eM6eDc|the time of approval
+1cQ44R|the time zone used
+s2Yv4N|the token provided by the dilbo support to identify the support customer
+L84szU|The type of data will be used for formatting values and parsing input.
+LaxHyH|the type of rigging, i. e. scull or sweep, for options see catalogs
+2dEMFI|the type of the contents displayed
+9RLbtj|the type of the contents displayed
+IhdWY9|the type of the contents displayed
+SIBxi4|the type of the contents displayed
+fpvxFx|the type of the contents displayed
+1wli26|the type of the provider, please choose from list
+28gXgC|the type of the provider, please choose from list
+4AAqfO|the type of the provider, please choose from list
+510Tbp|the type of the provider, please choose from list
+6tNXJB|the type of the provider, please choose from list
+CKvsVB|the type of the provider, please choose from list
+OOI4uu|the type of the provider, please choose from list
+Qhg9VY|the type of the provider, please choose from list
+bm5icw|the type of the provider, please choose from list
+co2FHo|the type of the provider, please choose from list
+f7GDn0|the type of the provider, please choose from list
+fig3YT|the type of the provider, please choose from list
+kAH9vU|the type of the provider, please choose from list
+qxW2NQ|the type of the provider, please choose from list
+sbl0Nb|the type of the provider, please choose from list
+udPhy8|the type of the session
+tti0MT|the type used for the input field.
+R2N0Gh|the UI layout for landscape screens (PC, tablet)
+YrXnvt|the UI layout for landscape screens (PC, tablet)
+aOHGLF|the UI layout for landscape screens (PC, tablet)
+41ICqm|the UI layout for portrait screens (PC, tablet)
+UeTSWx|the UI layout for portrait screens (PC, tablet)
+W0aBXY|the UI layout for portrait screens (PC, tablet)
+KNtj5Z|the uid of the parent item, if it exists. Will be used to build the hierarchy in the configuration tree.
+kU4p9n|the unique id of the person status
+6RkvhN|the unique id of the person
+YYlWr8|The upgrade unpacks the code, overwriting the existing code files. All inventory data, such as logs, uploads, backups, etc. are kept. The database is not modified.
+jdB8fj|The uploaded image #%1 is from:
+ZQSvHw|The user could not be identified.
+c1Gjma|The user could not be identified.
+xf8bTS|The user may not use the role %1.
+BGJkSQ|The user record for ID '%1' could not be found.
+2ZSpo5|the value it shall write upon the event
+RezS5F|The value using the given data type. It will be transformed to a string at the data base interface. For dataType string and text, it will be chacked for available translations.
+R3IpuB|The value's data type '%1' does not provide a 'parse as' definition.
+dSXCuP|The value's data type '%1' does not provide a 'parse as' definition.
+FHFWAq|The value's native type does not match its data type.
+QD9ESj|The value's native type does not match its data type
+rGyRdy|The very last user must not be deleted from the users table.
+K6E7qi|the water's object Id
+aiU4Ot|the waters table
+BF6UZB|the waters, UUIDs or names
+BSfmVE|the water’s name
+SPDW0F|The zip file '%1' could not be created.
+ATSnFO|There are too many users logged in at the moment. Please try again later. We ask for your understanding.
+OVDL2X|There was an error during file upload.
+p4vCuA|This form is import a table into the database.
+RBI9tL|This form is import an efa backup archive, e.g. efaBackup_20200307_210001.zip. This may take considerable time.
+Agxr6E|This form is to change an existing user.
+GNGdV1|This form is to create a new user.
+u34D4y|This information is provided exclusively for the control purpose for function holders in the authorised administration. It shall not be forwarded.
+mw21ct|This is the option to delete the database completely.
+FXq6Vs|This is the place to change your profile data. You have to go to the logbook view to change your user interface settings, including the preferred language.
+e2gF2y|This is the result of a SQL call to the database, as it is currently.
+Alao36|This is your personal profile stored by the application.
+ruWtay|This page is the entry page for any form of user editing.
+4kdCVL|threes
+yI9vCM|threes
+rFKAAZ|time now:
+D0ASLw|time of archiving
+eRqccM|time of change
+fMlkpx|time of deletion
+kYzDQD|Time zone
+R9sv8M|Time:
+GMLURg|Time
+x8hxVv|Timeout due to inactivity.
+reFIOv|time
+TMSdWl|timestamp there:
+iCAESX|Timezones
+GP7E8q|title
+OsLHMk|Title
+tl4Wq4|LastModified
+tn8HIA|AddressCity
+lWOr2T|to be mailed
+ZmAUjp|To call '%1' the ID of the user to show must be provided.
+bxyfwZ|to when
+to16RO|AddressAdditional
+96IyrK|to
+6KXRE6|To:
+EBIhOz|today
+k5MCIc|To
+Gc6rWW|Too many sessions open for this user.
+MMoUVY|Too many sessions open for this user.
+sAM6H9|Too many sessions open for this user.
+eCFN71|top bar
+j6Zbfl|top left
+Uy11UA|top right
+1smfqD|Total %1 days;
+KZvGMc|Total %1 days
+nDBbCc|Total
+wNrHCN|Total
+Ys4cso|touch screen support
+tqnYyt|deutsch
+52B267|Traffic volume of the last days to users with the role 'bths' (boathouse)
+1A5f4U|trailer
+fXUoal|training camp
+mCKwNI|training camp
+UNFZk2|transaction to server failed. 
+w6LYgh|Transfer to efaCloud server failed.
+GsPzGD|Transferable clubwork hours
+MwMRCp|translate language base
+iBmJEP|translate language work
+2Qqsyc|Translate
+lluRbP|trash
+8er0kJ|trimmy
+C5uilv|Trimmy
+Uwolrv|trimmy
+x6iefz|Trimmy
+1pJnML|Trip age in days
+EGsuao|Trip age in days
+mHyWx0|Trip age in days
+AJIsxM|Trip number
+hVfJ6e|trip number
+7biR4D|true or false, in SQL 1 or 0 respectively
+q8lMgp|true, if member of DRV
+kDSe5i|true, if the first crew member is the cox
+CDffNm|true
+turroO|EfaBoathouseTablesEasyFindEntriesWithSpecialCharacters
+t8bKYn|two bars and bottom menu
+SijooW|twos
+txkXCY|TranslateLanguageWork
+tyVG8H|LastModified
+D5ewAH|Type catalogs
+WW9ynq|Type catalogs
+5xevoj|type list entry
+ZKulOJ|type of contents
+mr7H1T|type of contents
+pkdlIb|type of contents
+swnEhB|type of contents
+tfpz5Z|type of contents
+0gN0FD|type of form input
+1Bebyp|type of location
+PnrJ67|Type of trip
+44XRtA|type values imported
+UtwTNu|type values imported
+5yN29k|Type
+BSaARO|type
+Bu8hpI|Type
+Gy8m8L|Type
+OfzbIi|type
+ZV7K5s|Type
+ntLe03|type
+BZTGSR|types
+FD4TaZ|types
+aMzYbR|types
+z5JifY|Type
+u0Hln1|TypeSeats
+u57rDw|StorageType
+u7jN5f|LastModified
+uDa1nt|LastModified
+uFM6dL|LastModified
+uIvk1i|Crew13Name
+uOSLCh|LastModified
+uRJeyM|OptionSumGuestsAndOthers
+uYyzbV|LastModified
+ubM1ac|Fixed
+ud8tf2|LastModified
+udod1F|ButtonCancelSession
+ufBNtR|LastModified
+AxnreH|UI layouts catalog
+e5MqfM|UI layouts catalog
+s7gtgY|UI profiles catalog
+vAqrgq|UI profiles catalog
+6ia4Wk|UI provider catalog
+Fi09DC|UI provider catalog
+uuagNx|uid '%1' could not be found in table '%2'.
+Pc6MzY|uid '%1' could not be resolved.
+aaTKWe|uid as reference to the provider of the contents
+c3K9R6|uid as reference to the provider of the contents
+dGZZZy|uid as reference to the provider of the contents
+ho34HP|uid as reference to the provider of the contents
+nsbg7U|uid as reference to the provider of the contents
+RQNRTZ|uid
+SFwtQ4|uid
+YTegco|uid
+ulUyIi|italiano
+RwEWVR|Unable to execute action with id: 
+egsf47|Uncheck to only add further logbooks.
+CVStxl|Undefined error
+m7sKC8|undefined handling '%1' at %2.%3
+phvRfA|undefined
+yf8erz|Unfortunately, form processing cannot be continued because a form page has not been saved for too long.
+pH7Sis|Unfortunately, there is no change history for this record.
+BnxvUl|Unfortunately, this did not work. The login token provided is not or no longer valid.
+zxg9i4|Unfortunately, this did not work. The user '%1' of the login token is not (any longer) registered.
+dImbcF|unique number
+teKQFr|universal record id
+cZoVKb|universal unique id or a plain text name, if no uuid format
+3HQTXe|universal unique id
+nytswg|unknown column '%1' added to %2 table.
+U7ppLY|Unknown data type / validation type. '%1'
+jN5Dvb|Unknown data type / validation type. '%1'
+OcBU6p|unknown descriptor field
+hdz6LT|unknown descriptor field
+a5koMa|Unknown error during upload. please try again.
+xJsUjf|Unknown error during upload. please try again.
+Yel8jV|Unknown error when creating the directory: '%1'.
+w2qoFy|Unknown error while uploading to '%1'.
+clQGf1|unknown value type.
+OuG821|unknown
+VCdF1p|unknown
+dQqTnf|unknown
+tWIACB|unknown
+YSfcTS|Unlock efa
+agiYeZ|Unlock efa
+GuEiQo|Unpacking and copying the source code archive
+TjA5DZ|unresolved
+ZV56RU|unresolved
+FkesLE|until
+unukTf|CustUsageRowingBerlin
+UU1TV0|Update %1 with: %2
+iCqOma|update after upload
+rSrSm0|Update failed for table '%1'
+BPTyxA|update record
+M4MjRw|Update to version - %1
+s0hHTA|Updated existing api session '%1'
+w2PJel|Upgrade of the %1 application
+pfTPrH|upload a file or create a new directory.
+JiFVoM|Upload and import
+tcyZNe|Upload of your club logo for the menu
+KLgQSh|Upload:
+D9BzCa|upload
+txXT1g|Upload
+bUkzCn|upper
+7wzW4a|use concessions
+54m7nW|use subscriptions
+THfsbA|use the boat_affix field within the public trip data display
+tXmsvK|use the boat_name field within the public trip data display
+tt0Asq|use the boat_type field within the public trip data display
+vd6ICS|use the crew_groups field within the public trip data display
+14ihGe|use the destination field within the public trip data display
+1o6xTa|use the distance field within the public trip data display
+jkKR7G|use the entry_id field within the public trip data display
+Wxz52t|use the start_time field within the public trip data display
+jXZcEq|use workflows
+XPbBHm|Used Parameter of list:
+AxGDip|User %1 tried to use invalid session %2.
+t4W3bN|User %1 tried to use session %2 of user %3. The session was removed.
+033SBW|user access rights bundle
+KpbeeF|user account field name
+eI2ua5|User after DB check: appUserID: %1, role: 
+lSB73X|user archive table name
+M0dEtY|User defaults
+V3WJii|user firstname field name
+YPA8Os|user id at efaCloud
+NUe8AF|user id field name
+2xLsOW|user ID of its dilbo installation
+J7H8aA|user ID of its dilbo installation
+ELXuXy|User ID
+wOj3jc|user id
+VT4kp2|user interface settings
+V7TSTn|user interface
+a9d5U7|User is no admin and thus not allowed to change anything. Aborting.
+ZAw7g1|user lastname field name
+BPrcKu|user module
+aCa6RR|User name
+zOZlkQ|User number
+2YHNnW|user preferences
+fCcNkl|user preferences
+v2J1hT|User preferences
+MuP1As|user table name
+psSYI1|User tried to modify other users data without useradmin role or a respective workflow admission
+gI7hvr|User tried to modify own access role without useradmin role
+m6BPH3|User tried to modify own account name '%1' to '%2' without useradmin role
+T5N6rh|User tried to modify own Concessions role without useradmin role
+A2Zw3z|User tried to modify own user ID '%1' to ''%2 without useradmin role
+4RIp1F|User tried to modify own Workflows without useradmin role
+U01t2T|User
+raDyZo|useradmin role
+WK1EtH|useradmin workflows
+eTvuhh|Users and access rights check
+KlHiAu|users table at efaCloud
+uRYSvr|Users
+uu5HHG|LastModified
+VM7UAz|uuid or plain text
+7IH2fU|uuid
+B1poz5|uuid
+Cd0Su6|uuid
+IxXF5j|uuid
+lUE59o|uuid
+qlfRcK|uuid
+uvWwLB|_2023
+ux1H84|LastModified
+uzJy5P|EditBoatReservation
+v3yZwB|ButtonSpecial
+v5Uni6|ShowLastFromWaterNotification
+v6sPRJ|LastModified
+vLJThr|LastModified
+vMFjlO|PrintPageHeight
+vMNTVI|InsuranceValue
+vaGGZw|LastModified
+81751w|valid from
+FkI23f|valid from
+dY3WT2|valid from
+xDfDo7|valid from
+vinzbZ|validation rules
+afDbIr|Value 
+0cccRI|value
+1itppd|value
+1jcqpa|value
+1ptDC9|value
+1qYUuC|value
+2YG2G5|value
+2rv5mE|value
+3AlU1i|value
+3VpMi6|value
+3u1nOc|value
+3w9biV|value
+47x7Yh|value
+4WTacc|value
+4XyJNB|value
+512dc9|value
+5MKkH7|value
+5dbYAL|value
+5m9H7t|value
+6KVejs|value
+6cqjTd|value
+6eyCWJ|value
+757WgT|value
+77TDo8|value
+7ZkLgc|value
+81gvOj|value
+82AP4t|value
+8JGpcf|value
+8c2iqr|value
+8wGIgD|value
+9uqEjg|value
+A3sq94|value
+A6u0CW|value
+A79Hh3|value
+B6Zr4z|value
+BHqzaQ|value
+BXeDq2|value
+BigpJw|value
+C6HhM8|value
+C6caA6|value
+CoZpMP|value
+DCl9zb|value
+DVo6nz|value
+DhF8KE|value
+E8feMS|value
+ECAtuf|value
+EGHmop|value
+ETpOze|value
+Ead1m7|value
+EmgKaO|value
+Eq1tMi|value
+Ev5439|value
+EzXfHk|value
+FD1R1e|value
+FGGnHA|value
+FMPlhj|value
+FcelAI|value
+FgRKFm|value
+FoP5fq|value
+GRQMYV|value
+GXzdgW|value
+GaonLd|value
+GttRZX|value
+GwIblm|value
+H1UPzz|value
+HAuuAg|value
+HCl1HZ|value
+HMeVFp|value
+HQbSQa|value
+HU5jsC|value
+Hg2LtE|value
+HnB8km|value
+I2wYmz|value
+J5DhUO|value
+JQkqe7|value
+JW1bVb|value
+KAyMEO|value
+KJcsWp|value
+KTRqVh|value
+KdKcOx|value
+Kn9Flb|value
+KwAKVA|value
+LGtVLW|value
+Lk6uNs|value
+M9JJLb|value
+MVwLtm|value
+MVxRBg|value
+MaToJC|value
+Mb09Ln|value
+Mc3oHq|value
+N4lEig|value
+NJCeXi|value
+Na8Ubv|value
+NcYjWK|value
+NdIlLt|value
+NocKO6|value
+Obbooh|value
+OgtSYM|value
+OkVu58|value
+PgerW5|value
+PwKtqV|value
+Q4vw9j|value
+QJ0DQs|value
+QLeIJB|value
+Ql7sBE|value
+QyLHTx|value
+R2Aguq|value
+RDaJuc|value
+RXYfzC|value
+S3fLvB|value
+S84plI|value
+SGoeDL|value
+SKgcPa|value
+SmX05h|value
+Sp5gnJ|value
+Sy1PX8|value
+Szipnb|value
+T59594|value
+U0ofWy|value
+UGbh0Y|value
+UhbapL|value
+UkLb28|value
+V54KWL|value
+V6FmgA|value
+VQguSJ|value
+VTtKhi|value
+VquPsq|value
+W1GzWl|value
+W1p3g6|Value
+W4fr9g|value
+WDWRiy|value
+XP0GbS|value
+XQWJAc|value
+XlW63u|value
+XrfRls|value
+Y1pw1Y|value
+Ycg5Jb|value
+ZQ9GhD|value
+ZiRfDh|value
+ZoIckI|value
+a0BciC|value
+a9nGuk|value
+ad1BRv|value
+b6pyPo|value
+bBVyBm|value
+bC3oKN|value
+bRiMeb|value
+bXD0aP|value
+cBgN4k|value
+cT33IX|value
+cm2pTx|value
+d9OJ0b|value
+dTCPoT|value
+daa72U|value
+e6nw8M|value
+fbbskW|value
+fdlhlT|value
+fmhe4p|value
+fqiowy|value
+gY3rNz|value
+gdNRjr|value
+gtikAc|value
+hDgF74|value
+hXcndy|value
+hlf3Ip|value
+hsbYT0|value
+htor3Y|value
+i5jdQ3|value
+iAfZlN|value
+iDZpbj|value
+iGljvw|value
+iwsh1z|value
+jJM3Wj|value
+jQdkpK|value
+jSzafV|value
+jgXnLK|value
+k1CKQl|value
+kKDiPz|value
+kPl55b|value
+kZCLur|value
+kcMZfJ|value
+l3dDeR|value
+l4yVei|value
+lPqETe|value
+lV2c7c|value
+lZeSnm|value
+lt8b9k|value
+lxFqqo|value
+mBWskt|value
+mJbzwk|value
+mNSRjN|value
+mcU1XK|value
+mkSyGJ|value
+mvNU5R|value
+mymmW6|value
+n4xE9s|value
+nQBQqx|value
+naUlQt|value
+neGLYc|value
+nfGB8n|value
+o474TC|value
+o64l36|value
+oNXKj7|value
+oPObcv|value
+oZJhE2|value
+ogtgtY|value
+otGwN3|value
+p31A4j|value
+p3765p|value
+pGSyHn|value
+pgdNZx|value
+q6NXNs|value
+qRRbMF|value
+qzEj1W|value
+rAvrFy|value
+rjrVyq|value
+ruZ69H|value
+31KjuG|Values violate rules. Findings are '%1'
+sFBb5w|value
+sReyHy|value
+sXyvV6|value
+sZO4fD|value
+skQLOs|value
+smSHqj|value
+sneibi|value
+snqG2B|value
+stUWsP|value
+t5Tfnh|value
+tCYtPO|value
+tJBCNM|value
+tLIDCh|value
+tiXlUN|value
+tyyRVa|value
+uIBY5T|value
+uZDzOD|value
+ukmS5g|value
+uxhkJs|value
+vHdAF9|value
+vLe8fS|value
+vYvP3U|value
+vsinEN|value
+w3txcr|value
+wCI6l7|value
+wJ8c5e|value
+wNi9wl|value
+wlbG7Y|value
+wo9jUQ|value
+ww6Xs5|value
+xMSzjZ|value
+xmOmLc|value
+xu6CRc|value
+y34nzI|value
+yOHNd3|value
+yXrLhn|value
+ydE0pf|value
+ysFSAb|value
+z3bkir|value
+zO28x1|value
+zaqirB|value
+zbLvLJ|value
+zesJ9r|value
+zn8NRA|value
+AlUebg|variant indices
+ZBFc6w|variant options
+A1tKnO|Verification failed for '%1'
+rSGs5f|Verification failed. auto increment missing.
+ulIoAv|Verification failed. Column %1.%2 extra.
+rxMN98|Verification failed. Column %1.%2 is missing.
+3EWY5V|Verification failed. Column %1.%2 with size %3 instead of %4.
+mwaK4O|Verification failed. Column %1.%2 with type %3 instead of %4.
+nPmhjO|Verification failed. Index %1.%2 extra.
+9mUNZn|Verification failed. Index %1.%2 not in indices of %1.
+9g3u60|Verification failed. Table %1 extra.
+KprqM0|Verification failed. Table %1 missing.
+DQYc1I|Verification failed
+P1TqTx|Verification failed
+gLdeJY|Verification successful for '%1'.
+QmSEVn|version file path
+E8Dd4Q|Version history of a '%1'-record
+07MoEU|Version valid until:
+ALjJNh|versioning fields
+XuTvfw|versioning fields
+bQgFGC|versioning fields
+tInl6V|versioning fields
+vU6i7x|versioning fields
+vgdx5h|MsgReadBoatMaintenance
+erIeb6|View details and change if necessary by clicking on the entry in column '%1'.
+2G9KEy|View now as web page
+vktF0K|ChangeCount
+vnizlc|LogbookText
+vnlznm|LastModified
+vpbiBf|ButtonFinishSession
+vqlVbJ|NotificationEmailServer
+vvbEnO|LastModified
+vza2gH|InputShortcutFormat
+w0CGNz|StartSessionMustSelectDestination
+w1Gczx|ReportedByPersonId
+w3G4WN|GUI_VERSION
+w5bKOD|LockEfaLocked
+w5oRpc|ClubworkBooks
+w9w4i0|LockEfaFromDate
+wBdb0B|ACTION_TYPES_RESETTODEFAULT
+wF3l22|LastModified
+wH4ZbS|WidgetMeteoAstroShowWeatherFcText
+wKKxU8|LockEfa
+wVn3rI|KilometerAB
+warTbA|MeteoAstro
+uvau7j|WARNING: script did not reach the page footer output.
+ZS7PdQ|Warning: The load throttling on the application side '%1' was triggered.
+|Details:
+V5GHFW|Warning
+sbWQdK|Warnings
+yjp3yF|Warning
+hpnkpX|was read
+GBSJMD|Waters ranking
+9S51yy|waters uuids
+4dFtke|Waters
+8zfkNA|waters
+D4c7Rz|waters
+D74CRm|waters
+IF8KUp|waters
+Nb07t1|waters
+hA7eVt|waters
+qAXZBx|waters
+rJJxCh|waters
+wclAub|AggregationSpeedBarSize
+wdLwss|LastModified
+FwRbeh|We apologise for any inconvenience this may cause.
+1sxjGW|Web access statistics
+1Mzjw9|Web homepage
+hnufYH|weekly reservation behaviour
+Zh5I9x|weekly
+3MyO27|weight
+8Sc2hm|weight
+93HfeQ|weight
+BquZj3|weight
+CNmz9U|weight
+CgDpPk|weight
+FVa99P|weight
+NreSaw|weight
+OT5xAk|weight
+OyFwDp|weight
+Sfl0kt|weight
+UAKNVi|weight
+XZquHQ|weight
+ZCkhjs|weight
+bWE5Bw|weight
+dnsPVR|weight
+gWl9bO|weight
+iAh34u|weight
+kUe2xP|weight
+lPrApE|weight
+lgiiOq|weight
+obme28|weight
+DxlXio|Wenn du kein Einmalkennwort bekommen hast, kannst du es noch einmal von vorne probieren.
+wf19Eb|InputShortcutFormat
+wfRmav|personid
+wgucMM|AutoCompleteListShow
+JRsYYa|wherry
+od0O8c|Wherry
+qu8Zhi|Wherry
+wiQ3VF|LastModified
+EvUZd2|widget alert- widget alert
+HxmAPY|widget alert- widget enabled
+0DKtDV|widget clock enabled
+gfNh06|widget html enabled
+uCO9KA|widget html height
+d55wft|widget html position
+YfRWv8|widget html scale
+JiK6xn|widget html update interval
+5ibfnq|widget html url
+6pfeeE|widget html width
+ETQPdN|widget meteo astro enabled
+VcQ0lQ|widget meteo astro html popup height
+bD0amO|widget meteo astro html popup url
+nhaWQz|widget meteo astro html popup width
+ieCZGw|widget meteo astro include html page
+YRPhUE|widget meteo astro include html text
+yFU5nz|widget meteo astro latitude
+2KdHet|widget meteo astro layout
+SEIPhZ|widget meteo astro longitude
+RXQNwP|widget meteo astro popup exec command
+lPSxOh|widget meteo astro position
+6TIfmD|widget meteo astro show sunrise
+mdvQnE|widget meteo astro show weather cur image
+8BIpts|widget meteo astro show weather cur temp
+gKWWHK|widget meteo astro show weather cur text
+fDditQ|widget meteo astro show weather cur wind
+euGRrt|widget meteo astro show weather fc img
+7DXpHy|widget meteo astro show weather fc temp
+2ejRaz|widget meteo astro show weather fc text
+bgAkGU|widget meteo astro show weather location
+Mlzg9m|widget meteo astro show weather
+26XqBx|widget meteo astro temperature scale
+PoG8HA|widget meteo astro update interval
+rA2XzE|widget meteo astro warn darkness
+q90yo3|widget meteo astro warn text dark now
+MjANC3|widget meteo astro warn text dark soon
+RFpZC2|widget meteo astro warn time after sunset
+ZlCbLX|widget meteo astro warn time before sunrise
+Ig08bs|widget meteo astro warn time before sunset
+icz1er|widget meteo astro weather location
+xXOnlP|widget news enabled
+WHmQ6A|widget news scroll speed
+b3F1Il|widget news text
+v32011|Widget
+BwOwuJ|window centered
+RTOR2I|window dialog max height
+4lIzx9|window dialog max width
+K7fDK4|window offset x
+JVcefj|window offset y
+7MaFQ2|window screen height
+BKf0jG|window screen width
+QXtBrf|with cox
+r6Efpn|with cox
+zU187Z|with cox
+a6h3Ou|with the ID %1
+OKImlH|With the one-time password '%1', it is possible to log in to the application for the next %2 minutes. After that it is invalid. Upper or lower case is not important
+1JSbU6|without cox
+THoRJM|without cox
+woNR0t|LastModified
+8dPpRp|Word index built.
+5qV7nW|Workbook name
+uA74t7|workbook name
+COTGdR|workbook
+CoKpst|Workbook
+GsYMsn|workbook
+ZHZ82J|workbook
+e10rEf|workbook
+j1plpX|Workbook
+fbiboA|Workbooks
+ucHbuJ|workbook
+vuzyr3|Workbook
+JLdYZP|Workflow notifications
+ToHyjb|workflows mask
+IVseh0|Workflows, Mask 
+FbnP2p|Workflows
+wqwHhQ|ChangeCount
+wrcYl1|DataRemoteEfaOnlineUrl
+Wv9xkv|Writing session '%1'
+yqXP9E|Writing settings/efa2config file
+KY7F6q|Wrong password at login.
+sZKXYK|Wrong password at login.
+wttutQ|WidgetMeteoAstroShowWeatherFcText
+wuZq4D|WidgetAlert-WidgetAlert
+wurxCc|WidgetMeteoAstroLongitude
+wv9jS2|LastModified
+wvFmYX|LastModified
+ww2tHA|egig
+wxSqqB|CustUsageRowing
+wy6EHb|LastModified
+x76Din|AllowMembersBoatReservation
+x7Qzmh|NotificationBoatstatusBoatMaintenance
+x8UJrG|FilterPromptGroup
+x9TMWP|LastModified
+x9tIg4|BoatDamageEnableReporting
+xEO9Pq|NotificationMessageToAdminDefaultRecipient
+xIWUDf|KanuEfbUrlRequest
+xJmjNa|ChangeCount
+xMHcSi|PersonId
+xMrTCu|CompOutputWithoutDetails
+xNV1VR|WidgetAlert-WidgetAlert
+xPWhye|LastModified
+xQAm6v|FilterPromptPerson
+xRAMsW|LastModified
+xRdbOl|AllowMembersBoatReservationEdit
+xRynSr|KanuEfbUrlRequest
+xSPmYh|LastModified
+xXtQ2F|LastModified
+xZa9yW|bgig
+xc9TrA|LastModified
+xfGN7M|LastModified
+xj1CB0|RemoteAccess
+xq5lKF|ToBeMailed
+xrd43I|WidgetHtmlUpdateInterval
+xvjqdL|WidgetHtmlPosition
+xxAhoi|&nbsp;
+xzQTk9|LastModified
+y1SNN7|CustUsageCanoeing
+y4662Z|LastModified
+y6e6Im|Passwort_Hash
+y6vGRq|ACTION_ADDTYPES_ROWING
+y7FBun|CustUsageCanoeingGermany
+y7rPxz|NotificationBoatstatusAdmin
+y9BErv|NotificationEmailSubjectPrefix
+y9CoG5|LastModified
+yDCuj6|LastModified
+yFGKag|Logbookname
+yGemjk|_headline
+yGorGi|noListForThisRole
+yHSOcb|CustUsageRowing
+yLaQBJ|DateTo
+yM5hMz|LastModified
+yORUY6|LastModified
+ySH4Dl|KanuEfb_TidyXML
+yZK6iL|NameAffix
+ydDUpS|Crew9Id
+yeQdLl|WidgetMeteoAstroIncludeHtmlText
+fWJ6Ui|Yes, delete now
+Cu2G1y|yes/no
+ykiban|LastModified
+NiYUV5|You have to provide the user id to change or add a user
+HBcQsm|Your backup has been imported. Please check the log below for details.
+eNwq9h|Your e-mail address for contacting the support team
+G4czbF|Your first name
+T1m6yT|Your last name
+TaDJo1|Your logo must be a .png file, use an online converter to create. Aspect ratio of 4:3 is best, with 400 px width.
+cM6Ctj|Your password
+X9LNW4|Your request
+YNja1L|Your update to '%1' will now be registered at '%2' on '%3.
+ysBxWa|InputAllowOnlyMaxCrewNumber
+yteTEh|LastModified
+yvzEh6|LastModified
+yxwVlB|LastModified
+z372rc|FilterAlsoOpenSessions
+z4eZgv|FilterSessionTypeAll
+z7Hke3|LastModified
+z7Xwol|NotificationEmailFromName
+z7ppaU|LastModified
+z8Ljnn|Window
+z9EmQ8|FilterBoatSeatsAll
+zBWDir|ButtonSpecial
+zEuu6C|FilterByPersonId
+zHszTm|Crew19Id
+zKdvnI|InputCheckAllowedPersonsInBoat
+zNOqpf|LastModified
+zPOZB3|efaBoathouseExtdToolTipDismissDelayMsec
+zQ141l|NotificationWarningAdmin
+zXIaCp|LastModified
+zYbOcK|EfaExitExecOnExit
+zZGczB|ChangePassword
+ziio1S|efaBoathouseHeaderUseHighlightColor
+yByDpt|Zipping files.
+zkggVb|SortingCriteria
+zljZ0P|EfaBoathouseTablesShowTooltip
+zn7LeP|LastModified
+zqB6Ex|GUI_LETZTESJAHR
+ztZA0o|LastModified
+KtXJLq|{invalid parameter with semicolon}
