@@ -290,6 +290,8 @@ object Parser {
      * return Constraints.empty(Name.LONG).
      */
     private fun parseLong(longString: String, language: Language = Parser.language): Long {
+        if (longString.isEmpty())
+            return (ParserConstraints.empty(ParserName.LONG) as Long)
         var toParse = longString.trim().replace(" ", "")
         toParse =
             if (language.decimalPoint) toParse.replace(",", "")
@@ -305,14 +307,16 @@ object Parser {
     }
 
     /**
-     * Convert a not-empty String to an integer number. If parsing fails this will
-     * return Constraints.empty(Name.INT). If parsing results into an integer outside the Int range,
-     * this will return the respective range limit
+     * Convert a String to an integer number. If parsing fails this will return
+     * ParserConstraints.empty(ParserName.INT). If parsing results into an integer outside the Int
+     * range, this will return the respective range limit
      */
     private fun parseInt(intString: String, language: Language = Parser.language): Int {
+        if (intString.isEmpty())
+            return (ParserConstraints.empty(ParserName.INT) as Int)
         val long = parseLong(intString, language)
-        return if (ParserConstraints.isEmpty(long, ParserName.INT))
-            (ParserConstraints.empty(ParserName.INT) as Int)
+        return if (long == (ParserConstraints.empty(ParserName.LONG) as Long))
+            (ParserConstraints.min(ParserName.INT) as Int)
         else if (long < (ParserConstraints.min(ParserName.INT) as Int))
             (ParserConstraints.min(ParserName.INT) as Int)
         else if (long > (ParserConstraints.max(ParserName.INT) as Int))

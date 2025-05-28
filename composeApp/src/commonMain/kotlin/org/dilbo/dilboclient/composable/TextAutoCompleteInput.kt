@@ -2,12 +2,9 @@ package org.dilbo.dilboclient.composable
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.CheckCircle
@@ -25,27 +22,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.onFocusChanged
-import androidx.compose.ui.input.key.Key
-import androidx.compose.ui.input.key.KeyEventType
-import androidx.compose.ui.input.key.key
-import androidx.compose.ui.input.key.onKeyEvent
-import androidx.compose.ui.input.key.type
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.text.input.ImeAction
 import org.dilbo.dilboclient.design.Theme
 import org.dilbo.dilboclient.tfyh.util.FormField
 
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun TextAutoCompleteInput(formField: FormField) {
-    // see https://stackoverflow.com/questions/67111020/exposed-drop-down-menu-for-jetpack-compose/67111599#67111599
     var expanded by remember { mutableStateOf(false) }
     var typedTextLength by remember { mutableStateOf(0) }
     var dropDownWidth by remember { mutableStateOf(0) }
@@ -62,7 +47,7 @@ fun TextAutoCompleteInput(formField: FormField) {
         modifier = formField.boxModifier { expanded = true }
     ) {
         OutlinedTextField(
-            colors = Theme.colors.textFieldColors(),
+            colors = formField.viewModel.textFieldColors(),
             shape = OutlinedTextFieldDefaults.shape,
             textStyle = Theme.fonts.p,
             singleLine = true,
@@ -84,14 +69,13 @@ fun TextAutoCompleteInput(formField: FormField) {
                 .padding(top = Theme.dimensions.smallSpacing)
                 .onFocusChanged {
                     formField.onFocusChanged(it.isFocused) },
-            label = { Text(text = formField.label, style = Theme.fonts.p, color = Theme.colors.color_text_h1_h3) },
+            label = { Text(text = formField.label, style = Theme.fonts.p, color = formField.viewModel.labelColor()) },
             trailingIcon = {
-                if (formField.viewModel.entered.isNotEmpty())
-                    IconButton(onClick = { expanded = !expanded }) {
-                        Icon(
-                            imageVector = icon,
-                            contentDescription = "Show selections",
-                        )
+                IconButton(onClick = { expanded = !expanded }) {
+                    Icon(
+                        imageVector = icon,
+                        contentDescription = "Show selections",
+                    )
                 }
             },
         )

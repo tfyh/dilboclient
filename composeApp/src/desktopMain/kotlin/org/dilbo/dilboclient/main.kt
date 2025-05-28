@@ -6,6 +6,8 @@ import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.HttpTimeout
 
+// build with ./gradlew packageDeb
+// find result in composeApp/build/compose/binaries/main/deb
 fun main() = application {
     Window(
         onCloseRequest = ::exitApplication,

@@ -12,7 +12,7 @@ class I18n private constructor() {
 
     // localization
     var map = mapOf<String, String>()
-    var loaded = false
+    private var loaded = false
 
     @OptIn(ExperimentalResourceApi::class)
     suspend fun loadResource(language: Language) {
@@ -54,14 +54,19 @@ class I18n private constructor() {
 
     // translation and placeholder replacement
     fun t(vararg args: String): String {
+        if (args.isEmpty())
+            return ""
         val i18nResource = args[0]
+        if ((i18nResource.length < 7) || (i18nResource.substring(6, 7) != "|"))
+            return i18nResource
+        val token = i18nResource.substring(0, 6);
         var text =
-            if ((i18nResource.length < 7) || (i18nResource.substring(6, 7) != "|"))
-                i18nResource
-            else if (!loaded)
+            if (!loaded)
                 i18nResource.substring(7)
             else
-                map[i18nResource.substring(0, 6)] ?: i18nResource.substring(7)
+                map[token] ?: i18nResource.substring(7)
+        if (text.isEmpty())
+            return i18nResource.substring(7)
         for (i: Int in 1 ..< args.size)
             text = text.replace("%$i", args[i])
         return text

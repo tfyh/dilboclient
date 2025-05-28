@@ -288,7 +288,7 @@ class Record (internal val item: Item) {
     /**
      * Provide a String to display, i.e. resolve all referencing, convenience shortcut using the name.
      */
-    fun valueToDisplay(columnName: String, language: Language): String {
+    fun valueToDisplayByName(columnName: String, language: Language): String {
         val column = item.getChild(columnName)
         return if (column?.isValid() != true) "?$columnName?" else valueToDisplay(column, language)
     }
@@ -306,7 +306,7 @@ class Record (internal val item: Item) {
         val reference = column.valueReference()
         var valueToDisplay = ""
         if (type.parser() === ParserName.BOOLEAN)
-            valueToDisplay = if (value == true) i18n.t("true") else i18n.t("false")
+            valueToDisplay = if (value == true) i18n.t("lhMPZA|true") else i18n.t("ed9xCV|false")
         else if (type.name() == "micro_time") {
             if ((value as Double) >= ParserConstraints.FOREVER_SECONDS)
                 valueToDisplay += i18n.t("2xog20|never")
@@ -369,14 +369,13 @@ class Record (internal val item: Item) {
      * default.
      */
     fun formatToDisplay(language: Language, includeDefaults: Boolean, fieldNames: List<String> = emptyList()): MutableMap<String, String> {
-        if (fieldNames.isEmpty())
+        val fieldNamesToUse = fieldNames.toMutableList()
+        if (fieldNamesToUse.isEmpty())
             for (child in this.item.getChildren())
-                fieldNames.plus(child.name())
+                fieldNamesToUse.add(child.name())
         Findings.clearFindings()
-        val historyFieldName = Config.getInstance().getItem(".framework.database_connector.history").valueStr()
-        val uid = this.value("uid") as String
         val formatted = mutableMapOf<String, String>()
-        for (fieldName in fieldNames)
+        for (fieldName in fieldNamesToUse)
             if (item.hasChild(fieldName) &&
                 (includeDefaults || this.actualValues[fieldName] != null)) {
                 val child = this.item.getChild(fieldName)
@@ -429,20 +428,26 @@ class Record (internal val item: Item) {
         val recordTemplates = item.value() as List<*>
         var recordTemplate = ""
         val usedFields = mutableListOf<String>()
+        var currentTemplate = ""
         for (templateDefinition in recordTemplates) {
             val pair = (templateDefinition as String).split(":")
+            val nextTemplate = templateDefinition.substring(templateDefinition.indexOf(":") + 1).trim()
+            currentTemplate =
+                if (nextTemplate.startsWith("~")) currentTemplate + nextTemplate.substring(1)
+                else nextTemplate
             if ((pair.size > 1) && (pair[0] == templateName))
-                recordTemplate = templateDefinition.substring(templateDefinition.indexOf(":") + 1)
+                recordTemplate = currentTemplate
         }
+        recordTemplate = recordTemplate.replace(" // ", "\n")
         val language = Config.getInstance().language()
         for (child in item.getChildren()) {
             val token = "{#" + child.name() + "#}"
-            val text = if (row == null) formatValue(child, language, true) else row[child.name()]
             if (recordTemplate.contains(token)) {
                 if (getFields) {
                     if (usedFields.indexOf(child.name()) < 0)
                         usedFields.add(child.name())
                 } else {
+                    val text = if (row == null) valueToDisplay(child, language) else row[child.name()]
                     recordTemplate = if (text?.isNotEmpty() == true)
                         recordTemplate.replace(token, text)
                     else {

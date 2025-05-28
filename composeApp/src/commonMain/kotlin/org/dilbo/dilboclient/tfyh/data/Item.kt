@@ -388,7 +388,7 @@ class Item private constructor(parentItemSetter: Item?, definition: Map<String, 
             if ((path != null) && (name != null)) {
                 val parent = config.getItem(path)
                 if (!parent.isValid())
-                    // an invalid parent means that the path could not be resolved
+                // an invalid parent means that the path could not be resolved
                     return "Failed to find parent '$path' for child '$name'"
                 else {
                     val success = parent.putChild(definition)
@@ -401,6 +401,36 @@ class Item private constructor(parentItemSetter: Item?, definition: Map<String, 
         return ""
     }
 
+    /**
+     * Read the actual settings: actual_label, actual_description, and actual_value for
+     * the complete branch. Extra values for other branches are ignored.
+     */
+    fun readActualSettings(definitionsArray: List<Map<String, String>>) {
+        val config = Config.getInstance()
+        for (definition in definitionsArray) {
+            val path = definition["_path"]
+            val name = definition["_name"]
+            if ((path != null) && (name != null) && path.startsWith(this.path())) {
+                val item = config.getItem("$path.$name")
+                if (item.isValid()) {
+                    val actualLabel = definition["actual_label"]
+                    if (!actualLabel.isNullOrEmpty())
+                        item.properties[PropertyName.ACTUAL_LABEL] = actualLabel
+                    val actualDescription = definition["actual_description"]
+                    if (!actualDescription.isNullOrEmpty())
+                        item.properties[PropertyName.ACTUAL_DESCRIPTION] = actualDescription
+                    val actualValue = definition["actual_value"]
+                    if (!actualValue.isNullOrEmpty())
+                        item.properties[PropertyName.ACTUAL_VALUE] =
+                            Parser.parse(actualValue, item.type().parser(), Language.CSV)
+                }
+            }
+        }
+    }
+
+    /**
+     * Collect all items of this branch into a flat list rather than a tree
+     */
     private fun collectItems(items: MutableList<Item>, fieldNames: MutableList<String>,
                              drillDown: Int, level: Int = 0) {
         for (child in children) {

@@ -28,9 +28,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
 import dilboclient.composeapp.generated.resources.Res
+import dilboclient.composeapp.generated.resources.connection_alert
 import dilboclient.composeapp.generated.resources.menu_cancelTrip
 import dilboclient.composeapp.generated.resources.menu_editPreferences
 import dilboclient.composeapp.generated.resources.menu_editTrip
+import dilboclient.composeapp.generated.resources.menu_endTrip
 import dilboclient.composeapp.generated.resources.menu_enterTrip
 import dilboclient.composeapp.generated.resources.menu_reportDamage
 import dilboclient.composeapp.generated.resources.menu_requestReservation
@@ -45,7 +47,6 @@ import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import org.dilbo.dilboclient.api.ApiHandler
 import org.dilbo.dilboclient.api.Transaction
-import org.dilbo.dilboclient.composable.ModalCloseButton
 import org.dilbo.dilboclient.composable.DilboLabel
 import org.dilbo.dilboclient.composable.ListItem
 import org.dilbo.dilboclient.composable.Stage
@@ -61,9 +62,11 @@ import org.dilbo.dilboclient.tfyh.data.Item
 import org.dilbo.dilboclient.tfyh.data.ParserConstraints
 import org.dilbo.dilboclient.tfyh.data.ParserName
 import org.dilbo.dilboclient.tfyh.data.Record
+import org.dilbo.dilboclient.tfyh.data.SettingsLoader
 import org.dilbo.dilboclient.tfyh.data.Table
 import org.dilbo.dilboclient.tfyh.util.I18n
 import org.dilbo.dilboclient.tfyh.util.Language
+import org.dilbo.dilboclient.tfyh.util.LocalCache
 import org.dilbo.dilboclient.tfyh.util.Timer
 import org.dilbo.dilboclient.tfyh.util.User
 import org.jetbrains.compose.resources.painterResource
@@ -101,6 +104,9 @@ class UIProvider(val item: Item, private val layoutItem: Item): Table.Listener {
 
             val config = Config.getInstance()
             var filled = template.replace("~\\", "\n")
+
+            // check special text
+            filled = filled.replace("{welcomeMessage}", ApiHandler.getInstance().welcomeMessage)
 
             // check for configuration path elements, whether a replacement is requested
             var c1 = filled.indexOf ("{.")
@@ -186,7 +192,7 @@ class UIProvider(val item: Item, private val layoutItem: Item): Table.Listener {
                         end = Theme.dimensions.smallSpacing)) {
                         Column (modifier = Modifier.width(modalWidth)
                             .padding(start = Theme.dimensions.largeSpacing, end = Theme.dimensions.largeSpacing)) {
-                            ModalCloseButton()
+                            Spacer(Modifier.height(Theme.dimensions.regularSpacing))
                             DilboLabel(text = recordItem.label() + ": " + record.recordToTemplate("name"),
                                 large = true, color = Theme.colors.color_text_h1_h3, textAlign = TextAlign.Center)
                             Spacer(modifier = Modifier.height(Theme.dimensions.regularSpacing))
@@ -194,22 +200,31 @@ class UIProvider(val item: Item, private val layoutItem: Item): Table.Listener {
                                 modifier = Modifier.wrapContentSize()
                                     .verticalScroll(rememberScrollState())
                             ) {
+                                val i = 0
+                                val evenRowsModifier = Modifier.background(Theme.colors.color_background_body)
                                 for (field in recordItem.getChildren()) {
                                     if (!ParserConstraints.isEmpty(record.value(field.name()),
                                             field.type().parser()))
                                         Row {
+                                            val rowModifier = if ((i % 2) == 1) evenRowsModifier else Modifier
                                             DilboLabel(text = field.label() + ": ",
-                                                modifier = Modifier.width(modalWidth * 0.4F))
+                                                modifier = rowModifier.width(modalWidth * 0.4F))
                                             val toShow =
                                                 if ((field.name() != "uuid") && (field.name() != "uid"))
                                                     record.valueToDisplay(field, config.language())
                                                 else
                                                     record.formatValue(field, config.language())
-                                                DilboLabel(text = toShow,
-                                                    modifier = Modifier.width(modalWidth * 0.55F))
+                                            DilboLabel(text = toShow,
+                                                modifier = Modifier.width(modalWidth * 0.55F))
 
                                         }
                                 }
+                                Spacer(Modifier.height(Theme.dimensions.smallSpacing))
+                                SubmitButton("Ok") {
+                                    Stage.viewModel.setVisibleModal(false)
+                                    UIEventHandler.getInstance().handleButtonEvent("displayDetailsDone")
+                                }
+                                Spacer(Modifier.height(Theme.dimensions.regularSpacing))
                             }
                         }
                     }
@@ -225,7 +240,7 @@ class UIProvider(val item: Item, private val layoutItem: Item): Table.Listener {
             AsyncImage(
                 model = url,
                 contentDescription = null,
-                contentScale = ContentScale.Fit,
+                contentScale = ContentScale.FillWidth,
                 modifier = Modifier.fillMaxSize()
             )
         }
@@ -238,6 +253,7 @@ class UIProvider(val item: Item, private val layoutItem: Item): Table.Listener {
             val permissions = menuItemConfig.nodeReadPermissions()
             val icon = when (menuItemConfig.name()) {
                 "enterTrip" -> Res.drawable.menu_enterTrip
+                "endTrip" -> Res.drawable.menu_endTrip
                 "editTrip" -> Res.drawable.menu_editTrip
                 "cancelTrip" -> Res.drawable.menu_cancelTrip
                 "reportDamage" -> Res.drawable.menu_reportDamage
@@ -247,6 +263,7 @@ class UIProvider(val item: Item, private val layoutItem: Item): Table.Listener {
                 else -> Res.drawable.none
             }
             fun isAllowedMenuItem(): Boolean = User.getInstance().isAllowedItem(permissions)
+            fun isHiddenMenuItem(): Boolean = User.getInstance().isHiddenItem(permissions)
         }
 
         val menuItems: MutableMap<String, MenuItem> = mutableMapOf()
@@ -288,7 +305,7 @@ class UIProvider(val item: Item, private val layoutItem: Item): Table.Listener {
         val uiEventHandler = UIEventHandler.getInstance()
         for (menuItemName in menuItems.keys) {
             val menuItem = menuItems[menuItemName]
-            if ((menuItem != null) && menuItem.isAllowedMenuItem()) {
+            if ((menuItem != null) && menuItem.isAllowedMenuItem() && !menuItem.isHiddenMenuItem()) {
                 val boxModifier = if (horizontal) Modifier.fillMaxHeight() else Modifier.fillMaxWidth()
                 BoxWithConstraints (modifier = boxModifier.padding(Theme.dimensions.regularSpacing)) {
                     val imageModifier = if (horizontal) Modifier.height(maxHeight) else Modifier.width(maxWidth)
@@ -405,27 +422,64 @@ class UIProvider(val item: Item, private val layoutItem: Item): Table.Listener {
         this.statistics[type]?.set(field, Codec.csvToMap(resultMessage).toList())
     }
 
+    /**
+     * A view model triggering update twice per second and providing both the time and the Api status.
+     */
+    inner class ClockViewModel: ViewModel() {
+        private val _time = MutableStateFlow("") // private mutable state flow
+        val time = _time.asStateFlow() // publicly exposed as read-only state flow
+        private val _apiState = MutableStateFlow(Res.drawable.connection_alert) // private mutable state flow
+        val apiState = _apiState.asStateFlow() // publicly exposed as read-only state flow
+        // "suspend" is needed for timer instantiation, not recognized by IDE
+        suspend fun update() {
+            _time.update {
+                Formatter.format(
+                    Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()),
+                    ParserName.DATETIME, Config.getInstance().language()
+                ).substring(11, 16)
+            } // atomic, safe for concurrent use
+            _apiState.update { ApiHandler.getInstance().getApiStatus() }
+        }
+        val timer = Timer(::update)
+    }
+
     @Composable
     fun showClock() {
-        class ClockModel: ViewModel() {
-            private val _time = MutableStateFlow("") // private mutable state flow
-            val time = _time.asStateFlow() // publicly exposed as read-only state flow
-            // "suspend" is needed for timer instantiation, not recognized by IDE
-            suspend fun update() {
-                _time.update {
-                    Formatter.format(
-                        Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()),
-                        ParserName.DATETIME, Config.getInstance().language()
-                    ).substring(11, 16)
-                } // atomic, safe for concurrent use
-            }
-            val timer = Timer(::update)
-        }
-        val viewModel = ClockModel()
+        val viewModel = ClockViewModel()
         viewModel.timer.start(500L)
         val time = viewModel.time.collectAsStateWithLifecycle()
         Box (contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
             DilboLabel(time.value, textAlign = TextAlign.Center)
+        }
+    }
+
+    @OptIn(ExperimentalFoundationApi::class)
+    @Composable
+    fun showApiStatus() {
+        val viewModel = ClockViewModel()
+        viewModel.timer.start(500L)
+        val apiStatus = viewModel.apiState.collectAsStateWithLifecycle()
+        val horizontal = layoutItem.getChild("horizontal")?.value() as Boolean? ?: false
+        val boxModifier = if (horizontal) Modifier.fillMaxHeight() else Modifier.fillMaxWidth()
+        BoxWithConstraints (modifier = boxModifier.padding(Theme.dimensions.regularSpacing)) {
+            val imageModifier = if (horizontal) Modifier.height(maxHeight) else Modifier.width(maxWidth)
+            Image(
+                painterResource(apiStatus.value),
+                contentDescription = "icon",
+                modifier = imageModifier
+                    .combinedClickable(
+                        onClick = {
+                            // refresh application
+                            LocalCache.getInstance().clear()
+                            SettingsLoader().requestModified()
+                            DataBase.getInstance().load()
+                        },
+                        // do the same for a double click (desktop) and a long click (smartphone)
+                        onLongClick = { displayDialog("dilbo", Config.getInstance().dilboAbout()) },
+                        onDoubleClick = { displayDialog("dilbo", Config.getInstance().dilboAbout()) },
+                    )
+
+            )
         }
     }
 
@@ -441,9 +495,9 @@ class UIProvider(val item: Item, private val layoutItem: Item): Table.Listener {
             if (!isDisplayAllowed()) {
                 Box (contentAlignment = Alignment.Center) {
                     val message = if (User.getInstance().userId() > 0)
-                        I18n.getInstance().t("Sorry, no access to '%1'", item.label())
-                    else item.label()
-                    DilboLabel("[$message]", textAlign = TextAlign.Center)
+                        I18n.getInstance().t("aJAUJg|Sorry, no access to °%1°", item.label())
+                    else ""
+                    DilboLabel(message, textAlign = TextAlign.Center)
                 }
             }
             else when (type) {
@@ -480,6 +534,7 @@ class UIProvider(val item: Item, private val layoutItem: Item): Table.Listener {
                     // TODO
                 }
                 "clock" -> { showClock() }
+                "apiStatus" -> { showApiStatus() }
                 "ranking" -> {
                     // TODO
                 }
@@ -487,13 +542,14 @@ class UIProvider(val item: Item, private val layoutItem: Item): Table.Listener {
                     val text = fill((item.getChild("template")?.valueCsv() ?: "?template?"), mutableMapOf())
                     Box (modifier = Modifier.padding(Theme.dimensions.regularSpacing)) {
                         Text(
-                            StyledText.toAnnotatedString(text)
+                            StyledText.toAnnotatedString(text),
+                            style = Theme.fonts.p
                         )
                     }
-
                 }
                 "imageView" -> {
-                    val serverUrl = Config.getInstance().getItem(".app.server.url").valueCsv()
+                    // use the actual URL, not the configured one. May be a manually entered URL on login
+                    val serverUrl = ApiHandler.getInstance().getUrl()
                     val resourceUrl = item.getChild("resources")?.valueCsv() ?: ""
                     if (resourceUrl.isNotEmpty()) {
                         val url =

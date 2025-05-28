@@ -29,7 +29,6 @@ class DataBase private constructor() {
      */
     fun load() {
         val localCache = LocalCache.getInstance()
-        val apiHandler = ApiHandler.getInstance()
         val recordItems = Config.getInstance().getItem(".tables").getChildren()
         Indices.getInstance().clearAll()
         for (recordItem in recordItems) {
@@ -43,23 +42,31 @@ class DataBase private constructor() {
             val gracePeriod = 120.0
             val ageInSeconds = microTime - time
             val modifiedAfter = max(microTime - (ageInSeconds * 1.5), 0.0)
-            // then create the request transaction, iff applicable
-            if (ageInSeconds > gracePeriod) {
-                if ((recordItem.name() == "logbook") || (recordItem.name() == "workbook")) {
-                    apiHandler.addNewTxToPending(Transaction.TxType.LIST, recordItem.name(),
-                        mapOf("set" to "client",
-                            "modified_after" to modifiedAfter.toString(),
-                            "sports_year_start" to
-                                    Formatter.format(DilboSettings.getInstance().sportsYearStart(),
-                                        ParserName.DATE, Language.CSV),
-                            "logbookname" to DilboSettings.getInstance().currentLogbook()
-                        ))
-                }
-                else
-                    apiHandler.addNewTxToPending(Transaction.TxType.LIST, recordItem.name(),
-                        mapOf("set" to "client", "modified_after" to modifiedAfter.toString()))
-            }
+            // then create the request transaction, if applicable
+            if (ageInSeconds > gracePeriod)
+                updateTable(recordItem.name(), modifiedAfter)
         }
+    }
+
+    /**
+     * Create a "LIST" transaction for the tableName and records modified after modifiedAfter as
+     * seconds after the epoch. Will only list the current logbook and workbook records.
+     */
+    fun updateTable(tableName: String, modifiedAfter: Double) {
+        val apiHandler = ApiHandler.getInstance()
+        if ((tableName == "logbook") || (tableName == "workbook")) {
+            apiHandler.addNewTxToPending(Transaction.TxType.LIST, tableName,
+                mapOf("set" to "client",
+                    "modified_after" to modifiedAfter.toString(),
+                    "sports_year_start" to
+                            Formatter.format(DilboSettings.getInstance().sportsYearStart(),
+                                ParserName.DATE, Language.CSV),
+                    "logbookname" to DilboSettings.getInstance().currentLogbook()
+                ))
+        }
+        else
+            apiHandler.addNewTxToPending(Transaction.TxType.LIST, tableName,
+                mapOf("set" to "client", "modified_after" to modifiedAfter.toString()))
     }
 
     /**
@@ -193,7 +200,7 @@ class DataBase private constructor() {
     fun select(tableName: String, where: Selector? = null, maxRows: Int = 0, sorting: String = ""):
             List<MutableMap<String, String>> {
         val table = tables[tableName] ?: return mutableListOf()
-        val rowsList = table.select(where, maxRows)
+        val rowsList = table.select(where, maxRows, sorting)
         return if (sorting.isEmpty())
                     rowsList
                 else
