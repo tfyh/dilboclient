@@ -19,12 +19,6 @@ kotlin {
         }
     }
 
-    js {
-        browser {
-        }
-        binaries.executable()
-    }
-
     listOf(
         iosX64(),
         iosArm64(),
@@ -36,11 +30,15 @@ kotlin {
         }
     }
 
-    jvm("desktop")
+    jvm("desktop") {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
+        }
+    }
 
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
-        moduleName = "composeApp"
+        outputModuleName.set("composeApp")
         browser {
             val rootDirPath = project.rootDir.path
             val projectDirPath = project.projectDir.path
@@ -137,8 +135,8 @@ android {
 }
 
 dependencies {
-    implementation("androidx.compose.material3:material3-android:1.3.1")
-    implementation("androidx.compose.runtime:runtime-android:1.7.8")
+    implementation(libs.androidx.material3.android)
+    implementation(libs.androidx.compose.runtime)
     debugImplementation(compose.uiTooling)
 }
 
