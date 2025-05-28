@@ -4,9 +4,9 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.Text
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
@@ -28,9 +28,7 @@ fun TextAnyInput(
             modifier = Modifier
                 .width(formField.width)
                 .padding(top = Theme.dimensions.smallSpacing),
-            colors =
-                if (formField.modifierChar == "!") Theme.colors.textDisplayColors()
-                else Theme.colors.textFieldColors(),
+            colors = formField.viewModel.textFieldColors(),
             enabled = (formField.modifierChar != "!"),
             shape = OutlinedTextFieldDefaults.shape,
             textStyle = Theme.fonts.p,
@@ -41,7 +39,7 @@ fun TextAnyInput(
                 formField.entered = it
             },
             singleLine = singleLine,
-            label = { Text(text = formField.label, style = Theme.fonts.p, color = Theme.colors.color_text_h1_h3) },
+            label = { Text(text = formField.label, style = Theme.fonts.p, color = formField.viewModel.labelColor()) },
             keyboardOptions = KeyboardOptions(
                 imeAction = ImeAction.Next,
                 // keyboardType = formField.keyboardType(),

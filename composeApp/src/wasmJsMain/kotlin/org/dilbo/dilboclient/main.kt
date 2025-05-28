@@ -6,6 +6,8 @@ import io.ktor.client.HttpClient
 import io.ktor.client.plugins.HttpTimeout
 import kotlinx.browser.document
 
+// build with ./gradlew wasmJsBrowserDistribution
+// find result in composeApp/build/dist/wasmJs/productionExecutable
 @OptIn(ExperimentalComposeUiApi::class)
 fun main() {
     ComposeViewport(document.body!!) {

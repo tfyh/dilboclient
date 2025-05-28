@@ -34,7 +34,7 @@ import org.dilbo.dilboclient.tfyh.data.Codec
  * The API container class providing container transmission check an error handling,
  * container parsing.
  */
-open class Container private constructor() {
+class Container private constructor() {
 
     /**
      * Then different types of results. With the exception of 300 and 900 these are all errors
@@ -213,6 +213,7 @@ open class Container private constructor() {
                 Transaction.ResultType.CONTAINER_ERROR.result.message
             else
                 cResultMessage
+            it.callBack(it)
         }
         transactions.clear()
     }
@@ -241,6 +242,7 @@ open class Container private constructor() {
                     ResultType.MISMATCHING_ID
                 else
                     ResultType.SYNTAX_ERROR
+            apiHandler.lastContainerResult = cParsingResult.result
             cParsingError += cParsingResult.result.message + ". Container response: " + plainShort
             setFailedAndRemoveAllTransactions()
             return
@@ -250,6 +252,7 @@ open class Container private constructor() {
         cResultMessage = plainParts[3]
         try {
             val containerResult = getType(plainParts[2].toInt())
+            apiHandler.lastContainerResult = containerResult.result
             cResultCode = containerResult.result.code
             if (cResultCode >= 40) {
                 if (cResultMessage.isEmpty()) cResultMessage = plainShort
@@ -269,6 +272,7 @@ open class Container private constructor() {
                 return
             }
         } catch (e: NumberFormatException) {
+            apiHandler.lastContainerResult = ResultType.SYNTAX_ERROR.result
             cResultCode = ResultType.SYNTAX_ERROR.result.code
             cParsingError += ResultType.SYNTAX_ERROR.result.message + plainShort
             setFailedAndRemoveAllTransactions()
@@ -281,34 +285,32 @@ open class Container private constructor() {
 
         // handle no transactions in container error
         if (txcBody.isEmpty()) {
+            apiHandler.lastContainerResult = ResultType.EMPTY_RESPONSE_CONTAINER.result
             cParsingError += ResultType.EMPTY_RESPONSE_CONTAINER.result.message
             setFailedAndRemoveAllTransactions()
             return
         }
 
         // parse and handle transactions
+        apiHandler.lastContainerResult = ResultType.RESPONSE_SUCCESSFULLY_PARSED.result
         val txResponsesAsList = txcBody.split(MESSAGE_SEPARATOR_STRING)
         for (i in txResponsesAsList.indices) {
             if (txResponsesAsList[i].isNotEmpty()) {
                 val tx = transactions[i]
                 // the result code may already have been set by a container error
-                if (tx.resultCode < 40)
+                if (tx.resultCode > 40)
+                    tx.handleError()
+                else {
                     tx.parseResponse(txResponsesAsList[i])
-                // the result code may have been changed by a parsing error
-                if (tx.resultCode < 40)
-                    tx.processTransaction()
-                if (tx.resultCode >= 40) {
-                    apiHandler.logger.log(
-                        LoggerSeverity.ERROR,
-                        "Container.processResponse()",
-                        "tx-${tx.transactionId} ${tx.type} ${tx.tableName} failed: ${tx.resultCode} ${tx.resultMessage}."
-                    )
-                    apiHandler.removeTxFromPending(tx)
+                    if (tx.resultCode > 40)
+                        tx.handleError()
+                    else {
+                        tx.processTransaction()
+                        if (tx.resultCode >= 40)
+                            tx.handleError()
+                    }
                 }
-                apiHandler.logger.log(
-                    LoggerSeverity.INFO, "Transaction.processTransaction",
-                    "Pending: " + apiHandler.pendingQueue.size + " transactions."
-                )
+                apiHandler.removeTxFromPending(tx)
             }
         }
         // remove all transactions from the container. If a transactio was not contained in the response

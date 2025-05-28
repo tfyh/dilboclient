@@ -22,7 +22,7 @@ class UIEventHandler {
         val sourceItem: Item
     ) {
         fun clickToAction(clickAction: String) = UIEvent(uid, clickAction, sourceItem)
-        override fun toString() = "${sourceItem.getPath()} -> $uid: $action"
+        override fun toString() = "${sourceItem.getPath()} -> uid=$uid: $action"
     }
     
     /**
@@ -51,6 +51,11 @@ class UIEventHandler {
         else calledUiEvents.last().uid
 
     /**
+     */
+    fun handleButtonEvent(buttonEvent: String) {
+        calledUiEvents.add(UIEvent("", buttonEvent, Config.getInstance().invalidItem))
+    }
+    /**
      * Handle all events coming in
      */
     fun handleUiEvent(uiEvent: UIEvent) {
@@ -67,6 +72,7 @@ class UIEventHandler {
             when (uiEvent.action) {
                 // forms (menu actions)
                 "enterTrip" -> FormHandler.enterTripDo()
+                "endTrip" -> FormHandler.endTripDo()
                 "editTrip" -> FormHandler.editTripDo()
                 "cancelTrip" -> FormHandler.cancelTripDo()
                 "reportDamage" -> FormHandler.reportDamageDo()
@@ -85,7 +91,8 @@ class UIEventHandler {
                             val tableName = indices.getTableForUid(uiEvent.uid)
                             val listEvent = when (tableName) {
                                 "assets" -> uiEvent.clickToAction("enterTrip")
-                                "damages" -> uiEvent.clickToAction("reportDamage")
+                                "logbook" -> uiEvent.clickToAction("endTrip")
+                                // else includes by purpose damages and reservations
                                 else -> uiEvent.clickToAction("displayDetails")
                             }
                             handleUiEvent(listEvent)
@@ -95,8 +102,8 @@ class UIEventHandler {
                 }
             }
         } else
-            UIProvider.displayDialog(I18n.getInstance().t("Forbidden"),
-                I18n.getInstance().t("I'm afraid action '%1' is not allowed", uiEvent.action))
+            UIProvider.displayDialog(I18n.getInstance().t("QJrL6O|Forbidden"),
+                I18n.getInstance().t("Q9FnS3|I°m afraid action °%1° i...", uiEvent.action))
     }
 
 }

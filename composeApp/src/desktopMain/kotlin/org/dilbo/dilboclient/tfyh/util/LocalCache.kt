@@ -75,27 +75,34 @@ actual class LocalCache {
         }
 
         /**
-         * Creates a directory path in the file system
+         * Removes all dirs and files recursively from the
          */
         fun deleteAllFiles(path: String) {
-            for (filename in fileNames(path))
-                File(path + File.separator + filename).delete()
+            val files = File(path).listFiles { file -> !file.isDirectory }
+            if (files != null)
+                for (file in files)
+                    file.delete()
+            val dirs = File(path).listFiles { file -> file.isDirectory }
+            if (dirs != null)
+                for (dir in dirs) {
+                    deleteAllFiles(dir.path)
+                    dir.delete()
+                }
         }
 
         /**
-         * Get the file names within a directory
+         * Get all relative file paths. Set root must not have a trailing file separator.
          */
-        fun fileNames(path: String): Array<String> {
-            val files = File(path).listFiles {
-                file -> !file.isDirectory
-            }
-            val fileNames = mutableListOf<String>()
-            if (files != null) {
-                for (file in files) {
-                    fileNames += file.name
-                }
-            }
-            return fileNames.toTypedArray()
+        fun fileNames(root: String, path: String = root): Array<String> {
+            val filePaths = mutableListOf<String>()
+            val relPath = if (path == root) "" else path.substring(root.length + 1)
+            val files = File(path).listFiles { file -> !file.isDirectory }
+            if (files != null)
+                for (file in files) { filePaths += relPath + File.separator + file.name }
+            val dirs = File(path).listFiles { file -> file.isDirectory }
+            if (dirs != null)
+                for (dir in dirs) { filePaths.addAll(fileNames(root, dir.path)) }
+            return filePaths.toTypedArray()
         }
 
         /**

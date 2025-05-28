@@ -22,7 +22,7 @@ class DilboSettings {
      */
     fun sportsYearStart(): LocalDate {
         var sportsYearStartMonth =
-            config.getItem(".app.club.habits.sports_year_start").value() as Int
+            config.getItem(".club.habits.sports_year_start").value() as Int
         if ((sportsYearStartMonth < 1) || (sportsYearStartMonth > 12))
             sportsYearStartMonth = 1
         val thisYearsSportsYearStart: LocalDate =

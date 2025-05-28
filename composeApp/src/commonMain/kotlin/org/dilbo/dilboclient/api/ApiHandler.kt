@@ -20,6 +20,11 @@ package org.dilbo.dilboclient.api
  * limitations under the License.
  */
 
+import androidx.compose.material3.Icon
+import dilboclient.composeapp.generated.resources.Res
+import dilboclient.composeapp.generated.resources.connection_alert
+import dilboclient.composeapp.generated.resources.connection_busy
+import dilboclient.composeapp.generated.resources.connection_idle
 import io.ktor.client.HttpClient
 import io.ktor.client.network.sockets.ConnectTimeoutException
 import io.ktor.client.network.sockets.SocketTimeoutException
@@ -33,6 +38,7 @@ import io.ktor.http.parameters
 import io.ktor.utils.io.charsets.Charsets
 import kotlinx.datetime.Clock
 import org.dilbo.dilboclient.api.Container.ResultType
+import org.dilbo.dilboclient.app.FormHandler
 import org.dilbo.dilboclient.composable.Stage
 import org.dilbo.dilboclient.localhostUrl
 import org.dilbo.dilboclient.tfyh.control.Logger
@@ -44,6 +50,7 @@ import org.dilbo.dilboclient.tfyh.data.SettingsLoader
 import org.dilbo.dilboclient.tfyh.util.LocalCache
 import org.dilbo.dilboclient.tfyh.util.Timer
 import org.dilbo.dilboclient.tfyh.util.User
+import org.jetbrains.compose.resources.DrawableResource
 import kotlin.math.min
 
 /**
@@ -78,11 +85,14 @@ class ApiHandler private constructor() {
     }
 
     private var apiServerUrl: String = ""
+    private var apiServerVerified: Boolean = false
+    var loginRetryActive: Boolean = false
     // the apiSessionId will be provided by the server. It may contain the user password in plain
     // text at session start. The user password will not be stored.
     private var apiSessionId: String = ""
     private var apiUserId: Int = -1
     internal var connected = false
+    private var connectionResult: Int = 0
 
     // last data update and session activity timestamps (seconds)
     private var lastUpdateCheck = 0L
@@ -90,7 +100,7 @@ class ApiHandler private constructor() {
     private var lastSessionRegenerate = 0L
     // parameters as provided by the server on a session transaction
     var welcomeMessage = "no server yet connected."
-    var lastContainerSuccessful = true
+    private var lastContainerSuccessful = true
     val settingsLoader = SettingsLoader()
 
     // The following synchronisation defaults must never be 0.
@@ -105,7 +115,7 @@ class ApiHandler private constructor() {
     // transaction queues. Transactions wait in the pending-queue, are processed in the busy-queue
     // and moved to the failed-queue on errors, else dropped after being processed.
     internal val pendingQueue: MutableList<Transaction> = mutableListOf()
-    private var lastContainerResult: Container.Result = ResultType.UNDEFINED.result
+    internal var lastContainerResult: Container.Result = ResultType.UNDEFINED.result
 
     // the first request always goes with lowest version, then the client shall
     // max out the version based on the server response
@@ -125,24 +135,36 @@ class ApiHandler private constructor() {
      * Set the http client handler
      */
     fun setHttpClient(httpClient: HttpClient) { this.httpClient = httpClient }
+    fun getUrl() = this.apiServerUrl
     fun setUrl(url: String) { this.apiServerUrl = url }
+    fun getApiStatus(): DrawableResource {
+        return when (lastContainerResult.code) {
+            20, 22 ->
+                if (pendingQueue.size > 0) Res.drawable.connection_busy
+                else Res.drawable.connection_idle
+            else -> Res.drawable.connection_alert
+        }
+    }
     /**
      * Set the server Url and check whether it exists. Leave url empty to use the configured value
      */
-    suspend fun connect(): Int {
+    suspend fun connect(url: String = ""): Int {
         val httpClient = this.httpClient ?: return 0
-        var urlToCheck = config.getItem(".app.server.url").valueCsv()
+        var urlToCheck = url.ifEmpty { config.getItem(".app.server.url").valueCsv() }
         if (urlToCheck.endsWith("/"))
             urlToCheck = urlToCheck.substring(0, urlToCheck.length - 1)
         if ((urlToCheck == "http://127.0.0.1") || (urlToCheck == "http://localhost"))
             urlToCheck = localhostUrl() // this replaces the localhost for emulators
         // send
-        val updateCheckResponse = httpClient.get("$urlToCheck/api/update_check.php")
-        if (updateCheckResponse.status.value in 200..299) {
-            apiServerUrl = urlToCheck
-            connected = true
-        }
-        return updateCheckResponse.status.value
+        try {
+            val updateCheckResponse = httpClient.get("$urlToCheck/api/update_check.php")
+            if (updateCheckResponse.status.value in 200..299) {
+                apiServerUrl = urlToCheck
+                connected = true
+            }
+            return updateCheckResponse.status.value
+        } catch (_:Exception) {}
+        return 999
     }
     /**
      * Set the credentials. Use the apiUserId and the apiSessionId var to store the password.
@@ -194,7 +216,7 @@ class ApiHandler private constructor() {
         }
 
         // set url and credentials
-        apiServerUrl = config.getItem(".app.server.url").valueCsv()
+        apiServerUrl = apiServerUrl.ifEmpty { config.getItem(".app.server.url").valueCsv() }
         // start the queue with a session start.
         // Create the transaction
         val txStart = addNewTxToPending(Transaction.TxType.SESSION, "start", emptyMap())
@@ -261,7 +283,7 @@ class ApiHandler private constructor() {
         pendingQueue.add(tx)
         tx.writeStored(CACHE_PATH_PENDING)
         logger.log(LoggerSeverity.INFO, "ApiHandler.addNewTxToPending",
-            "#${tx.transactionId} ${tx.type}: Pending queue ++: " + pendingQueue.size)
+            "#${tx.transactionId} ${tx.type} ${tx.tableName}: Pending queue ++: " + pendingQueue.size)
         return tx
     }
 
@@ -298,6 +320,19 @@ class ApiHandler private constructor() {
      * send the first transaction in the queue.
      */
     private suspend fun onTimerEvent () {
+
+        // check the apiServerUrl, if not yet done (for manually entered URL)
+        if (!apiServerVerified && !loginRetryActive) {
+            val urlCheck = connect(apiServerUrl)
+            if ((urlCheck <= 299) && (urlCheck >= 200))
+                apiServerVerified = true
+            else {
+                loginRetryActive = true
+                FormHandler.loginDo()
+            }
+        }
+        if (!apiServerVerified) return
+
         // start transaction, if not busy nor enabled and a transaction is
         // pending
         val nowSeconds = Clock.System.now().epochSeconds
@@ -329,6 +364,12 @@ class ApiHandler private constructor() {
         }
     }
 
+    /**
+     * Display a dialog with the http connection error.
+     */
+    private fun showHttpsError(error: String) {
+        Stage.showDialog("Internet connection error: $error")
+    }
     /**
      * Takes the pending transactions, builds a container, sends it, receives and processes the
      * server response. Returns the count of transactions which experience a temporary failure
@@ -367,10 +408,17 @@ class ApiHandler private constructor() {
             if ((e is HttpRequestTimeoutException) ||
                 (e is ConnectTimeoutException) ||
                 (e is SocketTimeoutException)) {
+                showHttpsError("TimeOutException.")
+                logger.log(LoggerSeverity.ERROR,"ApiHandler.processNextApiContainer",
+                    "$apiServerUrl: TimeOutException.")
                 handleHttpsError(ResultType.INTERNET_CONNECTION_TIMEOUT.result)
             }
-            else
+            else {
+                logger.log(LoggerSeverity.ERROR,"ApiHandler.processNextApiContainer",
+                    "$apiServerUrl: Connection failed.")
+                showHttpsError("Exception raised during connection setup.")
                 handleHttpsError(ResultType.INTERNET_CONNECTION_FAILED.result)
+            }
             null
         }
 
@@ -381,11 +429,30 @@ class ApiHandler private constructor() {
                     lastContainerSuccessful = true
                     container.processResponse(response.bodyAsText(Charsets.UTF_8))
                 }
+                in 301..303 -> {
+                    // explicit server error
+                    container.cResultCode =
+                        ResultType.HTTP_COMMUNICATION_ERROR.result.code
+                    container.cResultMessage = "Page was moved. HTTP status code: " + response.status.value
+                    showHttpsError("The page was moved. Maybe a redirect from http to https. Status code: "
+                            + response.status.value +
+                            ". See 'https://en.wikipedia.org/wiki/List_of_HTTP_status_codes' for details.")
+                    logger.log(LoggerSeverity.ERROR,"ApiHandler.processNextApiContainer",
+                        "$apiServerUrl: moved. Status = " + response.status.value)
+                    apiServerUrl = ""
+                    connected = false
+                    handleHttpsError(ResultType.SERVER_ERROR.result)
+                    FormHandler.loginDo()
+                }
                 in 500..599 -> {
                     // explicit server error
                     container.cResultCode =
                         ResultType.SERVER_ERROR.result.code
                     container.cResultMessage = "HTTP status code: " + response.status.value
+                    showHttpsError("Server error. Status code: " + response.status.value +
+                            ". See 'https://en.wikipedia.org/wiki/List_of_HTTP_status_codes' for details.")
+                    logger.log(LoggerSeverity.ERROR,"ApiHandler.processNextApiContainer",
+                        "$apiServerUrl: server error. Status = " + response.status.value)
                     handleHttpsError(ResultType.SERVER_ERROR.result)
                 }
                 else -> {
@@ -394,6 +461,10 @@ class ApiHandler private constructor() {
                         ResultType.HTTP_COMMUNICATION_ERROR.result.code
                     container.cResultMessage = "HTTP status code: " + response.status.value +
                             ", response text = " + response.bodyAsText(Charsets.UTF_8)
+                    showHttpsError("Undefined error. Status code: " + response.status.value +
+                            ". See 'https://en.wikipedia.org/wiki/List_of_HTTP_status_codes' for details.")
+                    logger.log(LoggerSeverity.ERROR,"ApiHandler.processNextApiContainer",
+                        "$apiServerUrl: undefined error. Status = " + response.status.value)
                     handleHttpsError(ResultType.HTTP_COMMUNICATION_ERROR.result)
                 }
             }

@@ -45,7 +45,7 @@ object Findings {
         when (reasonCode) {
             1 -> errors += (i18n.t("Im6RzC|Format error in °%1°.", violatingValueStr))
             2 -> errors += (i18n.t("4j2U0W|Numeric value required i...", violatingValueStr))
-            3 -> errors += (i18n.t("Exception raised when parsing %1 into %2", violatingValueStr, violatedLimitStr))
+            3 -> errors += (i18n.t("RZEpM0|Exception raised when pa...", violatingValueStr, violatedLimitStr))
             4 -> errors += (i18n.t("nKI7OJ|The required field °%1° ...", violatingValueStr))
             5 -> errors += (i18n.t("fu97I0|Name °%1° is already use...", violatingValueStr, violatedLimitStr))
             6 -> errors += violatingValueStr // any other error
@@ -58,7 +58,7 @@ object Findings {
             15 -> warnings += (i18n.t(
                 "fWxdb7|String °%1° too long. Cu...", violatingValueStr, violatedLimitStr))
             16 -> warnings += (i18n.t(
-                "Value limits can not be adjusted in lists of %1.", violatingValueStr))
+                "2ofYtW|Value limits can not be ...", violatingValueStr))
             17 -> warnings += violatingValueStr // any other warning
         }
     }

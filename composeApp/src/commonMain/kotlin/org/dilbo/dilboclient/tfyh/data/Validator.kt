@@ -43,9 +43,9 @@ object Validator {
             val aVal = a[key]
             val bVal = b[key]
             diff += if (bVal == null)
-                i18n.t("Missing field in B.")
+                i18n.t("PP2UVk|Missing field in B.")
             else if (aVal == null)
-                i18n.t("Null value field in A.")
+                i18n.t("DiSB4N|Null value field in A.")
             else
                 diffSingle(aVal, bVal)
         }
@@ -65,9 +65,9 @@ object Validator {
 
         // start with simple cases: array equality
         if (a is Array<*> && b !is Array<*>)
-            diff += i18n.t("Q3220i|A is an array, but B not...") + " "
+            diff += i18n.t("Q3220i|A is an array, but B not...")
         else if (a !is Array<*> && b is Array<*>)
-            diff += i18n.t("Bczhcw|A is a single value, but...") + " "
+            diff += i18n.t("Bczhcw|A is a single value, but...")
 
         // single values
         // boolean
@@ -92,8 +92,8 @@ object Validator {
         else if (a is LocalDateTime)
             diff += if (b is LocalDateTime) {
                 if (a.compareTo(b) == 0) ""
-                else i18n.t("dateTime A != dateTime B.")
-            } else i18n.t("A is a dateTime, B not.")
+                else i18n.t("LyKzyV|dateTime A != dateTime B...")
+            } else i18n.t("BAEDaf|A is a dateTime, B not.")
         // String
         else if (a is String)
             diff += if (b is String) {
@@ -299,7 +299,7 @@ object Validator {
     private fun checkPassword(pwd: String) {
         val i18n = I18n.getInstance()
         if (pwd.length < 8)
-            addFinding(6, i18n.t("The password must be at least 8 characters long. "))
+            addFinding(6, i18n.t("FWl90i|The password must be at ..."))
         val regexNum = Regex("[0-9]+")
         val regexLCase = Regex("[a-z]+")
         val regexUCase = Regex("[A-Z]+")
@@ -349,7 +349,7 @@ object Validator {
     {
         val i18n = I18n.getInstance()
         if (strict && iban.uppercase().substring(0, 2) != iban.substring(0, 2)) {
-            addFinding(6, i18n.t("The IBAN must start with uppercase letters."));
+            addFinding(6, i18n.t("x3HFjo|The IBAN must start with..."));
             return;
         }
         val ibanLc =
@@ -374,7 +374,7 @@ object Validator {
         )
 
         if (ibanLc.length != countries[iban.substring(0, 2)]){
-            addFinding(6, i18n.t("The IBAN length doesn't match the country requirements."));
+            addFinding(6, i18n.t("xMGDkq|The IBAN length doesn°t ..."));
             return;
         }
 
@@ -388,7 +388,7 @@ object Validator {
             newString += movedCharArray[i]
         }
         if (myBcMod(newString, 97) != 1)
-            addFinding(6, i18n.t("The IBAN parity check failed."));
+            addFinding(6, i18n.t("ulleNr|The IBAN parity check fa..."))
     }
 
     /**

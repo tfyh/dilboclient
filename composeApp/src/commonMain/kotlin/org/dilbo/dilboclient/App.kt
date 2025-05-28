@@ -4,21 +4,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import io.ktor.client.HttpClient
-import io.ktor.client.network.sockets.ConnectTimeoutException
-import io.ktor.client.network.sockets.SocketTimeoutException
-import io.ktor.client.plugins.HttpRequestTimeoutException
-import io.ktor.client.request.forms.submitForm
-import io.ktor.client.request.get
-import io.ktor.client.request.post
-import io.ktor.client.statement.bodyAsText
-import io.ktor.http.parameters
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlinx.datetime.Clock
 import org.dilbo.dilboclient.api.ApiHandler
-import org.dilbo.dilboclient.api.ApiHandler.Companion.API_POST_URI
-import org.dilbo.dilboclient.api.Container.ResultType
 import org.dilbo.dilboclient.app.DilboSettings
 import org.dilbo.dilboclient.app.FormHandler
 import org.dilbo.dilboclient.app.UIProvider
@@ -39,7 +28,7 @@ fun App(httpClient: HttpClient) {
     val config = Config.getInstance()
     // initialize the local storage
     val localCache = LocalCache.getInstance()
-    val fileLocation = localCache.init()
+    config.localFilePath = localCache.init()
     var urlCheck = -1
 
     // load the configuration. Because this involves resource reading, it must be
@@ -59,8 +48,8 @@ fun App(httpClient: HttpClient) {
     while (!config.ready || (urlCheck < 0) || (Stage.getWidthDp() < 0.dp))
         delay(duration = Duration.parse("0.1s"))
     delay(duration = Duration.parse("0.1s"))
-    UIProvider.displayDialog("Welcome", "your local storage file location is: $fileLocation and the URL to use: " +
-            config.getItem(".app.server.url").valueCsv() + " connection result: $urlCheck")
+    // for debugging purposes:
+    // UIProvider.displayDialog("LOCAL: $fileLocation / SERVER: " + config.getItem(".app.server.url").valueCsv() + ": $urlCheck")
 
     // initializes the current logbook and the sports year start.
     DilboSettings.getInstance()

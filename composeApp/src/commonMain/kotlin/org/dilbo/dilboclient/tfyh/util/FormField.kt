@@ -21,15 +21,16 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
-import org.dilbo.dilboclient.composable.TextAutoCompleteInput
 import org.dilbo.dilboclient.composable.DateInput
 import org.dilbo.dilboclient.composable.DateTimeInput
 import org.dilbo.dilboclient.composable.DilboLabel
 import org.dilbo.dilboclient.composable.Stage
-import org.dilbo.dilboclient.composable.TextSelectInput
-import org.dilbo.dilboclient.composable.TextAnyInput
 import org.dilbo.dilboclient.composable.SubmitButton
+import org.dilbo.dilboclient.composable.TextAnyInput
+import org.dilbo.dilboclient.composable.TextAutoCompleteInput
+import org.dilbo.dilboclient.composable.TextSelectInput
 import org.dilbo.dilboclient.composable.TimeInput
+import org.dilbo.dilboclient.design.Theme
 import org.dilbo.dilboclient.tfyh.data.Config
 import org.dilbo.dilboclient.tfyh.data.Findings
 import org.dilbo.dilboclient.tfyh.data.Formatter
@@ -43,36 +44,57 @@ import org.dilbo.dilboclient.tfyh.data.Type
 import org.dilbo.dilboclient.tfyh.data.Validator
 
 data class FormField (
-    val parentItem: Item, val modifierChar: String, val nameDataField: String, val labelSetter: String,
-    val rowTag: String, val index: Int, val listPosition : Int = 0, val onclick: () -> Unit = {},
-    val columnsSpan: Int = 1
+    val parentForm: Form, // the form to which this field belongs
+    val parentItem: Item,  // the parent of the item which defines the data properties of this field.
+    // That is either a table's record item or the framework form fields branch item
+    val modifierChar: String, // the way the field shall be displayed and validated
+    val nameDataField: String, // the name of the data field. For lists this may be different from
+    // the input field name, e.g. crew#2 for the second crew member
+    val labelSetter: String, // the label for the data field. default is the item's label
+    val rowTag: String, // "R" for new rows with spacer, "r" for new rows, "" for a next field in the row
+    val index: Int, // a consecutive index on all fields of this form.
+    val listPosition : Int = 0, // the position of a list element field in the list, starts with 1.
+    // For data items which are not a list, but a singular value, this is 0
+    val onclick: () -> Unit = {}, // the function to trigger, if the from field is clicked
+    val columnsSpan: Int = 1 // the number of columns this form field shall span in the form
 ) {
-    val name: String
-    val item: Item
-    val label: String
-    val type: Type
-    var width: Dp
-    val options: MutableMap<String, Any> = mutableMapOf()
-    var preset: String = ""
-    var autoEntered: String = ""
-    var entered: String = ""
-    var parsed: Any = ""
-    private var validated: Any = ""
-    var changed: Boolean = false
-    var findings: String = ""
-    private val isProperty: Boolean
-    val property: Property
+    val name: String // the name of the field. For list fields this is without the list index
+    val item: Item // the item which holds the definition of the form fields data
+    val label: String // the label to display
+    val type: Type // the type of data of this field
+    var width: Dp // the width of this field. This will be deduced by the Stage width and the columns span
+    val options: MutableMap<String, Any> = mutableMapOf() // the set of options for select and autocomplete fields
+    var preset: String = "" // the preset value as String
+    var entered: String = "" // the entered value as String
+    var parsed: Any = "" // the parsed value as native
+    internal var validated: Any = "" // the validated value as native
+    var changed: Boolean = false // an indicator if the value was entered that differs from the preset
+    var findings: String = "" // any findings during parsing and validation
+    private val isProperty: Boolean // tru, if the field input represents a property value rather than a data value
+    val property: Property // the property which is represented by the field, if so.
 
     private val inputType: FormFieldType
     private val listeners: MutableList<FormFieldListener> = mutableListOf()
-    private var isFocused: Boolean = false
 
     inner class FormFieldViewModel: ViewModel() {
         fun show() { _version.update { _version.value + 1 } }
         fun hide() { _version.update { 0 } }
         private val _version : MutableStateFlow<Int> = MutableStateFlow(1)
+        private val _valid: MutableStateFlow<Boolean> = MutableStateFlow(true)
         val version : StateFlow<Int> = _version
+        fun setValidity(valid: Boolean) { _valid.update { valid } }
+        val valid : StateFlow<Boolean> = _valid
         var entered by mutableStateOf("")
+        fun isReadOnly() = (modifierChar == "!")
+        @Composable
+        fun textFieldColors() =
+            if (isReadOnly()) Theme.colors.textDisplayColors()
+            else if (_valid.value) Theme.colors.textFieldColors()
+            else Theme.colors.textFieldInvalidColors()
+        @Composable
+        fun labelColor() =
+            if (_valid.value) Theme.colors.color_text_h1_h3
+            else Theme.colors.color_all_form_input_invalid
     }
     val viewModel = FormFieldViewModel()
 
@@ -193,7 +215,7 @@ data class FormField (
      * preset a the value with a formatted and resolved value. Only dates are reformatted from
      * the local format to the browser expected YYYY-MM-DD.
      */
-    internal fun presetWithString (formattedValue: String) {
+    internal fun presetWithString (formattedValue: String, asEntered: Boolean = false) {
         // reformat Date and DateTime to iso compatible
         val parser = type.parser()
         val isDateOrDateTime = (parser === ParserName.DATE) || (parser === ParserName.DATETIME)
@@ -205,6 +227,10 @@ data class FormField (
                 Formatter.format(Parser.parse(formattedValue, parser, language), parser, Language.CSV)
             else if (isMissingNotice) ""
             else formattedValue
+        if (asEntered) {
+            entered = preset
+            viewModel.entered = preset
+        }
     }
 
 
@@ -213,37 +239,34 @@ data class FormField (
     /* ---------------------------------------------------------------------- */
 
     /**
-     * Resolve the entered value as name into an id as defined in the value reference. Returns the id on success and
-     * the original value on failure.
+     * Resolve the entered String or String List as name into an id as defined in the value
+     * reference. Returns the id on success and the original value on failure. toResolve may be
+     * either a String or a List of String according to the items type.
      */
-    private fun resolve(): String {
+    private fun resolve(toResolve: Any): Any {
         if (!item.isValid())
-            return entered
+            return entered.ifEmpty { preset }
         val valueReference = item.valueReference()
-        val toResolve = entered
         if ((valueReference.isNotEmpty()) && ! valueReference.startsWith(".")) {
             // a table
             val tableName = valueReference.split(".")[0]
             val indices = Indices.getInstance()
             val referenceField = valueReference.split(".")[1]
-            // a table as reference
-            var resolved = ""
-            if (referenceField == "uuid") {
-                // resolve a name to a uuid
-                val values: List<String> =
-                    if (type.parser() == ParserName.STRING_LIST)
-                        @Suppress("UNCHECKED_CAST")
-                        parsed as List<String>
-                    else
-                        listOf(toResolve)
-                for (value in values) {
-                    val uuid = indices.getUuid(tableName, value)
-                    resolved += ", " + (uuid.ifEmpty { value })
-                }
-                if (resolved.length > 2)
-                    resolved = resolved.substring(2)
+            val resolved: MutableList<String> = mutableListOf()
+            val toResolveList =
+                if (this.type.parser() == ParserName.STRING_LIST) (toResolve as List<*>)
+                else if (toResolve is String) listOf(toResolve)
+                else emptyList()
+            for (toResolveElement in toResolveList) {
+                if (toResolveElement is String)
+                    if (referenceField == "uuid") {
+                        val uuid = indices.getUuid(tableName, toResolveElement)
+                        resolved.add(uuid.ifEmpty { toResolveElement })
+                    }
             }
-            return resolved
+            return if (this.type.parser() == ParserName.STRING_LIST) resolved
+                else if (resolved.isEmpty()) ""
+                else resolved.first()
         }
         // for uuid_or_name type fields a reference may validly not resolvable
         return toResolve
@@ -257,26 +280,35 @@ data class FormField (
         if (isProperty || (item != Config.getInstance().invalidItem)) {
             // only parse data for which a field exists
             findings = ""
-            changed = (preset !== entered)
-                    && (modifierChar !== "!") && (modifierChar !== "~")
-            if (changed) {
-                // only validate data if changed.
-                if ((modifierChar === "*") && entered.isEmpty()) {
-                    findings += I18n.getInstance().t("Please enter a value in %1", label) + ","
-                } else {
-                    // parse (syntactical check)
-                    Findings.clearFindings()
-                    parsed = Parser.parse(entered, type.parser())
-                    // validate: limits and reference resolving
-                    validated = if (item.valueReference().isNotEmpty())
-                        resolve()
-                    else
-                        Validator.adjustToLimits(parsed, type, item.valueMin(),
-                            item.valueMax(), item.valueSize())
-                    // validate: rule check
-                    Validator.checkAgainstRule(validated, item.validationRules())
-                    findings = Findings.getFindings(false)
+            changed = (preset != entered)
+                    && (modifierChar != "!") && (modifierChar != "~")
+            // do not validate data, if mandatory and empty.
+            if ((modifierChar == "*") && entered.isEmpty()) {
+                findings += I18n.getInstance().t("anPDZr|Please enter a value in ...", label) + ","
+                viewModel.entered = "?"
+                viewModel.setValidity(false)
+            }
+            else {
+                val toValidate = entered.ifEmpty { preset }
+                // parse (syntactical check)
+                Findings.clearFindings()
+                parsed = Parser.parse(toValidate, type.parser())
+                // validate: limits and reference resolving
+                validated = if (item.valueReference().isNotEmpty())
+                    resolve(parsed)
+                else
+                    Validator.adjustToLimits(parsed, type, item.valueMin(),
+                        item.valueMax(), item.valueSize())
+                // validate: rule check
+                Validator.checkAgainstRule(validated, item.validationRules())
+                findings = Findings.getFindings(false)
+                if (findings.isNotEmpty()) {
+                    entered = ""
+                    viewModel.entered = ""
+                    viewModel.setValidity(false)
                 }
+                else
+                    viewModel.setValidity(true)
             }
         }
         return changed
@@ -284,15 +316,11 @@ data class FormField (
 
     // before submitting a form any change can be used programmatically by implementing listeners
     fun addListener(listener: FormFieldListener) { listeners.add(listener) }
-    fun onFocusChanged(isFocused: Boolean) {
-        if (isFocused != this.isFocused) {
-            this.isFocused = isFocused
-            if (!isFocused) {
-                val entered = this.entered.ifEmpty { this.preset }
-                for (listener in listeners)
-                    listener.onFocusLost(entered)
-            }
-        }
+    fun onFocusChanged(isFocused: Boolean) { if (isFocused) parentForm.moveFocus(this) }
+    fun notifyOnFocusLost() {
+        val entered = this.entered.ifEmpty { this.preset }
+        for (listener in listeners)
+            listener.onFocusLost(entered)
     }
 
     @OptIn(ExperimentalComposeUiApi::class)

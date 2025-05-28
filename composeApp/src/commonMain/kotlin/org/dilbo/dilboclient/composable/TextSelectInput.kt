@@ -9,9 +9,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.DropdownMenu
 import androidx.compose.material.DropdownMenuItem
@@ -24,17 +22,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.onFocusChanged
-import androidx.compose.ui.input.key.Key
-import androidx.compose.ui.input.key.KeyEventType
-import androidx.compose.ui.input.key.key
-import androidx.compose.ui.input.key.onKeyEvent
-import androidx.compose.ui.input.key.type
-import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
 import org.dilbo.dilboclient.design.Theme
 import org.dilbo.dilboclient.tfyh.data.Config
@@ -42,7 +32,6 @@ import org.dilbo.dilboclient.tfyh.data.Formatter
 import org.dilbo.dilboclient.tfyh.util.FormField
 
 // from https://gist.github.com/snicmakino/297d34e429c078624fde6771064ed6d2
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun TextSelectInput(formField: FormField) {
 
@@ -51,8 +40,14 @@ fun TextSelectInput(formField: FormField) {
     val optionsIcon = Icons.Default.ArrowDropDown
 
     val selectedOption = remember { mutableStateOf(
-        if (formField.options.isEmpty()) "???"
-        else formField.options.keys.toList().getOrNull(0))
+            if (formField.options.isEmpty()) "???"
+            else {
+                if (formField.preset.isNotEmpty() && formField.options.containsKey(formField.preset))
+                    formField.preset
+                else
+                    formField.options.keys.toList().getOrNull(0) ?: "???"
+            }
+        )
     }
     val language = Config.getInstance().language()
 
@@ -68,8 +63,10 @@ fun TextSelectInput(formField: FormField) {
                 .clip(RoundedCornerShape(4.dp))
                 .border(if (isFocused.value)
                             BorderStroke(2.dp, Theme.colors.color_border_form_input)
+                        else if (formField.viewModel.valid.value)
+                            BorderStroke(1.dp, Theme.colors.color_border_form_input)
                         else
-                            BorderStroke(1.dp, Theme.colors.color_border_form_input),
+                            BorderStroke(2.dp, Theme.colors.color_all_form_input_invalid),
                     RoundedCornerShape(Theme.dimensions.smallSpacing))
                 .onFocusChanged {
                     isFocused.value = it.isFocused
@@ -101,6 +98,7 @@ fun TextSelectInput(formField: FormField) {
                         modifier = Modifier.height(Theme.dimensions.textFieldHeight / 2),
                         onClick = {
                             selectedOption.value = selectOption
+                            formField.entered = selectOption
                             expanded.value = false
                         }
                     ) {

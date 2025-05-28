@@ -1,6 +1,5 @@
 package org.dilbo.dilboclient.composable
 
-import androidx.compose.animation.expandIn
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,7 +8,6 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.DatePicker
@@ -29,26 +27,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.key.Key
-import androidx.compose.ui.input.key.KeyEventType
-import androidx.compose.ui.input.key.key
-import androidx.compose.ui.input.key.onKeyEvent
-import androidx.compose.ui.input.key.type
-import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.window.Popup
-import kotlinx.datetime.Clock
-import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
-import kotlinx.datetime.toLocalDateTime
 import org.dilbo.dilboclient.design.Theme
 import org.dilbo.dilboclient.tfyh.data.Config
 import org.dilbo.dilboclient.tfyh.data.Formatter
@@ -58,7 +44,7 @@ import org.dilbo.dilboclient.tfyh.data.ParserName
 import org.dilbo.dilboclient.tfyh.util.FormField
 import org.dilbo.dilboclient.tfyh.util.I18n
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DateTimeInput(formField: FormField) {
 
@@ -96,7 +82,7 @@ fun DateTimeInput(formField: FormField) {
             modifier = formField.boxModifier { showDatePicker = true }
         ) {
             OutlinedTextField(
-                colors = Theme.colors.textFieldColors(),
+                colors = formField.viewModel.textFieldColors(),
                 shape = OutlinedTextFieldDefaults.shape,
                 textStyle = Theme.fonts.p,
                 singleLine = true,
@@ -105,23 +91,27 @@ fun DateTimeInput(formField: FormField) {
                     showDatePicker = false
                     selectedDate = it
                 },
-                label = { Text(text = formField.label, style = Theme.fonts.p, color = Theme.colors.color_text_h1_h3) },
+                label = { Text(
+                    text = formField.label,
+                    style = Theme.fonts.p,
+                    color = formField.viewModel.labelColor()) },
                 trailingIcon = {
-                    IconButton(
-                        onClick = { showDatePicker = !showDatePicker }
-                    ) {
-                        Icon(
-                            imageVector = optionsIcon,
-                            contentDescription = "Select date"
-                        )
-                    }
+                    if (! formField.viewModel.isReadOnly())
+                        IconButton(
+                            onClick = { showDatePicker = !showDatePicker }
+                        ) {
+                            Icon(
+                                imageVector = optionsIcon,
+                                contentDescription = "Select date"
+                            )
+                        }
                 },
                 modifier = Modifier
                     .width(formField.width * 0.55F)
                     .padding(top = Theme.dimensions.smallSpacing),
             )
 
-            if (showDatePicker) {
+            if (showDatePicker && !formField.viewModel.isReadOnly()) {
                 Popup(
                     onDismissRequest = { showDatePicker = false },
                     alignment = Alignment.TopStart
@@ -142,6 +132,7 @@ fun DateTimeInput(formField: FormField) {
                                 selectedDate = Formatter.microTimeToString(
                                     (datePickerState.selectedDateMillis ?: 0L) / 1000.0, lang)
                                     .substring(0, 10)
+                                formField.entered = "$selectedDate $selectedTime"
                                 showDatePicker = false
                             }
                         }
@@ -167,7 +158,7 @@ fun DateTimeInput(formField: FormField) {
                 modifier = Modifier
                     .width(formField.width * 0.45F)
                     .padding(top = Theme.dimensions.smallSpacing),
-                colors = Theme.colors.textFieldColors(),
+                colors = formField.viewModel.textFieldColors(),
                 shape = OutlinedTextFieldDefaults.shape,
                 textStyle = Theme.fonts.p,
                 singleLine = true,
@@ -176,21 +167,25 @@ fun DateTimeInput(formField: FormField) {
                     showTimePicker = false
                     selectedTime = it
                 },
-                label = { Text(text = I18n.getInstance().t("time"), style = Theme.fonts.p, color = Theme.colors.color_text_h1_h3) },
+                label = {
+                    Text(text = I18n.getInstance().t("ZFaJj0|time"),
+                    style = Theme.fonts.p,
+                    color = formField.viewModel.labelColor()) },
                 trailingIcon = {
-                    IconButton(
-                        onClick = { showTimePicker = !showTimePicker },
-                        modifier = Modifier.background(Color(0x000000))
-                    ) {
-                        Icon(
-                            imageVector = optionsIcon,
-                            contentDescription = "Select time",
-                        )
-                    }
+                    if (!formField.viewModel.isReadOnly())
+                        IconButton(
+                            onClick = { showTimePicker = !showTimePicker },
+                            modifier = Modifier.background(Color(0x000000))
+                        ) {
+                            Icon(
+                                imageVector = optionsIcon,
+                                contentDescription = "Select time",
+                            )
+                        }
                 },
             )
 
-            if (showTimePicker) {
+            if (showTimePicker && !formField.viewModel.isReadOnly()) {
                 Popup(
                     onDismissRequest = { showTimePicker = false },
                     alignment = Alignment.TopStart
@@ -212,6 +207,7 @@ fun DateTimeInput(formField: FormField) {
                                     (timePickerState.hour * 3600 + timePickerState.minute * 60),
                                     ParserName.TIME, lang)
                                     .substring(0, 5)
+                                formField.entered = "$selectedDate $selectedTime"
                                 showTimePicker = false
                             }
                         }

@@ -24,16 +24,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.focus.FocusDirection
-import androidx.compose.ui.input.key.Key
-import androidx.compose.ui.input.key.KeyEventType
-import androidx.compose.ui.input.key.key
-import androidx.compose.ui.input.key.onKeyEvent
-import androidx.compose.ui.input.key.type
-import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.window.Popup
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
@@ -44,7 +36,7 @@ import org.dilbo.dilboclient.tfyh.data.Formatter
 import org.dilbo.dilboclient.tfyh.data.ParserName
 import org.dilbo.dilboclient.tfyh.util.FormField
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TimeInput(formField: FormField) {
     val optionsIcon = Icons.Default.ArrowDropDown
@@ -67,7 +59,7 @@ fun TimeInput(formField: FormField) {
             modifier = Modifier
                 .width(formField.width)
                 .padding(top = Theme.dimensions.smallSpacing),
-            colors = Theme.colors.textFieldColors(),
+            colors = formField.viewModel.textFieldColors(),
             shape = OutlinedTextFieldDefaults.shape,
             textStyle = Theme.fonts.p,
             singleLine = true,
@@ -76,18 +68,19 @@ fun TimeInput(formField: FormField) {
                 showTimePicker = false
                 selectedTime = it
             },
-            label = { Text(text = formField.label, style = Theme.fonts.p, color = Theme.colors.color_text_h1_h3) },
+            label = { Text(text = formField.label, style = Theme.fonts.p, color = formField.viewModel.labelColor()) },
             trailingIcon = {
-                IconButton(onClick = { showTimePicker = !showTimePicker }) {
-                    Icon(
-                        imageVector = optionsIcon,
-                        contentDescription = "Select time",
-                    )
-                }
+                if (! formField.viewModel.isReadOnly())
+                    IconButton(onClick = { showTimePicker = !showTimePicker }) {
+                        Icon(
+                            imageVector = optionsIcon,
+                            contentDescription = "Select time",
+                        )
+                    }
             },
         )
 
-        if (showTimePicker) {
+        if (showTimePicker && (formField.viewModel.version.value >= 0)) {
             Popup(
                 onDismissRequest = { showTimePicker = false },
                 alignment = Alignment.TopStart
@@ -109,6 +102,7 @@ fun TimeInput(formField: FormField) {
                                 (timePickerState.hour * 3600 + timePickerState.minute * 60),
                                 ParserName.TIME, lang)
                                 .substring(0, 5)
+                            formField.entered = selectedTime
                             showTimePicker = false
                         }
                     }

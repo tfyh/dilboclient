@@ -22,7 +22,7 @@ object StyledText {
     )
 
     fun toAnnotatedString(text: String): AnnotatedString {
-        var remainder = text
+        var remainder = text.replace("~\\", "\n")
         val annotatedString = buildAnnotatedString {
             var nextOpener = "?"
             while (nextOpener.isNotEmpty() && remainder.isNotEmpty()) {

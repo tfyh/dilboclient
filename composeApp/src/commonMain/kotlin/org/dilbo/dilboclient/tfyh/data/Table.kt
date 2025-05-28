@@ -114,7 +114,7 @@ class Table internal constructor(private val recordItem: Item) {
          */
         private fun comparable(sortName: String, row: MutableMap<String, String>,
                                item: Item): Comparable<*> {
-            val upDown = if (sortName.startsWith("-")) -1 else +1
+            val upDown = if (sortName.startsWith("-")) -1 else 1
             val fieldName = if (sortName.startsWith("-")) sortName.substring(1) else sortName
             val field = item.getChild(fieldName) ?: return 0
             val parser = field.type().parser()
@@ -369,20 +369,29 @@ class Table internal constructor(private val recordItem: Item) {
     }
 
     /**
-     * Select a set of tableRows where (where AND andWhere) OR orWhere,
+     * Select a set of tableRows based on the selector and sorting.
      */
-    fun select(where: Selector?, maxRows: Int = 0): List<MutableMap<String, String>> {
+    fun select(where: Selector?, maxRows: Int = 0, sorting: String = ""): List<MutableMap<String, String>> {
         val selected: MutableList<MutableMap<String, String>> = mutableListOf()
         val uids = rows.keys.toList() // avoid a co-modification exception when loading the very first time
         for (uid in uids) {
             val row = rows[uid]
             if (row != null) {
                 record.parse(row.toMap(), Language.CSV)
-                if ((where?.isSelected(record) != false) && ((maxRows <= 0) || (selected.size < maxRows)))
-                    selected.add(row)
+                if (where?.isSelected(record) != false) {
+                    if ((maxRows <= 0) || (selected.size < maxRows) || sorting.isNotEmpty())
+                        selected.add(row)
+                }
             }
         }
-        return selected.toList()
+        if (sorting.isNotEmpty()) {
+            val sorted = sortRows(sorting, selected, recordItem)
+            val limited: MutableList<MutableMap<String, String>> = mutableListOf()
+            for (i in 0..< maxRows)
+                limited.add(sorted[i])
+            return limited.toList()
+        } else
+            return selected.toList()
     }
 
     /**

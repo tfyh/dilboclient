@@ -29,7 +29,7 @@ class Indices private constructor() {
 
     init {
         clearAll()
-        missingNotice = "[" + I18n.getInstance().t("not found") + "]"
+        missingNotice = "[" + I18n.getInstance().t("DcBmjj|not found") + "]"
         userIdFieldName = Config.getInstance().getItem(".framework.users.user_id_field_name").valueStr()
     }
 
@@ -191,8 +191,8 @@ class Indices private constructor() {
      * Restrict the search to a single table by setting the $tableName.
      */
     fun getNameForUuid(uuidOrShortUuid: String, tableName: String = "@all"): String {
-        if (uuidOrShortUuid.isEmpty())
-            return ""
+        if (uuidOrShortUuid.length < 11)
+            return uuidOrShortUuid
         val shortUuid = uuidOrShortUuid.substring(0, 11)
         if (tableName != "@all") {
             val matchedTableName = getTableForUuid(shortUuid, tableName)
@@ -204,7 +204,15 @@ class Indices private constructor() {
             return uuid2name[shortUuid] ?: missingNotice
     }
 
-    fun getUserName(userId: Int): String { return userId2name[userId] ?: missingNotice }
+    /**
+     * Get the name of the user with the respective user id
+     */
+    fun getUserName(userId: Int): String {
+        val userTableName = Config.getInstance().getItem(".framework.users.user_table_name").valueStr()
+        if (loaded[userTableName] != true)
+            addTable(Config.getInstance().getItem(".tables.$userTableName"))
+        return userId2name[userId] ?: missingNotice
+    }
 
     /**
      * Get the name of the table in which the uuid occurs. Returns a missing notice, if not resolved.
