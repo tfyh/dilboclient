@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
+import org.dilbo.dilboclient.app.UIEventHandler
 import org.dilbo.dilboclient.design.Theme
 
 @Composable
@@ -27,7 +28,10 @@ fun ModalCloseButton() {
             style = Theme.fonts.h3,
             modifier = Modifier
                 .padding(Theme.dimensions.regularSpacing)
-                .clickable { Stage.viewModel.setVisibleModal(false) }
+                .clickable {
+                    Stage.viewModel.setVisibleModal(false)
+                    UIEventHandler.getInstance().handleButtonEvent("modalClose")
+                }
         )
     }
 }

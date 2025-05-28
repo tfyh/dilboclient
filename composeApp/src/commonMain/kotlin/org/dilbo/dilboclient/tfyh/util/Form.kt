@@ -11,17 +11,22 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
+import org.dilbo.dilboclient.api.ApiHandler
+import org.dilbo.dilboclient.api.Transaction
+import org.dilbo.dilboclient.app.UIEventHandler
 import org.dilbo.dilboclient.composable.DilboLabel
 import org.dilbo.dilboclient.composable.Stage
 import org.dilbo.dilboclient.design.Theme
 import org.dilbo.dilboclient.tfyh.data.Codec
 import org.dilbo.dilboclient.tfyh.data.Config
+import org.dilbo.dilboclient.tfyh.data.Formatter
 import org.dilbo.dilboclient.tfyh.data.Ids
 import org.dilbo.dilboclient.tfyh.data.Item
 import org.dilbo.dilboclient.tfyh.data.Parser
@@ -48,11 +53,13 @@ class Form(
     private val onSubmit: () -> Unit
 ) {
 
-    private var formErrors: String = "" // validation errors as String
+    internal var formErrors: String = "" // validation errors as String
+    internal var formHeadline: String = "" // headline for the form, leave empty to use the record item label
     var inputFields: MutableMap<String, FormField> = mutableMapOf()   // used by the FormHandler class
     internal var previousErrors: String = "" // for display of entry errors on top of the form
     private var fsId = Ids.generateUid(4)
     private var formColumnsCount: Int = 0
+    private var formFieldFocused: FormField? = null
 
     inner class FormViewModel: ViewModel() {
         fun setVisible(visible: Boolean) {
@@ -136,20 +143,20 @@ class Form(
                         if (inputFieldName.isNotEmpty())
                             this.inputFields[inputFieldName] =
                                 if (_recordItem.hasChild(dataFieldName))
-                                    FormField(_recordItem, modifierChar, dataFieldName, label, useRowTag,
+                                    FormField(this, _recordItem, modifierChar, dataFieldName, label, useRowTag,
                                         i, listPosition, onSubmit, formColumnsSpan)
                                 else
-                                    FormField(formFieldsItem, modifierChar, inputFieldName, label, useRowTag,
+                                    FormField(this, formFieldsItem, modifierChar, inputFieldName, label, useRowTag,
                                         i, 0, onSubmit, formColumnsSpan)
                         else {
                             val virtualName = "_$i"
                             this.inputFields[virtualName] =
-                                FormField(config.invalidItem, modifierChar, virtualName, virtualName,
+                                FormField(this, config.invalidItem, modifierChar, virtualName, virtualName,
                                     useRowTag, i, 0, { }, formColumnsSpan)
                         }
                         if ((listPosition > 0) && (_recordItem.hasChild(dataFieldName))
                                 && (this.inputFields[dataFieldName] == null))
-                            this.inputFields[dataFieldName] = FormField(_recordItem, "",
+                            this.inputFields[dataFieldName] = FormField(this, _recordItem, "",
                                 dataFieldName, label, "", i, -1, onSubmit, formColumnsSpan)
 
                         c++
@@ -176,18 +183,24 @@ class Form(
             viewModel.show
         }
     }
-
+    /**
+     * the form input field gathered focus. Notify the previous one about its focus losing.
+     */
+    fun moveFocus(toFormField: FormField) {
+        this.formFieldFocused?.notifyOnFocusLost()
+        this.formFieldFocused = toFormField
+    }
     /**
      * Preset all values of the form with those of the provided row. Strings are shown in the form as is,
      * they must be formatted and ids resolved. Only dates are reformatted from the local format to the
      * browser expected YYYY-MM-DD.
      */
-    fun presetWithStrings(row: Map<String, String>) {
+    fun presetWithStrings(row: Map<String, String>, asEntered: Boolean = false) {
         for (fieldName in this.inputFields.keys) {
             val f = this.inputFields[fieldName]
             val fieldValue = row[fieldName]
             if ((f != null) && (fieldValue != null))
-                f.presetWithString(fieldValue)
+                f.presetWithString(fieldValue, asEntered)
         }
     }
 
@@ -204,6 +217,7 @@ class Form(
         var index = 0
         val version = show.value
         val rsp = Theme.dimensions.regularSpacing
+        val headline = formHeadline.ifEmpty { _recordItem.label() }
         if (version >= 0)
             // the fsId is used to hide the
             Column (
@@ -213,19 +227,19 @@ class Form(
             ) {
                 val cCnt = responsiveFormColumnsCount()
                 Spacer(modifier = Modifier.height(rsp))
-                if (_recordItem.isValid()) {
-                    Row {
-                        if (Stage.isPortrait())
-                            Spacer(modifier = Modifier.width(rsp))
-                        DilboLabel(_recordItem.label(), true)
-                    }
+                Row (modifier = Modifier.width(Stage.getFieldWidth(cCnt))) {
+                    if (Stage.isPortrait())
+                        Spacer(modifier = Modifier.width(rsp))
+                    DilboLabel(headline, true)
                 }
                 if (previousErrors.isNotEmpty())
-                    Text(
-                        text = previousErrors,
-                        style = Theme.fonts.h4,
-                        color = Theme.colors.color_text_h1_h3
-                    )
+                    Row (modifier = Modifier.width(Stage.getFieldWidth(cCnt))) {
+                        Text(
+                            text = previousErrors,
+                            style = Theme.fonts.p,
+                            color = Theme.colors.color_all_form_input_invalid
+                        )
+                    }
                 while (index < inputNames.size) {
                     val inputField = inputFields[inputNames[index]]
                     if (inputField != null) {
@@ -255,6 +269,7 @@ class Form(
                     } else
                         index ++
                 }
+                Spacer(modifier = Modifier.height(rsp))
             }
     }
 
@@ -266,10 +281,43 @@ class Form(
         var anyChange = false
         for (fieldName in inputFields.keys) {
             val f = inputFields[fieldName]
-            if (f != null)
+            if (f != null) {
                 anyChange = f.validate() || anyChange
+                formErrors += f.findings
+                // the change is propagated to the listField. List element fields shall never
+                // record a change at all.
+                if (f.listPosition > 0) f.changed = false
+            }
         }
         return anyChange
+    }
+
+    /**
+     * Submit the form to the API. This will insert the record. To update the record, set update
+     * true. In that case set uid to ensure that the correct record is updated. For update == flase
+     * a new uid is generated.
+     */
+    fun submit(update: Boolean, uid: String = ""): Transaction {
+        val record: MutableMap<String, String> = mutableMapOf()
+        for (inputFieldName in inputFields.keys) {
+            val inputField = inputFields[inputFieldName]
+            if (inputField != null &&
+                (inputField.listPosition <= 0) &&
+                // -1 = list field which was split into single fields, 0 = no list field, >0 = list element field
+                (inputField.changed || inputField.preset.isNotEmpty()))
+                record[inputFieldName] = Formatter.format(inputField.validated, inputField.type.parser(),
+                    Language.CSV)
+        }
+        if (! update)
+            record["uid"] = Ids.generateUid(6)
+        else
+            record["uid"] = uid
+        val apiHandler = ApiHandler.getInstance()
+        return apiHandler.addNewTxToPending(
+            txType = if (update) Transaction.TxType.UPDATE else Transaction.TxType.INSERT,
+            tableName = _recordItem.name(),
+            record = record
+        )
     }
 
 }

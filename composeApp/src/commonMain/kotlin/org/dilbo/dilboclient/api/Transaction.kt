@@ -46,6 +46,7 @@ data class Transaction(
     var sentAt : Long = 0L,
     var resultAt : Long = 0L,
     var closedAt : Long = 0L,
+    var callBack : (Transaction) -> Unit = {}
 ) {
 
     enum class TxType {
@@ -248,13 +249,21 @@ data class Transaction(
         this.closedAt = Clock.System.now().toEpochMilliseconds()
         apiHandler.logger.log(
             LoggerSeverity.INFO, "Transaction.processTransaction",
-            "#${transactionId} ${type}: " + resultType.result.message
+            "#$transactionId $type $tableName [${apiHandler.pendingQueue.size}]: " +
+                    resultType.result.message
         )
         // delete the transaction from the pending queue
         apiHandler.removeTxFromPending(this)
         // add the transaction to the done queue
         this.writeStored(ApiHandler.CACHE_PATH_DONE)
         return resultType
+    }
+
+    fun handleError() {
+        ApiHandler.apiHandler.logger.log(
+            LoggerSeverity.ERROR, "Transaction.handleError()",
+            "tx-$transactionId $type $tableName failed: $resultCode $resultMessage.")
+        callBack(this)
     }
 
     /**
@@ -280,10 +289,11 @@ data class Transaction(
 
         // the table name starting with a dor indicates a configuration read
         if (tableName.startsWith(".")) {
-            if (tableName == ".modified")
-                apiHandler.settingsLoader.onModifiedResponse(resultMessage)
-            else
-                apiHandler.settingsLoader.onSettingsResponse(this)
+            when (tableName) {
+                ".modified" -> apiHandler.settingsLoader.onModifiedResponse(resultMessage)
+                ".actuals" -> apiHandler.settingsLoader.onActualsResponse(resultMessage)
+                else -> apiHandler.settingsLoader.onSettingsResponse(this)
+            }
         } else {
             val db = DataBase.getInstance()
             db.merge(tableName, resultMessage)
@@ -296,6 +306,7 @@ data class Transaction(
      * Response on config request. Nothing to do but log the response.
      */
     private fun onDataWriteResponse () : ResultType {
+        callBack(this)
         // TODO: notify change
         return ResultType.RESPONSE_SUCCESSFULLY_PROCESSED
     }

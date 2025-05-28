@@ -13,12 +13,7 @@ class SettingsLoader {
      * responses
      */
     companion object {
-        // the path in the local cache must be identical to the settings files' path at the server side
-        private const val CACHE_PATH = "Config"
-        val settingsFiles = listOf( "modified", "descriptor", "types", "access", "framework",
-            "templates", "tables", "app", "catalogs", "lists", "ui" )
         private val serverTimes = mutableMapOf<String, Double>()
-        private val localTimes = mutableMapOf<String, Double>()
 
         /**
          * Return true if the configuration file is invalid. This may happen in case of server
@@ -26,14 +21,17 @@ class SettingsLoader {
          */
         fun invalidConfigurationFile(fileName: String, contents: String): Boolean {
             // check for correctness of read file. Internet retrieval has chances for hazard.
-            if (contents.length < 5) // file must have at least a headline
-                return true
-            val firstWord = contents.trim().substring(0, 5).lowercase()
-            var fileIsInvalid = ((firstWord != "_path") && (firstWord != "_name")
-                    && (firstWord != "name;"))
+            // file must have at least a headline
+            var fileIsInvalid = (contents.length < 5) // file must have at least a headline
+            // ... a matching first word
             // _path for all "normal" settings files, _name fot the types file, name; for the descriptor file
+            val firstWord = contents.trim().substring(0, 5).lowercase()
+            fileIsInvalid = fileIsInvalid || ((firstWord != "_path") && (firstWord != "_name")
+                    && (firstWord != "name;"))
+            // ... and a headline with at least 2 entries
             val firstLine = contents.split("\n")[0]
-            fileIsInvalid = fileIsInvalid || (firstLine.split(";").size < 2) // ... a headline with at least 2 entries
+            fileIsInvalid = fileIsInvalid || (firstLine.split(";").size < 2)
+            // if it is invalid, remove it from the cache
             if (fileIsInvalid) {
                 LocalCache.getInstance().removeItem(fileName)
                 LocalCache.getInstance().removeItem("$fileName.modified")
@@ -44,20 +42,6 @@ class SettingsLoader {
                 return true
             }
             return false
-        }
-    }
-
-    /**
-     * Read the modified timestamps from local cache
-     */
-    private fun readLocalModified() {
-        val lc = LocalCache.getInstance()
-        for (settingsFile in settingsFiles) {
-            try {
-                localTimes["$CACHE_PATH/$settingsFile"] = lc.getItem("Config/$settingsFile.modified").toDouble()
-            } catch (e: Exception) {
-                localTimes["$CACHE_PATH/$settingsFile"] = 0.0
-            }
         }
     }
 
@@ -89,16 +73,31 @@ class SettingsLoader {
      * configuration read request, if a server modification is more recent than the local time stamp.
      */
     fun onModifiedResponse(response: String) {
-        readLocalModified()
         readServerModified(response)
-        for (settingsFile in settingsFiles)
-            if (settingsFile !== "modified") {
-                val localModified = localTimes["$CACHE_PATH/$settingsFile"] ?: 0.0
-                val serverModified = serverTimes["$CACHE_PATH/$settingsFile"] ?: 0.0
-                if (localModified < serverModified)
-                    ApiHandler.getInstance()
-                        .addNewTxToPending(Transaction.TxType.LIST, ".$settingsFile", emptyMap())
+        val apiHandler = ApiHandler.getInstance()
+        for (settingsFile in serverTimes.keys) {
+            // only non-basic configuration files are loaded from the server. The program versions
+            // of client and server may differ and basic settings are linked to the version
+            if (!settingsFile.startsWith("Config/basic")) {
+                val localModified =
+                    try {
+                        LocalCache.getInstance().getItem("$settingsFile.modified").toDouble()
+                    } catch (e: Exception) {
+                        0.0
+                    }
+                val serverModified = serverTimes[settingsFile] ?: 0.0
+                if (localModified < serverModified) {
+                    apiHandler.addNewTxToPending(Transaction.TxType.LIST,
+                        ".$settingsFile", emptyMap())
+                    apiHandler.logger.log(LoggerSeverity.INFO, "SettingsLoader.onModifiedResponse()",
+                        "updating $settingsFile")
+                } else
+                    apiHandler.logger.log(LoggerSeverity.INFO, "SettingsLoader.onModifiedResponse()",
+                        "Skipped $settingsFile, already up-to-date")
             }
+        }
+        // as a last step get all actual values, labels, descriptions
+        apiHandler.addNewTxToPending(Transaction.TxType.LIST,".actuals", emptyMap())
     }
 
     /**
@@ -108,13 +107,22 @@ class SettingsLoader {
         val settingsFile = tx.tableName.substring(1)
         if (invalidConfigurationFile(settingsFile, tx.resultMessage.trim()))
             return // logging was already done
-        LocalCache.getInstance().setItem("$CACHE_PATH/$settingsFile", tx.resultMessage.trim())
-        LocalCache.getInstance().setItem( "$CACHE_PATH/$settingsFile.modified",
-            serverTimes["$CACHE_PATH/$settingsFile"].toString())
+        LocalCache.getInstance().setItem(settingsFile, tx.resultMessage.trim())
+        LocalCache.getInstance().setItem("$settingsFile.modified",
+            serverTimes[settingsFile].toString())
         val definitionsArray = Codec.csvToMap(tx.resultMessage)
-        val topBranch = Config.getInstance().rootItem.getChild(settingsFile)
+        val topBranchName = settingsFile.substring(settingsFile.lastIndexOf("/") + 1)
+        val topBranch = Config.getInstance().rootItem.getChild(topBranchName)
         topBranch?.readBranch(definitionsArray)
     }
 
+    /**
+     * update the local cache with the new settings received.
+     */
+    fun onActualsResponse(response: String) {
+        LocalCache.getInstance().setItem("Config/basic/actuals", response)
+        val settingsMap = Codec.csvToMap(response)
+        Config.getInstance().rootItem.readBranch(settingsMap)
+    }
 }
 

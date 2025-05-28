@@ -88,6 +88,8 @@ class AssetInfos: Table.Listener {
                 ), childrenAnd = true
             )
             val damaged = DataBase.getInstance().select("damages", selector)
+            for (assetInfoUuid in assetInfoList.keys)
+                assetInfoList[assetInfoUuid]?.damaged = false
             for (row in damaged)
                 getAssetInfo(row["asset_uuid"]).damaged = true
         }
@@ -101,6 +103,8 @@ class AssetInfos: Table.Listener {
                 ), childrenAnd = true
             )
             val usable = DataBase.getInstance().select("damages", selector)
+            for (assetInfoUuid in assetInfoList.keys)
+                assetInfoList[assetInfoUuid]?.damagedUsable = false
             for (row in usable)
                 getAssetInfo(row["asset_uuid"]).damagedUsable = true
         }
@@ -109,6 +113,8 @@ class AssetInfos: Table.Listener {
         if (!singleTable || (changedTableName == "logbook")) {
             selector = Table.Selector("end", Table.Comparison.IS_EMPTY, "")
             val away = DataBase.getInstance().select("logbook", selector)
+            for (assetInfoUuid in assetInfoList.keys)
+                assetInfoList[assetInfoUuid]?.away = false
             for (row in away)
                 getAssetInfo(row["asset_uuid"]).away = true
         }
@@ -122,12 +128,16 @@ class AssetInfos: Table.Listener {
             ), childrenAnd = true
         )
         val booked = DataBase.getInstance().select("reservations", selector)
+        for (assetInfoUuid in assetInfoList.keys)
+            assetInfoList[assetInfoUuid]?.booked = false
         for (row in booked)
             getAssetInfo(row["asset_uuid"]).booked = true
 
         // with a future reservation (always rebuild due to the change of "now")
         selector = Table.Selector("start", Table.Comparison.GREATER_THAN, now)
         val bookedLater = DataBase.getInstance().select("reservations", selector)
+        for (assetInfoUuid in assetInfoList.keys)
+            assetInfoList[assetInfoUuid]?.bookedLater = false
         for (row in bookedLater)
             getAssetInfo(row["asset_uuid"]).bookedLater = true
 
@@ -142,6 +152,10 @@ class AssetInfos: Table.Listener {
                     assetInfoList[uuid] = AssetInfo()
                 val assetInfo = assetInfoList[uuid]
                 if (assetInfo != null) {
+                    // index on uuid and shortUuid used.
+                    val shortUuid = uuid.substring(0, 11)
+                    if (assetInfoList[shortUuid] == null)
+                        assetInfoList[shortUuid] = assetInfo
                     assetInfo.baseStatus = asset["base_status"] ?: ""
                     if (assetInfo.baseStatus.isEmpty())
                         assetInfo.baseStatus = "AVAILABLE"

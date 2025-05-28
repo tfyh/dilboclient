@@ -19,12 +19,6 @@ kotlin {
         }
     }
 
-    js {
-        browser {
-        }
-        binaries.executable()
-    }
-
     listOf(
         iosX64(),
         iosArm64(),
@@ -36,7 +30,11 @@ kotlin {
         }
     }
 
-    jvm("desktop")
+    jvm("desktop") {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
+        }
+    }
 
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
@@ -139,6 +137,7 @@ android {
 dependencies {
     implementation("androidx.compose.material3:material3-android:1.3.1")
     implementation("androidx.compose.runtime:runtime-android:1.7.8")
+    implementation("androidx.compose.material3:material3-android:1.3.2")
     debugImplementation(compose.uiTooling)
 }
 
