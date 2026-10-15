@@ -1,0 +1,93 @@
+.heading-label {
+    -fx-text-fill: #033161;
+    -fx-font-size: 18pt;
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+    -fx-font-family: "Prompt";
+}
+
+.prompt-label {
+    -fx-text-fill: #1c1d1f;
+    -fx-font-family: "Prompt";
+    -fx-font-size: 16pt;
+}
+
+.text-field {
+    -fx-font-size: 16pt;
+}
+
+.formButton {
+    -fx-font-family: "Prompt";
+    -fx-font-size: 16pt;
+    -fx-text-fill: #f0f1f4;
+    -fx-background-color: #033161;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+    -fx-background-radius: 3;
+    -fx-cursor: hand;
+}
+
+.formButton:hover {
+    -fx-background-color: #3a3b3f !important;
+}
+
+
+/* TEXT NODE PROPERTIES */
+
+.h1 {
+    -fx-font-size: 32pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: #033161;
+}
+.h2 {
+    -fx-font-size: 26pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: #033161;
+}
+.h3 {
+    -fx-font-size: 22pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: #033161;
+}
+.h4 {
+    -fx-font-size: 20pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1c1d1f;
+}
+.h5 {
+    -fx-font-size: 18pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1c1d1f;
+}
+.h6 {
+    -fx-font-size: 18pt;
+    -fx-text-fill: #1c1d1f;
+}
+.p {
+    -fx-font-size: 16pt;
+    -fx-text-fill: #1c1d1f;
+}
+.i {
+    -fx-font-style: italic;
+}
+.b {
+    -fx-font-size: 16pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1c1d1f;
+}
+.u {
+    -fx-underline: true;
+}
+.st {
+    -fx-strikethrough: true;
+}
+.small {
+    -fx-font-size: 12pt;
+    -fx-text-fill: #1c1d1f;
+}
+.link {
+    -fx-font-size: 16pt;
+    -fx-underline: true;
+    -fx-text-fill: #033161;
+    -fx-cursor: hand;
+}
+
