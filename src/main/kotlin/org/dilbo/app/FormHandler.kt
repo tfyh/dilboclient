@@ -21,6 +21,9 @@
 
 package org.dilbo.app
 
+import javafx.scene.layout.HBox
+import javafx.scene.layout.Pane
+import javafx.scene.layout.Region
 import org.dilbo.uiProvider.Menu
 import org.tfyh.api.ApiHandler
 import org.tfyh.api.Transaction
@@ -37,6 +40,9 @@ import org.tfyh.data.Parser
 import org.tfyh.data.ParserName
 import org.tfyh.data.Record
 import org.tfyh.data.Table
+import org.tfyh.jfx.ui.Form
+import org.tfyh.jfx.ui.ViewBuilder
+import org.tfyh.jfx.ui.FormFieldListener
 import org.tfyh.util.I18n
 import org.tfyh.util.Language
 import org.tfyh.util.User
@@ -97,15 +103,15 @@ class FormHandler private constructor(): EventHandlerIF {
      * Add the close form event and hide the form
      */
     private fun hideForm() {
-        form.viewModel.hide()
-        Stage.modalContent = Stage.emptyModalContent
-        Stage.viewModel.setVisibleModal(false)
+        form.model.hide()
     }
+
     private fun splitListField(presets: MutableMap<String, String>, listFieldName: String) {
         val list = Parser.parse(presets[listFieldName] ?: "", ParserName.STRING_LIST, Language.CSV) as List<*>
         for (i in list.indices)
             presets["$listFieldName#" + (i + 1)] = list.getOrNull(i) as String? ?: ""
     }
+
     private fun joinListField(fieldName: String) {
         val listField = form.inputFields[fieldName]
         if (listField != null) {
@@ -124,94 +130,22 @@ class FormHandler private constructor(): EventHandlerIF {
     /**
      * Compose the left hand context menu for the form.
      */
-    @OptIn(ExperimentalFoundationApi::class)
-    @Composable
-    private fun MenuItemSet(menuItemsNames: List<String>, selected: Int) {
+    private fun menuItemSet(menuOptions: Array<String>): Region {
         val eventHandler = EventHandler.getInstance()
-        form.viewModel.show()
-        var i = 0
-        if (form.viewModel.version.collectAsState().value > 0) {
-            ModalCloseButton()
-            val menuItems = Menu.getMenu("client")
-            for (menuItemName in menuItemsNames) {
-                val menuItem = menuItems[menuItemName]
-                if ((menuItem != null) && menuItem.isAllowedMenuItem()) {
-                    Box(
-                        modifier = Modifier.padding(Theme.dimensions.smallSpacing)
-                    ) {
-                        val modifier =
-                            if (i == selected)
-                                Modifier
-                                    .background(Theme.colors.color_background_form_input)
-                                    .border(
-                                        BorderStroke(
-                                            2.dp,
-                                            Theme.colors.color_border_form_input
-                                        )
-                                    )
-                            else Modifier
-                        Image(
-                            painter = painterResource(menuItem.icon),
-                            contentDescription = menuItemName,
-                            modifier = modifier
-                                .width(Theme.dimensions.textFieldHeight)
-                                .combinedClickable(
-                                    onClick = {
-                                        eventHandler.handleEvent(
-                                            EventHandlerIF.Event(EventHandlerIF.EventType.MENU_EVENT,
-                                                menuItem.menuItemConfig.name(),
-                                                eventUid, menuItem.menuItemConfig
-                                            )
-                                        )
-                                    }
-                                )
-                        )
-                    }
-                }
-                i++
-            }
-        }
+        form.model.show()
+        val menu = Menu(Config.getInstance().getItem(".access.menu.client"),
+            ViewBuilder.Dimensions(24, ViewBuilder.getInstance().getModalDimensions().heightPx),
+            ResProvider.getSingle())
+        menu.limitTo(menuOptions)
+        menu.setHorizontal(false)
+        return menu.build()
     }
 
     /**
      * Compose the form including the left hand context menu.
      */
-    @Composable
-    fun FormAndMenu(menuItemsNames: List<String>, selected: Int) {
-        if (Stage.isPortrait())
-            Column {
-                Row(
-                    modifier = Modifier
-                        .padding(Theme.dimensions.regularSpacing)
-                        .wrapContentSize()
-                ) {
-                    MenuItemSet(menuItemsNames, selected)
-                }
-                Box(
-                    modifier = Modifier
-                        .padding(Theme.dimensions.smallSpacing)
-                        .wrapContentSize()
-                ) {
-                    form.ComposeContent()
-                }
-            }
-        else
-            Row {
-                Column(
-                    modifier = Modifier
-                        .padding(Theme.dimensions.regularSpacing)
-                        .wrapContentSize()
-                ) {
-                    MenuItemSet(menuItemsNames, selected)
-                }
-                Box(
-                    modifier = Modifier
-                        .padding(Theme.dimensions.smallSpacing)
-                        .wrapContentSize()
-                ) {
-                    form.ComposeContent()
-                }
-            }
+    fun formAndMenu(menuOptions: Array<String>, selected: Int): Pane {
+        return HBox(menuItemSet(menuOptions), form.build())
     }
 
     // ==========
@@ -222,7 +156,8 @@ class FormHandler private constructor(): EventHandlerIF {
             // initialise form
             recordItem = config.invalidItem
             formDefinition = "R;url;\nR;*account;\nr;*password;\nR;submit;log in"
-            form = Form(recordItem, formDefinition, Stage.getModalMaxDimensions()) { loginDone() }
+            form = Form(recordItem, formDefinition, ViewBuilder.Dimensions(800, 800))
+                { loginDone() }
             form.formHeadline = i18n.t("pWT7jB|Please log in")
             form.init()
             form.presetWithStrings(mapOf(
@@ -230,17 +165,9 @@ class FormHandler private constructor(): EventHandlerIF {
                 "account" to "1142"), true)
         }
         // show form
-        form.viewModel.show()
-        Stage.modalContent = {
-            Box (modifier = Modifier
-                .padding(Theme.dimensions.regularSpacing)
-                .wrapContentSize()) {
-                form.ComposeContent()
-            }
-        }
         if (ApiHandler.getInstance().connected)
             form.setVisible("url", false)
-        Stage.viewModel.setVisibleModal(true)
+        ViewBuilder.getInstance().showModal(form)
     }
 
     private fun loginDone() {
@@ -294,7 +221,8 @@ class FormHandler private constructor(): EventHandlerIF {
                 "R;logbook_text;\n" +
                 "R;description;\n" +
                 "R;submit,;"
-        form = Form(recordItem, formDefinition, Stage.getModalMaxDimensions()) { reportDamageDone() }
+        form = Form(recordItem, formDefinition, ViewBuilder.getInstance().getModalDimensions())
+            { reportDamageDone() }
         form.formHeadline = i18n.t("ln94nL|Please enter the damage ...")
         form.init()
         // prepare presets
@@ -316,24 +244,24 @@ class FormHandler private constructor(): EventHandlerIF {
         }
         form.presetWithStrings(presets)
         // show form
-        form.viewModel.show()
-        Stage.modalContent = {
+        val modalContent =
             when (eventTableName) {
-                "logbook" -> FormAndMenu(listOf("endTrip", "editTrip", "cancelTrip", "reportDamage"), 3)
-                "assets" -> FormAndMenu(listOf("enterTrip", "reportDamage", "requestReservation"), 1)
-                else -> FormAndMenu(listOf("reportDamage"), 0)
+                "logbook" -> formAndMenu(arrayOf("endTrip", "editTrip", "cancelTrip", "reportDamage"), 3)
+                "assets" -> formAndMenu(arrayOf("enterTrip", "reportDamage", "requestReservation"), 1)
+                else -> formAndMenu(arrayOf("reportDamage"), 0)
             }
-        }
-        Stage.viewModel.setVisibleModal(true)
+        ViewBuilder.getInstance().showModal(modalContent)
     }
+
     private fun reportDamageDone() {
         form.validate()
         val tx = form.submit(false)
         tx.callBack = { reportDamageSaved(tx) }
     }
+
     private fun reportDamageSaved(tx: Transaction) {
         if (tx.resultCode >= 40) {
-            Stage.showDialogue(I18n.getInstance().t("7AX0Uq|The form could not be sa...", tx.resultMessage))
+            ViewBuilder.getInstance().showDialogue(I18n.getInstance().t("7AX0Uq|The form could not be sa...", tx.resultMessage))
             reportDamageDo()
         } else {
             hideForm()
@@ -354,7 +282,8 @@ class FormHandler private constructor(): EventHandlerIF {
                 "r;reason;\n" +
                 "R;asset_uuid,person_uuid;\n" +
                 "R;submit,;"
-        form = Form(recordItem, formDefinition, Stage.getModalMaxDimensions()) { requestReservationDone() }
+        form = Form(recordItem, formDefinition, ViewBuilder.getInstance().getModalDimensions())
+            { requestReservationDone() }
         form.formHeadline = i18n.t("fIFMck|Please enter your reserv...")
         form.init()
         // prepare presets
@@ -369,14 +298,13 @@ class FormHandler private constructor(): EventHandlerIF {
         }
         form.presetWithStrings(presets)
         // show form
-        form.viewModel.show()
-        Stage.modalContent = {
+        form.model.show()
+        val modalContent =
             if (eventTableName == "assets")
-                FormAndMenu(listOf("enterTrip", "reportDamage", "requestReservation"), 2)
+                formAndMenu(arrayOf("enterTrip", "reportDamage", "requestReservation"), 2)
             else
-                FormAndMenu(listOf("requestReservation"), 0)
-        }
-        Stage.viewModel.setVisibleModal(true)
+                formAndMenu(arrayOf("requestReservation"), 0)
+        ViewBuilder.getInstance().showModal(modalContent)
     }
 
     private fun requestReservationDone() {
@@ -384,9 +312,10 @@ class FormHandler private constructor(): EventHandlerIF {
         val tx = form.submit(false)
         tx.callBack = { requestReservationSaved(tx) }
     }
+
     private fun requestReservationSaved(tx: Transaction) {
         if (tx.resultCode >= 40) {
-            Stage.showDialogue(I18n.getInstance().t("ZfSO28|The form could not be sa...", tx.resultMessage))
+            ViewBuilder.getInstance().showDialogue(I18n.getInstance().t("ZfSO28|The form could not be sa...", tx.resultMessage))
             requestReservationDo()
         } else {
             hideForm()
@@ -408,7 +337,7 @@ class FormHandler private constructor(): EventHandlerIF {
                 "R;*subject;\n" +
                 "r;body;\n" +
                 "R;submit,;"
-        form = Form(recordItem, formDefinition, Stage.getModalMaxDimensions()) { sendMessageDone() }
+        form = Form(recordItem, formDefinition, ViewBuilder.getInstance().getModalDimensions()) { sendMessageDone() }
         form.formHeadline = i18n.t("M8hzhW|Please provide your mess...")
         form.init()
 
@@ -430,23 +359,24 @@ class FormHandler private constructor(): EventHandlerIF {
         }
         form.presetWithStrings(presets)
         // show form
-        form.viewModel.show()
-        Stage.modalContent = {
+        form.model.show()
+        val modalContent =
             if (eventTableName == "assets")
-                FormAndMenu(listOf("enterTrip", "reportDamage", "requestReservation"), 2)
-            else if (eventTableName != "messages")
-                FormAndMenu(listOf("requestReservation"), 0)
-        }
-        Stage.viewModel.setVisibleModal(true)
+                formAndMenu(arrayOf("enterTrip", "reportDamage", "requestReservation"), 2)
+            else
+                formAndMenu(arrayOf("requestReservation"), 0)
+        ViewBuilder.getInstance().showModal(modalContent)
     }
+
     private fun sendMessageDone() {
         form.validate()
         val tx = form.submit(false)
         tx.callBack = { sendMessageSaved(tx) }
     }
+
     private fun sendMessageSaved(tx: Transaction) {
         if (tx.resultCode >= 40) {
-            Stage.showDialogue(I18n.getInstance().t("8g9K2b|The form could not be sa...", tx.resultMessage))
+            ViewBuilder.getInstance().showDialogue(I18n.getInstance().t("8g9K2b|The form could not be sa...", tx.resultMessage))
             sendMessageDo()
         } else {
             hideForm()
@@ -476,10 +406,11 @@ class FormHandler private constructor(): EventHandlerIF {
             for (inputFieldName in form.inputFields.keys) {
                 val inputField = form.inputFields[inputFieldName]
                 if ((inputField != null) && (inputField.nameDataField == "crew"))
-                    if (inputField.listPosition > places) inputField.viewModel.hide()
-                    else inputField.viewModel.show()
+                    if (inputField.listPosition > places) inputField.model.hide()
+                    else inputField.model.show()
             }
     }
+
     private fun onDestinationChange(destinationName: String) {
         // get the destination record
         val db = DataBase.getInstance()
@@ -496,15 +427,15 @@ class FormHandler private constructor(): EventHandlerIF {
         if (watersNames.isNotEmpty()) {
             val watersInput = form.inputFields["waters"]
             watersInput?.entered = watersNames.substring(1)
-            watersInput?.viewModel?.setEntered(watersNames.substring(1))
-            watersInput?.viewModel?.show()
+            watersInput?.model?.setEntered(watersNames.substring(1))
+            watersInput?.model?.show()
         }
         // get te distance
         val distance = destinationRow["distance"] ?: "0"
         val distanceInput = form.inputFields["distance"]
         distanceInput?.entered = distance
-        distanceInput?.viewModel?.setEntered(distance)
-        distanceInput?.viewModel?.show()
+        distanceInput?.model?.setEntered(distance)
+        distanceInput?.model?.show()
     }
     fun enterTripDo() {
         setEventContext()
@@ -519,7 +450,7 @@ class FormHandler private constructor(): EventHandlerIF {
                 "r;crew#7,crew#8,crew#9;\n" +
                 "r;comments;\n" +
                 "R;submit,;"
-        form = Form(recordItem, formDefinition, Stage.getModalMaxDimensions()) { enterTripDone() }
+        form = Form(recordItem, formDefinition, ViewBuilder.getInstance().getModalDimensions()) { enterTripDone() }
         form.formHeadline = i18n.t("Ozq6QO|Please enter your trip d...")
         form.init()
 
@@ -542,25 +473,25 @@ class FormHandler private constructor(): EventHandlerIF {
         }
         form.presetWithStrings(presets)
         // show form
-        form.viewModel.show()
-        Stage.modalContent =
-            {
+        form.model.show()
+        val modalContent =
                 if (eventTableName == "assets")
-                    FormAndMenu(listOf("enterTrip", "reportDamage", "requestReservation"), 0)
+                    formAndMenu(arrayOf("enterTrip", "reportDamage", "requestReservation"), 0)
                 else
-                    FormAndMenu(listOf("enterTrip"), 0)
-            }
-        Stage.viewModel.setVisibleModal(true)
+                    formAndMenu(arrayOf("enterTrip"), 0)
+        ViewBuilder.getInstance().showModal(modalContent)
     }
+
     private fun enterTripDone() {
         joinListField("crew")
         form.validate()
         val tx = form.submit(false)
         tx.callBack = { enterTripSaved(tx) }
     }
+
     private fun enterTripSaved(tx: Transaction) {
         if (tx.resultCode >= 40) {
-            Stage.showDialogue(I18n.getInstance().t("ArEHZd|The form could not be sa...", tx.resultMessage))
+            ViewBuilder.getInstance().showDialogue(I18n.getInstance().t("ArEHZd|The form could not be sa...", tx.resultMessage))
             enterTripDo()
         } else {
             hideForm()
@@ -587,13 +518,14 @@ class FormHandler private constructor(): EventHandlerIF {
                 "r;crew#7,crew#8,crew#9;\n" +
                 "r;comments;\n" +
                 "R;submit,;"
-        form = Form(recordItem, formDefinition, Stage.getModalMaxDimensions()) { endTripDone() }
+        form = Form(recordItem, formDefinition, ViewBuilder.getInstance().getModalDimensions())
+        { endTripDone() }
         form.formHeadline = i18n.t("JUnXbB|Please check entries and...")
         form.init()
 
         // set listeners for boat and destination
-        form.inputFields["asset_uuid"]?.addListener(FormFieldListener(onFocusLost =  { onBoatChange(it) }))
-        form.inputFields["destination"]?.addListener(FormFieldListener(onFocusLost =  { onDestinationChange(it) }))
+        form.inputFields["asset_uuid"]?.addListener(FormFieldListener(onFocusLost = { onBoatChange(it) }))
+        form.inputFields["destination"]?.addListener(FormFieldListener(onFocusLost = { onDestinationChange(it) }))
 
         // prepare presets
         val presets: MutableMap<String, String> = eventRecord.formatToDisplay(lang, true).toMutableMap()
@@ -604,22 +536,24 @@ class FormHandler private constructor(): EventHandlerIF {
         splitListField(presets, "crew")
         form.presetWithStrings(presets, true)
         // show form
-        form.viewModel.show()
+        form.model.show()
         onBoatChange(presets["asset_uuid"] ?: "")
         onDestinationChange(presets["destination"] ?: "")
-        Stage.modalContent =
-            { FormAndMenu(listOf("endTrip", "editTrip", "cancelTrip", "reportDamage"), 0) }
-        Stage.viewModel.setVisibleModal(true)
+        val modalContent =
+            formAndMenu(arrayOf("endTrip", "editTrip", "cancelTrip", "reportDamage"), 0)
+        ViewBuilder.getInstance().showModal(modalContent)
     }
+
     private fun endTripDone() {
         joinListField("crew")
         form.validate()
         val tx = form.submit(true, eventUid)
         tx.callBack = { endTripSaved(tx) }
     }
+
     private fun endTripSaved(tx: Transaction) {
         if (tx.resultCode >= 40) {
-            Stage.showDialogue(I18n.getInstance().t("ByvElj|The form could not be sa...", tx.resultMessage))
+            ViewBuilder.getInstance().showDialogue(I18n.getInstance().t("ByvElj|The form could not be sa...", tx.resultMessage))
             // if failed, do not return to the end trip dialogue
         } else {
             hideForm()
@@ -647,7 +581,7 @@ class FormHandler private constructor(): EventHandlerIF {
                 "r;crew#7,crew#8,crew#9;\n" +
                 "r;comments;\n" +
                 "R;submit,;"
-        form = Form(recordItem, formDefinition, Stage.getModalMaxDimensions()) { editTripDone() }
+        form = Form(recordItem, formDefinition, ViewBuilder.getInstance().getModalDimensions()) { editTripDone() }
         form.formHeadline = i18n.t("rT119B|Please edit your trip de...")
         form.init()
 
@@ -662,20 +596,22 @@ class FormHandler private constructor(): EventHandlerIF {
         onBoatChange(presets["asset_uuid"] ?: "")
         onDestinationChange(presets["destination"] ?: "")
         // show form
-        form.viewModel.show()
-        Stage.modalContent =
-            { FormAndMenu(listOf("endTrip", "editTrip", "cancelTrip", "reportDamage"), 1) }
-        Stage.viewModel.setVisibleModal(true)
+        form.model.show()
+        val modalContent =
+            formAndMenu(arrayOf("endTrip", "editTrip", "cancelTrip", "reportDamage"), 1)
+        ViewBuilder.getInstance().showModal(modalContent)
     }
+
     private fun editTripDone() {
         joinListField("crew")
         form.validate()
         val tx = form.submit(true, eventUid)
         tx.callBack = { editTripSaved(tx) }
     }
+
     private fun editTripSaved(tx: Transaction) {
         if (tx.resultCode >= 40) {
-            Stage.showDialogue(I18n.getInstance().t("IuPun7|The form could not be sa...", tx.resultMessage))
+            ViewBuilder.getInstance().showDialogue(I18n.getInstance().t("IuPun7|The form could not be sa...", tx.resultMessage))
             // if failed, do not return to the end trip dialogue
         } else {
             hideForm()
@@ -694,7 +630,7 @@ class FormHandler private constructor(): EventHandlerIF {
         // initialise form
         recordItem = config.getItem(".tables.logbook")
         formDefinition = "R;!destination,!distance;\nR;comments;\nR;submit;"
-        form = Form(recordItem, formDefinition, Stage.getModalMaxDimensions()) { cancelTripDone() }
+        form = Form(recordItem, formDefinition, ViewBuilder.getInstance().getModalDimensions()) { cancelTripDone() }
         val tripDetails = eventRecord.recordToTemplate("full")
         form.formHeadline = i18n.t("CXoF90|Really delete trip:...", tripDetails)
         form.init()
@@ -703,11 +639,12 @@ class FormHandler private constructor(): EventHandlerIF {
         presets["distance"] = "0"
         form.presetWithStrings(presets)
         // show form
-        form.viewModel.show()
-        Stage.modalContent =
-            { FormAndMenu(listOf("endTrip", "editTrip", "cancelTrip", "reportDamage"), 2) }
-        Stage.viewModel.setVisibleModal(true)
+        form.model.show()
+        val modalContent =
+            formAndMenu(arrayOf("endTrip", "editTrip", "cancelTrip", "reportDamage"), 2)
+        ViewBuilder.getInstance().showModal(modalContent)
     }
+
     private fun cancelTripDone() {
         form.validate()
         val tx = form.submit(true, eventUid)
@@ -715,7 +652,7 @@ class FormHandler private constructor(): EventHandlerIF {
     }
     private fun cancelTripSaved(tx: Transaction) {
         if (tx.resultCode >= 40) {
-            Stage.showDialogue(I18n.getInstance().t("l1h4Qy|The form could not be sa...", tx.resultMessage))
+            ViewBuilder.getInstance().showDialogue(I18n.getInstance().t("l1h4Qy|The form could not be sa...", tx.resultMessage))
             // if failed, do not return to the end trip dialogue
         } else {
             hideForm()
@@ -733,6 +670,4 @@ class FormHandler private constructor(): EventHandlerIF {
             }
         return false
     }
-
-
 }

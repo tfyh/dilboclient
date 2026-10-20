@@ -1,18 +1,14 @@
 package org.dilbo.uiProvider
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.text.style.TextAlign
-import org.tfyh.kmp.ui.AppLabel
-import org.tfyh.kmp.ui.UIProviderIF
+import javafx.scene.layout.Region
+import javafx.scene.layout.VBox
+import org.tfyh.jfx.ui.UIProviderIF
+import org.tfyh.jfx.ui.appLabel
 
 class Warning(val message: String): UIProviderIF {
 
-    @Composable
-    override fun ComposeContent() {
-        Box (contentAlignment = Alignment.Center) {
-            AppLabel(message, textAlign = TextAlign.Center)
-        }
+    override fun build(): Region {
+        return VBox(appLabel(message, "h3"))
     }
+
 }

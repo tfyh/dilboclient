@@ -19,7 +19,7 @@ import org.tfyh.control.EventHandlerIF
 /**
  * The class for user activity.
  */
-class Interactor : EventHandlerIF {
+class EventHandler private constructor() : EventHandlerIF {
 
     private val controller = Controller.getInstance()
 
@@ -35,6 +35,11 @@ class Interactor : EventHandlerIF {
             }
         }
         return false
+    }
+
+    companion object {
+        val instance = EventHandler()
+        fun getSingleton() = instance
     }
 
 }

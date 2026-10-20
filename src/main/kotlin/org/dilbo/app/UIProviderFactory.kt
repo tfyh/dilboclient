@@ -21,49 +21,31 @@
 
 package org.dilbo.app
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
-import org.dilbo.uiProvider.ImageView
+import javafx.scene.control.ScrollPane
+import javafx.scene.layout.HBox
+import javafx.scene.layout.Priority
+import javafx.scene.layout.VBox
+import org.dilbo.uiProvider.*
 import org.dilbo.uiProvider.List
-import org.dilbo.uiProvider.Menu
-import org.dilbo.uiProvider.Warning
-import org.dilbo.uiProvider.Statistics
-import org.dilbo.uiProvider.TextView
 import org.tfyh.api.ApiHandler
-import org.tfyh.kmp.ui.AppLabel
-import org.tfyh.kmp.ui.Dimensions
-import org.tfyh.kmp.ui.Stage
-import org.tfyh.kmp.ui.SubmitButton
-import org.tfyh.kmp.design.Theme
-import org.tfyh.data.Config
-import org.tfyh.data.DataBase
-import org.tfyh.data.Indices
-import org.tfyh.data.Item
-import org.tfyh.data.ParserConstraints
-import org.tfyh.data.Record
-import org.tfyh.data.Table
+import org.tfyh.data.*
+import org.tfyh.jfx.ui.ViewBuilder.Dimensions
+import org.tfyh.jfx.ui.UIProviderFactoryIF
+import org.tfyh.jfx.ui.UIProviderIF
+import org.tfyh.jfx.ui.ViewBuilder
+import org.tfyh.jfx.ui.appLabel
 import org.tfyh.util.I18n
 import org.tfyh.util.Language
 import org.tfyh.util.User
-import org.tfyh.kmp.ui.UIProviderFactoryIF
-import org.tfyh.kmp.ui.UIProviderIF
+import io.ktor.client.HttpClient
 
 class UIProviderFactory: UIProviderFactoryIF {
 
 
     companion object {
+
+        private var httpClient = HttpClient()
+        fun setHttpClient(httpClient: HttpClient) { this.httpClient = httpClient }
 
         // STATIC FUNCTIONS FOR TEXT FORMATTING
         // ====================================
@@ -124,16 +106,7 @@ class UIProviderFactory: UIProviderFactoryIF {
          * Display a dialogue with a notice
          */
         fun displayDialog(headline: String, text: String) {
-            Stage.dialogContent = {
-                Column(modifier = Modifier.fillMaxWidth().padding(Theme.dimensions.largeSpacing)) {
-                    AppLabel(headline, large = true)
-                    Spacer(modifier = Modifier.height(Theme.dimensions.regularSpacing))
-                    AppLabel(text)
-                    Spacer(modifier = Modifier.height(Theme.dimensions.regularSpacing))
-                    SubmitButton(text = "Ok", onClick = { Stage.viewModel.setVisibleDialog(false) } )
-                }
-            }
-            Stage.viewModel.setVisibleDialog(true)
+            ViewBuilder.getInstance().showDialogue("~*$headline*~~\\$text")
         }
 
         // DETAILS DISPLAY
@@ -142,6 +115,7 @@ class UIProviderFactory: UIProviderFactoryIF {
          * Display the details for a record in the modal. This does not depend on trigger source.
          */
         fun displayDetails() {
+
             val uid = EventHandler.getInstance().getLastUid()
             val db = DataBase.getInstance()
             val indices = Indices.getInstance()
@@ -149,55 +123,42 @@ class UIProviderFactory: UIProviderFactoryIF {
             val row = db.select(tableName,
                 Table.Selector(fieldName = "uid", compare = Table.Comparison.EQUAL, filter = uid),
                 1).getOrNull(0) ?: mutableMapOf()
+
+            val viewBuilder = ViewBuilder.getInstance()
+            val modalWidth = viewBuilder.getModalDimensions().widthPx
             val config = Config.getInstance()
             val recordItem = config.getItem(".tables.$tableName")
             if (recordItem.isValid()) {
+
                 val record = Record(recordItem)
                 record.parse(row, Language.CSV)
-                Stage.viewModel.setVisibleModal(false)
-                val modalWidth = Stage.getModalMaxDimensions().widthDp()
-                Stage.modalContent = {
-                    Box(Modifier.padding(start = Theme.dimensions.regularSpacing, top =
-                        Theme.dimensions.regularSpacing, bottom = Theme.dimensions.regularSpacing,
-                        end = Theme.dimensions.smallSpacing)) {
-                        Column (modifier = Modifier.width(modalWidth)
-                            .padding(start = Theme.dimensions.largeSpacing, end = Theme.dimensions.largeSpacing)) {
-                            Spacer(Modifier.height(Theme.dimensions.regularSpacing))
-                            AppLabel(text = recordItem.label() + ": " + record.recordToTemplate("name"),
-                                large = true, color = Theme.colors.color_text_h1_h3, textAlign = TextAlign.Center)
-                            Spacer(modifier = Modifier.height(Theme.dimensions.regularSpacing))
-                            Column (
-                                modifier = Modifier.wrapContentSize()
-                                    .verticalScroll(rememberScrollState())
-                            ) {
-                                val evenRowsModifier = Modifier.background(Theme.colors.color_background_body)
-                                for ((i, field) in recordItem.getChildren().withIndex()) {
-                                    if (!ParserConstraints.isEmpty(record.value(field.name()),
-                                            field.type().parser()))
-                                        Row {
-                                            val rowModifier = if ((i % 2) == 1) evenRowsModifier else Modifier
-                                            AppLabel(text = field.label() + ": ",
-                                                modifier = rowModifier.width(modalWidth * 0.4F))
-                                            val toShow =
-                                                if ((field.name() != "uuid") && (field.name() != "uid"))
-                                                    record.valueToDisplay(field, config.language())
-                                                else
-                                                    record.formatValue(field, config.language())
-                                            AppLabel(text = toShow,
-                                                modifier = Modifier.width(modalWidth * 0.55F))
 
-                                        }
-                                }
-                                Spacer(Modifier.height(Theme.dimensions.smallSpacing))
-                                SubmitButton("Ok") {
-                                    Stage.viewModel.setVisibleModal(false)
-                                }
-                                Spacer(Modifier.height(Theme.dimensions.regularSpacing))
-                            }
-                        }
+                val heading = appLabel(recordItem.label() + ": " + record.recordToTemplate("name"),
+                    "h2")
+                val details = mutableListOf<HBox>()
+                for ((i, field) in recordItem.getChildren().withIndex()) {
+                    if (!ParserConstraints.isEmpty(record.value(field.name()),
+                            field.type().parser())) {
+                        val style = if ((i % 2) == 1) ".evenRow" else ".oddRow"
+                        val toShow =
+                            if ((field.name() != "uuid") && (field.name() != "uid"))
+                                record.valueToDisplay(field, config.language())
+                            else
+                                record.formatValue(field, config.language())
+                        val fieldLabel = appLabel("~*" + field.label() + "*~", "p")
+                        fieldLabel.prefWidth = modalWidth * 0.4
+                        val valueLabel = appLabel(toShow, "p")
+                        HBox.setHgrow(valueLabel, Priority.ALWAYS)
+                        val detail = HBox(fieldLabel, valueLabel)
+                        detail.styleClass += style
+                        details.add(detail)
                     }
                 }
-                Stage.viewModel.setVisibleModal(true)
+
+                val detailsPane = ScrollPane(VBox(*details.toTypedArray()))
+                val content = VBox(heading, detailsPane)
+                viewBuilder.showModal(content)
+
             }
         }
 
@@ -242,13 +203,13 @@ class UIProviderFactory: UIProviderFactoryIF {
             else ""
             Warning(message)
         } else when (type) {
-            "menu" -> Menu(providerItem, dimensions)
+            "menu" -> Menu(providerItem, dimensions, ResProvider.getSingle())
             "list" -> List(providerItem)
             "statistics" -> Statistics(providerItem)
-            "clock" -> org.dilbo.uiProvider.Clock(providerItem)
-            "apiStatus" -> org.dilbo.uiProvider.ApiStatus(providerItem, dimensions)
+            "clock" -> Clock(providerItem)
+            "apiStatus" -> ApiStatus(providerItem, dimensions)
             "textView" -> TextView(providerItem)
-            "imageView" -> ImageView(providerItem, dimensions)
+            "imageView" -> RemoteImage(providerItem, httpClient)
             "noProvider" -> null
             else -> Warning(
                 I18n.getInstance().t("Cannot display invalid ui-provider type '%1'", type)

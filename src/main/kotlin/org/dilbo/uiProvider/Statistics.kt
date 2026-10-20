@@ -1,18 +1,14 @@
 package org.dilbo.uiProvider
 
-import androidx.compose.runtime.Composable
-import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
+import javafx.scene.layout.Region
 import org.tfyh.api.ApiHandler
 import org.tfyh.api.Transaction
-import org.tfyh.kmp.ui.UIProviderIF
 import org.tfyh.data.Item
+import org.tfyh.jfx.ui.UIProviderIF
 
 class Statistics(val item: Item): UIProviderIF {
 
-    val viewModel = StatisticsViewModel()
+    val viewModel = Model()
     private val optionsMap: MutableMap<String, String> = mutableMapOf()
     // a cache for statistics tables retrieved from the server.
 
@@ -39,23 +35,18 @@ class Statistics(val item: Item): UIProviderIF {
         viewModel.setStatistics( resultMessage)
     }
 
-    @Composable
-    override fun ComposeContent() {
+    override fun build(): Region {
         TODO("Not yet implemented")
     }
+
     companion object {
 
         /**
          * A view model triggering update twice per second for API status display
          */
-        class StatisticsViewModel : ViewModel() {
-            private val _type = MutableStateFlow("") // private mutable state flow
-            val type = _type.asStateFlow() // publicly exposed as read-only state flow
-            private val _csv = MutableStateFlow("") // private mutable state flow
-            val csv = _csv.asStateFlow() // publicly exposed as read-only state flow
-
+        class Model() {
             fun setStatistics(newCsv: String) {
-                _csv.update { newCsv }
+                // TODO
             }
         }
     }

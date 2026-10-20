@@ -16,7 +16,8 @@ package org.dilbo.client
 
 import javafx.scene.layout.Region
 import javafx.util.Builder
-import org.tfyh.control.Looper
+import org.tfyh.jfx.ui.Looper
+import org.tfyh.jfx.ui.ViewBuilder
 
 /**
  * The controller for the application.
@@ -29,9 +30,9 @@ class Controller private constructor() {
     }
 
     val model: Model = Model()
-    val interactor: Interactor = Interactor()
+    val interactor: EventHandler = EventHandler.getSingleton()
     val looper: Looper = Looper(interactor)
-    private val viewBuilder: Builder<Region?> = ViewBuilder(model, interactor)
+    private val viewBuilder: Builder<Region?> = ViewBuilder.getInstance()
 
     fun getView(): Region? {
         return viewBuilder.build()

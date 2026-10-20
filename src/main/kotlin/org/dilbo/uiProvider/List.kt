@@ -1,39 +1,32 @@
 package org.dilbo.uiProvider
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
-import androidx.lifecycle.ViewModel
-import dilboapp.shared.generated.resources.Res
-import dilboapp.shared.generated.resources.none
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.update
+import javafx.scene.control.ScrollPane
+import javafx.scene.image.Image
+import javafx.scene.layout.Region
+import javafx.scene.layout.VBox
 import org.dilbo.app.AssetInfos
+import org.dilbo.app.ResProvider
 import org.dilbo.app.UIProviderFactory
-import org.tfyh.kmp.ui.AppLabel
-import org.tfyh.kmp.ui.ListItem
-import org.tfyh.kmp.ui.Stage
-import org.tfyh.kmp.ui.UIProviderIF
 import org.tfyh.control.EventHandlerIF
-import org.tfyh.control.LoggerSeverity
 import org.tfyh.data.Config
 import org.tfyh.data.DataBase
 import org.tfyh.data.Item
 import org.tfyh.data.Table
-import org.tfyh.kmp.design.Theme
+import org.tfyh.jfx.ui.ListItem
+import org.tfyh.jfx.ui.UIProviderIF
+import org.tfyh.jfx.ui.appLabel
+import java.io.ByteArrayInputStream
 import kotlin.collections.List
+import kotlin.collections.MutableList
+import kotlin.collections.MutableMap
+import kotlin.collections.emptyList
+import kotlin.collections.mutableListOf
+import kotlin.collections.mutableMapOf
+import kotlin.collections.set
+import kotlin.collections.sortedWith
+import kotlin.collections.toList
+import kotlin.collections.toMutableList
+import kotlin.collections.toTypedArray
 import kotlin.text.isNotEmpty
 import kotlin.text.split
 import kotlin.text.toInt
@@ -42,8 +35,6 @@ import kotlin.text.toInt
  * Provide a list of data, e.g. the open trips.
  */
 class List(val item: Item): UIProviderIF, EventHandlerIF {
-
-    val viewModel = ListViewModel()
 
     private val optionsMap: MutableMap<String, String> = mutableMapOf()
     private val tableName = item.getChild("table")?.valueStr() ?: "_noTable_"
@@ -116,13 +107,17 @@ class List(val item: Item): UIProviderIF, EventHandlerIF {
         val listElements = mutableListOf<ListItem>()
         val groupBy = optionsMap["groupBy"] ?: ""
         var lastGroup = ""
+        val resProvider = ResProvider.getSingle()
+        val noneIcon =
+            Image(ByteArrayInputStream(resProvider.getDrawable("none")))
+
         for (element in sorted) {
             val elementUuid = if (tableName == "assets") element["uuid"] else element["asset_uuid"]
             val elementUid = element["uid"] ?: "?uid?"
             val group = element[groupBy] ?: ""
             if (group != lastGroup) {
                 listElements.add(
-                    ListItem("", Res.drawable.none, group, this.item, evenRow = true)
+                    ListItem("", noneIcon, group, this.item, evenRow = true)
                 )
                 lastGroup = group
             }
@@ -134,55 +129,21 @@ class List(val item: Item): UIProviderIF, EventHandlerIF {
         return listElements.toList()
     }
 
-    /**
-     * Compose the list
-     */
-    @Composable
-    override fun ComposeContent() {
-        val versionState by remember { mutableStateOf(viewModel.version) }
-        val version = versionState.collectAsState().value
-        if (version > 0)
-            Column {
-                Box (modifier = Modifier.fillMaxWidth()
-                    .background(Theme.colors.color_background_body)
-                    .padding(start = Theme.dimensions.smallSpacing * 2))
-                {
-                    AppLabel(item.label(), large = true,
-                        color = Theme.colors.color_text_h1_h3,
-                        textAlign = TextAlign.Center)
-                }
-                Column (
-                    modifier = Modifier.verticalScroll(rememberScrollState())
-                        .padding(start = Theme.dimensions.smallSpacing,
-                            end = Theme.dimensions.smallSpacing)
-                ) {
-                    val list = buildList()
-                    for (element in list)
-                        element.Compose()
-                }
-            }
-    }
-
     override fun handleEvent(event: EventHandlerIF.Event): Boolean {
         if (event.sourceItem.name() == tableName) {
-            Stage.logger.log(LoggerSeverity.INFO, "List.changed()",
-                "Notified $this.")
-            viewModel.show()
+            //TODO
         }
         return true
     }
 
-    companion object {
-        /**
-         * A view model triggering update twice per second for API status display
-         */
-        class ListViewModel: ViewModel() {
-            private val _version : MutableStateFlow<Int> = MutableStateFlow(1)
-            val version : StateFlow<Int> = _version
-
-            fun show() = _version.update { _version.value + 1 }
-            fun hide() = _version.update { 0 }
-        }
+    override fun build(): Region {
+        val listItems = mutableListOf<Region>()
+        val list = buildList()
+        for (element in list)
+            listItems.add(element.build())
+        val header = appLabel(item.label(), "h3")
+        val listView = VBox(header, ScrollPane(VBox(*listItems.toTypedArray())))
+        return listView
     }
 
 }

@@ -22,7 +22,6 @@
 package org.dilbo.app
 
 import javafx.scene.image.Image
-import javafx.scene.image.ImageView
 import org.tfyh.data.Config
 import org.tfyh.data.DataBase
 import org.tfyh.data.Parser
@@ -31,6 +30,7 @@ import org.tfyh.data.Table
 import org.tfyh.util.Language
 import org.tfyh.control.EventHandlerIF
 import org.tfyh.data.NoZoneDateTime
+import java.io.ByteArrayInputStream
 
 class AssetInfos {
 
@@ -53,7 +53,7 @@ class AssetInfos {
         var damaged: Boolean = false, // is set true, if unfixed damages of severity "NOTUSEABLE" exists with this asset
         var damagedUsable: Boolean = false, // is set true, if unfixed damages of any other severity exists with this asset
         var available: Boolean = false, // reflects baseStatus == "AVAILABLE" && !away && !booked && !damaged
-        var iconResource: ImageView = ImageView(Image(this.javaClass.getResourceAsStream("drawables/none.png"))),
+        var iconResource: Image = Image(ByteArrayInputStream(ResProvider.getSingle().getDrawable("none"))),
         var places: Int = -1 // collected from the first boat variant
     )
 
@@ -172,13 +172,13 @@ class AssetInfos {
                                 !assetInfo.booked && !assetInfo.damaged
                     assetInfo.iconResource =
                         if (assetInfo.damaged)
-                            ImageView(Image(this.javaClass.getResourceAsStream("drawables/boat_damaged.png")))
+                            Image(ByteArrayInputStream(ResProvider.getSingle().getDrawable("boat_damaged")))
                         else if (assetInfo.booked)
-                            ImageView(Image(this.javaClass.getResourceAsStream("drawables/boat_booked.png")))
+                            Image(ByteArrayInputStream(ResProvider.getSingle().getDrawable("boat_booked")))
                         else if (assetInfo.away)
-                            ImageView(Image(this.javaClass.getResourceAsStream("drawables/boat_onthewater.png")))
+                            Image(ByteArrayInputStream(ResProvider.getSingle().getDrawable("boat_onthewater")))
                         else
-                            ImageView(Image(this.javaClass.getResourceAsStream("drawables/boat_available.png")))
+                            Image(ByteArrayInputStream(ResProvider.getSingle().getDrawable("boat_available")))
                     val variantOptions = Parser.parse(
                         asset["variant_options"] ?: "",
                         ParserName.STRING_LIST, Language.CSV
