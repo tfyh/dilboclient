@@ -5,8 +5,9 @@ import org.tfyh.api.ApiHandler
 import org.tfyh.api.Transaction
 import org.tfyh.data.Item
 import org.tfyh.jfx.ui.UIProviderIF
+import org.tfyh.jfx.ui.ViewBuilder
 
-class Statistics(val item: Item): UIProviderIF {
+class Statistics(val item: Item, val dimensions: ViewBuilder.Dimensions): UIProviderIF {
 
     val viewModel = Model()
     private val optionsMap: MutableMap<String, String> = mutableMapOf()
@@ -32,7 +33,7 @@ class Statistics(val item: Item): UIProviderIF {
      */
     @Suppress("Unused")
     fun buildStatistics(resultMessage: String) {
-        viewModel.setStatistics( resultMessage)
+        viewModel.setStatistics(resultMessage)
     }
 
     override fun build(): Region {

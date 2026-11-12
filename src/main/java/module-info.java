@@ -4,7 +4,7 @@ module org.dilbo.client {
     requires kotlinx.coroutines.core;
 
     requires javafx.controls;
-    requires org.controlsfx.controls;
+//    requires org.controlsfx.controls;
 
     exports org.dilbo.client;
 }

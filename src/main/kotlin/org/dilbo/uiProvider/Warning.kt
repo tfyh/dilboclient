@@ -8,7 +8,7 @@ import org.tfyh.jfx.ui.appLabel
 class Warning(val message: String): UIProviderIF {
 
     override fun build(): Region {
-        return VBox(appLabel(message, "h3"))
+        return VBox(appLabel(message))
     }
 
 }

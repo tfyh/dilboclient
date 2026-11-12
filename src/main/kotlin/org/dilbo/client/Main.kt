@@ -18,11 +18,23 @@ import javafx.application.Application
 import javafx.scene.Scene
 import javafx.stage.Screen
 import javafx.stage.Stage
+import javafx.stage.StageStyle
+import org.dilbo.core.EventHandler
+import org.dilbo.core.UIProviderFactory
+import org.dilbo.storage.ResProvider
+import org.tfyh.api.ApiHandler
+import org.tfyh.jfx.design.AppFonts
+import org.tfyh.jfx.ui.Looper
+import org.tfyh.jfx.ui.ViewBuilder
 
 /**
  * The main entry class. Just an entry point for the application.
  */
 class Main : Application() {
+
+    val eventHandler = EventHandler.getSingleton()
+    val uiProviderFactory = UIProviderFactory()
+    val looper = Looper.getSingleton()
 
     companion object {
         const val LOOPER_PERIOD_MILLIS = 20L
@@ -33,17 +45,19 @@ class Main : Application() {
     }
 
     override fun start(primaryStage: Stage) {
-        val controller = Controller.getInstance()
-        val view = controller.getView()
-        primaryStage.setScene(Scene(view, windowWidth, windowHeight))
+        val viewBuilder = ViewBuilder.getInstance()
+        AppFonts.load(ResProvider.getSingleton(), ViewBuilder.fontZoom)
+        viewBuilder.init(eventHandler, uiProviderFactory, primaryStage, windowWidth.toInt(), windowHeight.toInt())
+        primaryStage.initStyle(StageStyle.UNDECORATED)
+        primaryStage.setScene(Scene(viewBuilder.build(), windowWidth, windowHeight))
         primaryStage.show()
-        controller.looper.start(LOOPER_PERIOD_MILLIS)
+        looper.start(LOOPER_PERIOD_MILLIS, eventHandler)
+        ApiHandler.getInstance().start()
     }
 
     override fun stop() {
+        looper.stop()
         super.stop()
-        val controller = Controller.getInstance()
-        controller.looper.stop()
     }
 
 

@@ -14,18 +14,25 @@
 
 package org.dilbo.client
 
+import io.ktor.client.*
 import javafx.application.Application
-import kotlinx.coroutines.*
-import org.dilbo.app.FormHandler
-import org.dilbo.app.LocalCache
-import org.dilbo.app.ResProvider
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ensureActive
+import kotlinx.coroutines.withContext
+import org.dilbo.core.EventHandler
+import org.dilbo.core.FormHandler
+import org.dilbo.core.ListConditions
+import org.dilbo.core.UIProviderFactory
+import org.dilbo.storage.LocalCache
+import org.dilbo.storage.ResProvider
 import org.tfyh.api.ApiHandler
 import org.tfyh.control.Logger
 import org.tfyh.control.LoggerSeverity
 import org.tfyh.data.Config
 import org.tfyh.data.DataBase
-import io.ktor.client.HttpClient
-import org.dilbo.app.UIProviderFactory
+import org.tfyh.data.Formatter
+import org.tfyh.jfx.design.AppColours
 
 val logger = Logger("app")
 var urlCheck = -1
@@ -36,49 +43,65 @@ private val httpClient = HttpClient()
  */
 suspend fun main() {
     // load the configuration. Because this involves resource reading, it must be executed asynchronously.
-    ResProvider.getSingle().init()
     withContext(Dispatchers.Default) {
         val config = Config.getInstance()
         val localCache = LocalCache.getInstance()
+
+        // FOR TESTING PURPOSES ONLY
+        localCache.clear()
+        // FOR TESTING PURPOSES ONLY
+
         config.setLocalCache(localCache)
         config.localFilePath = localCache.init()
+
         try {
             // load the configuration
             if (!config.ready())
-                config.load(ResProvider.getSingle())
-            logger.log(LoggerSeverity.INFO, "App()", "getting Config")
+                config.load(ResProvider.getSingleton())
+            logger.log(LoggerSeverity.INFO, "App()", "Configuration loaded")
+            Formatter.useSeconds = false
 
             // initialise the resource provider and UI provider factory
-            ResProvider.getSingle().init()
+            ResProvider.getSingleton().apply { init() }
+            AppColours.load() // from configuration
+            logger.log(LoggerSeverity.INFO, "App()", "Resources loaded")
             UIProviderFactory.setHttpClient(httpClient)
 
             // instantiate the database singleton
-            val database = DataBase.getInstance()
-            database.setLocalCache(localCache)
-            database.load(true)
+            DataBase.getInstance().apply {
+                setLocalCache(localCache)  // the storage location
+                setListConditionsIF(ListConditions)  // the object to get list parameters from
+                setEventListener(EventHandler.getSingleton())  // to handle data change events
+                load(true)  // read the locally available data
+            }
+            logger.log(LoggerSeverity.INFO, "App()", "Database loaded")
+
+            // initialise event management
+            EventHandler.getSingleton()
 
             // instantiate the API handler singleton and add the event handler
-            val apiHandler = ApiHandler.getInstance()
-            apiHandler.setEventHandler(EventHandler.getSingleton())
-            apiHandler.setLocalCache(localCache)
+            val apiHandler = ApiHandler.getInstance().apply {
+                setLocalCache(localCache)
+            }
+            logger.log(LoggerSeverity.INFO, "App()", "API initialised")
 
             // instantiate the form handler singleton and add the event handler
-            val formHandler = FormHandler.getInstance()
+            FormHandler.getInstance()
 
             // try to connect on stored session credentials
-            if (!apiHandler.connected) {
+            if (!apiHandler.isConnected()) {
                 apiHandler.setHttpClient(httpClient)
-                urlCheck = ApiHandler.getInstance().connect()
+                urlCheck = apiHandler.connect()
             } else
-                urlCheck = apiHandler.connectionStatus
-            // if failed: revert to manual login
-            if (!apiHandler.connected)
-                formHandler.loginDo()
+                urlCheck = apiHandler.getConnectionStatus()
 
             Application.launch(Main::class.java)
 
         } catch (e: Exception) {
-            println(e.message)
+            if (e is CancellationException) {
+                ensureActive()
+            }
+            e.printStackTrace()
         }
     }
 }
