@@ -54,8 +54,6 @@ dependencies {
     implementation("io.ktor:ktor-client-core:$ktorVersion")
     implementation("io.ktor:ktor-client-okhttp:$ktorVersion")
 
-    implementation("org.controlsfx:controlsfx:$controlsfxVersion")
-
     implementation("org.openjfx:javafx-base:$javafxVersion")
     implementation("org.openjfx:javafx-controls:$javafxVersion")
     implementation("org.openjfx:javafx-graphics:$javafxVersion")
