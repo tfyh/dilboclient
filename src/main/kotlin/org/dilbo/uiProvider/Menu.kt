@@ -14,7 +14,7 @@ import javafx.scene.layout.BorderStrokeStyle
 import javafx.scene.layout.BorderWidths
 import javafx.scene.layout.CornerRadii
 import javafx.scene.layout.HBox
-import javafx.scene.layout.Region
+import javafx.scene.layout.Pane
 import javafx.scene.layout.StackPane
 import javafx.scene.layout.VBox
 import org.dilbo.core.EventHandler
@@ -45,7 +45,7 @@ class Menu(val item: Item, val dimensions: ViewBuilder.Dimensions, val resProvid
     private var uid = ""
 
     init {
-        EventHandler.getSingleton().registerHandler(this, EventType.API_EVENT)
+        ViewBuilder.getInstance().registerHandler(this, EventType.API_EVENT)
     }
     // MENU ITEMS
     // ==========
@@ -54,7 +54,7 @@ class Menu(val item: Item, val dimensions: ViewBuilder.Dimensions, val resProvid
         private val resProvider: ResProviderIF
     ) {
         val icon: Image =
-            Image(ByteArrayInputStream(resProvider.getBytes("drawable/menu_" + item.name() + ".png")))
+            Image(ByteArrayInputStream(resProvider.getDrawable("menu_" + item.name() + ".png")))
         val permissions = item.nodeReadPermissions()
         fun isAllowedMenuItem(): Boolean = User.getInstance().isAllowedItem(permissions)
         fun isHiddenMenuItem(): Boolean = User.getInstance().isHiddenItem(permissions)
@@ -70,9 +70,8 @@ class Menu(val item: Item, val dimensions: ViewBuilder.Dimensions, val resProvid
     fun setSelectedOption(selectedOption: String) {
         this.selectedOption = selectedOption
     }
-    override fun build(): Region {
+    override fun build(): Pane {
         val user = User.getInstance()
-
         menuOptions.clear()
         for (menuItem in this@Menu.item.getChildren()) {
             val permissionsString: String = menuItem.nodeReadPermissions()
@@ -95,31 +94,39 @@ class Menu(val item: Item, val dimensions: ViewBuilder.Dimensions, val resProvid
                 }
                 val tooltip = Tooltip(menuOption.item.label() + " [" + menuOption.hashCode() + "]")
                 Tooltip.install(imageView, tooltip)
-                if (showOption) menuIcons.add(StackPane(imageView).apply {
-                    border = menuBorder
-                    background = menuBackground
-                    if (menuOptionName != selectedOption) {
-                        cursor = Cursor.HAND
-                        setOnMouseEntered { background = menuBackgroundHover }
-                        setOnMouseExited { background = menuBackground }
-                        setOnMouseClicked {
-                            Looper.getSingleton().append(
-                                EventHandlerIF.Event(
-                                    EventType.MENU_EVENT,
-                                    menuOption.item.name(), uid, menuOption.item
+                if (showOption) {
+                    val menuIcon = StackPane(imageView).apply {
+                        border = menuBorder
+                        background = menuBackground
+                        if (menuOptionName != selectedOption) {
+                            cursor = Cursor.HAND
+                            setOnMouseEntered { background = menuBackgroundHover }
+                            setOnMouseExited { background = menuBackground }
+                            setOnMouseClicked {
+                                Looper.getSingleton().append(
+                                    EventHandlerIF.Event(
+                                        EventType.MENU_EVENT,
+                                        menuOption.item.name(), uid, menuOption.item
+                                    )
                                 )
-                            )
+                            }
+                        } else {
+                            background = menuBackgroundHover
                         }
-                    } else {
-                        background = menuBackgroundHover
                     }
-                })
+                    menuIcons.add(menuIcon)
+                }
             }
         }
         val menuPane = if (horizontal) HBox(*menuIcons.toTypedArray()).apply { alignment = Pos.CENTER }
                        else VBox(*menuIcons.toTypedArray()).apply { alignment = Pos.CENTER }
+        isDisplayedOn = menuPane
         return menuPane.apply { background = Sector.sectorBackground }
     }
+
+    override var isDisplayedOn: Pane? = null
+        get() = field // Access the backing field
+        set(value) { field = value } // Modify the backing field
 
     override fun handleEvent(event: EventHandlerIF.Event): Boolean {
         if ((event.type == EventType.API_EVENT) &&

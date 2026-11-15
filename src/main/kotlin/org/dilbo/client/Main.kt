@@ -32,6 +32,7 @@ import org.tfyh.jfx.ui.ViewBuilder
  */
 class Main : Application() {
 
+    private lateinit var primaryStage: Stage
     val eventHandler = EventHandler.getSingleton()
     val uiProviderFactory = UIProviderFactory()
     val looper = Looper.getSingleton()
@@ -45,14 +46,19 @@ class Main : Application() {
     }
 
     override fun start(primaryStage: Stage) {
-        val viewBuilder = ViewBuilder.getInstance()
+        this.primaryStage = primaryStage
         AppFonts.load(ResProvider.getSingleton(), ViewBuilder.fontZoom)
+        looper.start(LOOPER_PERIOD_MILLIS, eventHandler)
+        ApiHandler.getInstance().start()
+        startUI()
+    }
+
+    fun startUI() {
+        val viewBuilder = ViewBuilder.getInstance()
         viewBuilder.init(eventHandler, uiProviderFactory, primaryStage, windowWidth.toInt(), windowHeight.toInt())
         primaryStage.initStyle(StageStyle.UNDECORATED)
         primaryStage.setScene(Scene(viewBuilder.build(), windowWidth, windowHeight))
         primaryStage.show()
-        looper.start(LOOPER_PERIOD_MILLIS, eventHandler)
-        ApiHandler.getInstance().start()
     }
 
     override fun stop() {

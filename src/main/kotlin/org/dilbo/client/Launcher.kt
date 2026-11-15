@@ -58,13 +58,13 @@ suspend fun main() {
             // load the configuration
             if (!config.ready())
                 config.load(ResProvider.getSingleton())
-            logger.log(LoggerSeverity.INFO, "App()", "Configuration loaded")
             Formatter.useSeconds = false
 
             // initialise the resource provider and UI provider factory
-            ResProvider.getSingleton().apply { init() }
+            val resProvider = ResProvider.getSingleton()
+            val loaded = resProvider.initDrawablesAndFonts()
+            logger.log(LoggerSeverity.DEBUG, "Launcher.kt", "Resources loaded.")
             AppColours.load() // from configuration
-            logger.log(LoggerSeverity.INFO, "App()", "Resources loaded")
             UIProviderFactory.setHttpClient(httpClient)
 
             // instantiate the database singleton
@@ -74,7 +74,6 @@ suspend fun main() {
                 setEventListener(EventHandler.getSingleton())  // to handle data change events
                 load(true)  // read the locally available data
             }
-            logger.log(LoggerSeverity.INFO, "App()", "Database loaded")
 
             // initialise event management
             EventHandler.getSingleton()

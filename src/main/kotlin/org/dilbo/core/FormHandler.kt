@@ -133,7 +133,7 @@ class FormHandler private constructor(): EventHandlerIF {
     /**
      * Compose the left hand context menu for the form.
      */
-    private fun menuItemSet(menuOptions: Array<String>, selectedOption: String): Region {
+    private fun menuItemSet(menuOptions: Array<String>, selectedOption: String): Pane {
         val modalDimensions = ViewBuilder.getInstance().getModalMaxDimensions(ViewBuilder.modalSizing)
         val menu = Menu(Config.getInstance().getItem(".access.menus.client"),
             ViewBuilder.Dimensions((modalDimensions.widthPx * 0.1).toInt(),modalDimensions.heightPx),
@@ -141,7 +141,7 @@ class FormHandler private constructor(): EventHandlerIF {
         menu.limitTo(menuOptions)
         menu.setHorizontal(false)
         menu.setUid(eventUid)
-        EventHandler.getSingleton().registerHandler(menu, EventHandlerIF.EventType.MENU_EVENT)
+        ViewBuilder.getInstance().registerHandler(menu, EventHandlerIF.EventType.MENU_EVENT)
         menu.setSelectedOption(selectedOption)
         return menu.build()
     }
@@ -151,10 +151,12 @@ class FormHandler private constructor(): EventHandlerIF {
      * selected menu option which will be deactivated.
      */
     fun formAndMenu(menuOptions: Array<String>): Pane {
-        return HBox(AppDimensions.regularSpacing,
+        val formPane = HBox(AppDimensions.regularSpacing,
             menuItemSet(menuOptions, menuOptions.first()), form.build()).apply {
             prefWidth = form.widthPx * 1.1
         }
+        isDisplayedOn = formPane
+        return formPane
     }
 
     // ==========
@@ -385,9 +387,6 @@ class FormHandler private constructor(): EventHandlerIF {
         form.presetWithStrings(presets)
         // show form
         val modalContent =
-            if (eventTableName == "assets")
-                formAndMenu(arrayOf("sendMessage", "enterTrip", "reportDamage", "requestReservation"))
-            else
                 formAndMenu(arrayOf("sendMessage"))
         ViewBuilder.getInstance().showModal(modalContent)
     }
@@ -705,6 +704,10 @@ class FormHandler private constructor(): EventHandlerIF {
             DataBase.getInstance().updateTable("logbook", microTimeNow - 3600.0)
         }
     }
+
+    override var isDisplayedOn: Pane? = null
+        get() = field // Access the backing field
+        set(value) { field = value } // Modify the backing field
 
     override fun handleEvent(event: EventHandlerIF.Event): Boolean {
         if (event.type == EventHandlerIF.EventType.MENU_EVENT)

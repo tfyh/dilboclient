@@ -3,6 +3,7 @@ package org.dilbo.uiProvider
 import javafx.application.Platform
 import javafx.scene.control.ScrollPane
 import javafx.scene.image.Image
+import javafx.scene.layout.Pane
 import javafx.scene.layout.Region
 import javafx.scene.layout.VBox
 import org.dilbo.core.AssetInfos
@@ -67,8 +68,8 @@ class List(val item: Item, val dimensions: ViewBuilder.Dimensions): UIProviderIF
         for (option in options)
             if (option.isNotEmpty())
                 optionsMap[option.split("=")[0]] = option.split("=")[1]
-        EventHandler.getSingleton().registerHandler(this, EventHandlerIF.EventType.DATA_EVENT)
-        EventHandler.getSingleton().registerHandler(this, EventHandlerIF.EventType.UI_EVENT)
+        ViewBuilder.getInstance().registerHandler(this, EventHandlerIF.EventType.DATA_EVENT)
+        ViewBuilder.getInstance().registerHandler(this, EventHandlerIF.EventType.UI_EVENT)
     }
 
     override fun toString() = "List " + item.name() + "@" + item.path()
@@ -134,7 +135,7 @@ class List(val item: Item, val dimensions: ViewBuilder.Dimensions): UIProviderIF
         var lastGroup = ""
         val resProvider = ResProvider.getSingleton()
         val noneIcon =
-            Image(ByteArrayInputStream(resProvider.getBytes("none")))
+            Image(ByteArrayInputStream(resProvider.getDrawable("none.png")))
 
         var even = false
         var collapsedGroup = false
@@ -161,6 +162,10 @@ class List(val item: Item, val dimensions: ViewBuilder.Dimensions): UIProviderIF
         return listElements.toList()
     }
 
+    override var isDisplayedOn: Pane? = null
+        get() = field // Access the backing field
+        set(value) { field = value } // Modify the backing field
+
     override fun handleEvent(event: EventHandlerIF.Event): Boolean {
         if (event.type == EventHandlerIF.EventType.DATA_EVENT) {
             if ((event.sourceItem.name() == tableName) || (event.name == "assetInfosRebuilt")) {
@@ -182,7 +187,7 @@ class List(val item: Item, val dimensions: ViewBuilder.Dimensions): UIProviderIF
     }
 
     fun buildPane() {
-        val listItems = mutableListOf<Region>()
+        val listItems = mutableListOf<Pane>()
         val list = buildList()
         for (element in list)
             listItems.add(element.build().apply {
@@ -192,8 +197,9 @@ class List(val item: Item, val dimensions: ViewBuilder.Dimensions): UIProviderIF
         listPane.children.addAll(*listItems.toTypedArray())
     }
 
-    override fun build(): Region {
+    override fun build(): Pane {
         buildPane()
+        isDisplayedOn = listPane
         return listView.apply {
             prefWidth = dimensions.widthPx.toDouble()
             border = AppColours.borderNone()

@@ -1,6 +1,6 @@
 package org.dilbo.uiProvider
 
-import javafx.scene.layout.Region
+import javafx.scene.layout.Pane
 import org.tfyh.api.ApiHandler
 import org.tfyh.api.Transaction
 import org.tfyh.data.Item
@@ -36,7 +36,7 @@ class Statistics(val item: Item, val dimensions: ViewBuilder.Dimensions): UIProv
         viewModel.setStatistics(resultMessage)
     }
 
-    override fun build(): Region {
+    override fun build(): Pane {
         TODO("Not yet implemented")
     }
 
@@ -45,7 +45,7 @@ class Statistics(val item: Item, val dimensions: ViewBuilder.Dimensions): UIProv
         /**
          * A view model triggering update twice per second for API status display
          */
-        class Model() {
+        class Model {
             fun setStatistics(newCsv: String) {
                 // TODO
             }

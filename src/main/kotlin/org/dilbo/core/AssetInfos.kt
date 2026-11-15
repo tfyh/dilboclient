@@ -54,7 +54,7 @@ class AssetInfos {
         var damaged: Boolean = false, // is set true, if unfixed damages of severity "NOTUSEABLE" exists with this asset
         var damagedUsable: Boolean = false, // is set true, if unfixed damages of any other severity exists with this asset
         var available: Boolean = false, // reflects baseStatus == "AVAILABLE" && !away && !booked && !damaged
-        var iconResource: Image = Image(ByteArrayInputStream(ResProvider.getSingleton().getBytes("none"))),
+        var iconResource: Image = Image(ByteArrayInputStream(ResProvider.getSingleton().getDrawable("none.png"))),
         var places: Int = -1 // collected from the first boat variant
     )
 
@@ -173,13 +173,13 @@ class AssetInfos {
                                 !assetInfo.booked && !assetInfo.damaged
                     assetInfo.iconResource =
                         if (assetInfo.damaged)
-                            Image(ByteArrayInputStream(ResProvider.getSingleton().getBytes("drawable/boat_damaged.png")))
+                            Image(ByteArrayInputStream(ResProvider.getSingleton().getDrawable("boat_damaged.png")))
                         else if (assetInfo.booked)
-                            Image(ByteArrayInputStream(ResProvider.getSingleton().getBytes("drawable/boat_booked.png")))
+                            Image(ByteArrayInputStream(ResProvider.getSingleton().getDrawable("boat_booked.png")))
                         else if (assetInfo.away)
-                            Image(ByteArrayInputStream(ResProvider.getSingleton().getBytes("drawable/boat_onthewater.png")))
+                            Image(ByteArrayInputStream(ResProvider.getSingleton().getDrawable("boat_onthewater.png")))
                         else
-                            Image(ByteArrayInputStream(ResProvider.getSingleton().getBytes("drawable/boat_available.png")))
+                            Image(ByteArrayInputStream(ResProvider.getSingleton().getDrawable("boat_available.png")))
                     val variantOptions = Parser.parse(
                         asset["variant_options"] ?: "",
                         ParserName.STRING_LIST, Language.CSV

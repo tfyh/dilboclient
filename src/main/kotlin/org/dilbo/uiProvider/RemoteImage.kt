@@ -7,15 +7,13 @@ import io.ktor.client.statement.*
 import javafx.geometry.Pos
 import javafx.scene.image.Image
 import javafx.scene.image.ImageView
-import javafx.scene.layout.HBox
-import javafx.scene.layout.Region
+import javafx.scene.layout.Pane
 import javafx.scene.layout.StackPane
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.dilbo.storage.ResProvider
 import org.tfyh.api.ApiHandler
-import org.tfyh.api.ApiStatusEnum
 import org.tfyh.data.Item
 import org.tfyh.jfx.design.AppDimensions
 import org.tfyh.jfx.ui.UIProviderIF
@@ -30,10 +28,10 @@ class RemoteImage(val item: Item, val httpClient: HttpClient?, val dimensions: V
     // use the actual server URL, not the configured one. Maybe a manually entered URL on login.
     val serverUrl = ApiHandler.getInstance().getUrl()
 
-    override fun build(): Region {
+    override fun build(): Pane {
         val imageView = ImageView()
         val resProvider = ResProvider.getSingleton()
-        imageView.image = Image(ByteArrayInputStream(resProvider.getBytes("none")))
+        imageView.image = Image(ByteArrayInputStream(resProvider.getDrawable("none.png")))
 
         imageView.apply {
             if ((image.width / dimensions.widthPx) < (image.height / dimensions.heightPx))

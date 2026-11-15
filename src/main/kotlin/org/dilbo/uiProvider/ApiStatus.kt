@@ -4,7 +4,7 @@ import javafx.beans.property.SimpleIntegerProperty
 import javafx.geometry.Pos
 import javafx.scene.image.Image
 import javafx.scene.image.ImageView
-import javafx.scene.layout.Region
+import javafx.scene.layout.Pane
 import javafx.scene.layout.StackPane
 import javafx.scene.layout.VBox
 import org.dilbo.storage.ResProvider
@@ -36,7 +36,7 @@ class ApiStatus(val item: Item, val dimensions: ViewBuilder.Dimensions): UIProvi
     /**
      * Provide an API status icon. Will be updated all 0.5 seconds. Clicking on the item will reload all data.
      */
-    override fun build(): Region {
+    override fun build(): Pane {
         val hw = (if (dimensions.isPortrait()) dimensions.widthPx else dimensions.heightPx) - 8 * AppDimensions.smallSpacing
 
         model.timer.start(2000L)
@@ -81,13 +81,13 @@ class ApiStatus(val item: Item, val dimensions: ViewBuilder.Dimensions): UIProvi
 
         private fun getApiStatusIcon(apiStatus: ApiStatusEnum, resProvider: ResProviderIF): Image {
             return when (apiStatus) {
-                ApiStatusEnum.IDLE -> Image(ByteArrayInputStream(resProvider.getBytes("drawable/connection_idle.png")))
-                ApiStatusEnum.BUSY -> Image(ByteArrayInputStream(resProvider.getBytes("drawable/connection_busy.png")))
-                ApiStatusEnum.ALERT -> Image(ByteArrayInputStream(resProvider.getBytes("drawable/connection_alert.png")))
+                ApiStatusEnum.IDLE -> Image(ByteArrayInputStream(resProvider.getDrawable("connection_idle.png")))
+                ApiStatusEnum.BUSY -> Image(ByteArrayInputStream(resProvider.getDrawable("connection_busy.png")))
+                ApiStatusEnum.ALERT -> Image(ByteArrayInputStream(resProvider.getDrawable("connection_alert.png")))
             }
         }
 
-        fun buildAbout(): Region {
+        fun buildAbout(): Pane {
             val apiHandler = ApiHandler.getInstance()
             val apiStatus = apiHandler.getApiStatus()
             val apiAbout = "URL: " +  apiHandler.getUrl() + "\n" +

@@ -3,7 +3,7 @@ package org.dilbo.uiProvider
 import javafx.beans.property.SimpleStringProperty
 import javafx.geometry.Pos
 import javafx.scene.control.Label
-import javafx.scene.layout.Region
+import javafx.scene.layout.Pane
 import javafx.scene.layout.StackPane
 import org.dilbo.core.EventHandler
 import org.tfyh.control.EventHandlerIF
@@ -23,7 +23,7 @@ class Clock(val item: Item, val dimensions: ViewBuilder.Dimensions): UIProviderI
 
     val model = Model()
 
-    override fun build(): Region {
+    override fun build(): Pane {
         model.timer.start(500L)
         val label = Label()
         label.font = AppFonts.h3
@@ -39,9 +39,14 @@ class Clock(val item: Item, val dimensions: ViewBuilder.Dimensions): UIProviderI
                         "dilboAbout", sourceItem = item))
             }
         }
-        EventHandler.getSingleton().registerHandler(this, EventHandlerIF.EventType.SYSTEM_EVENT)
+        ViewBuilder.getInstance().registerHandler(this, EventHandlerIF.EventType.SYSTEM_EVENT)
+        isDisplayedOn = stackPane
         return stackPane
     }
+
+    override var isDisplayedOn: Pane? = null
+        get() = field // Access the backing field
+        set(value) { field = value } // Modify the backing field
 
     override fun handleEvent(event: EventHandlerIF.Event): Boolean {
         if ((event.type == EventHandlerIF.EventType.SYSTEM_EVENT) &&

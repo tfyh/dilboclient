@@ -34,6 +34,7 @@
       <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-graphics/21.0.12/64680326da4b6c079662a514890da28879114cd4/javafx-graphics-21.0.12.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-graphics/21.0.12/3794a889559854eaa13fa3e98d489b5df2448fbd/javafx-graphics-21.0.12-linux.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/2.0.18/78a9e7a37cd6360e0b818e86341b24123d28d4df/slf4j-api-2.0.18.jar" path-in-jar="/" />
+      <element id="module-source" name="client.main" />
     </root>
   </artifact>
 </component>

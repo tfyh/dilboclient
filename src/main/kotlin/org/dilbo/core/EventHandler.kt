@@ -21,11 +21,14 @@
 
 package org.dilbo.core
 
+import javafx.scene.layout.Pane
 import org.dilbo.storage.ResProvider
 import org.dilbo.uiProvider.ApiStatus
 import org.dilbo.uiProvider.DilboAbout
 import org.tfyh.control.EventHandlerIF
 import org.tfyh.control.EventHandlerIF.EventType
+import org.tfyh.control.Logger
+import org.tfyh.control.LoggerSeverity
 import org.tfyh.data.DataBase
 import org.tfyh.data.Indices
 import org.tfyh.jfx.ui.ViewBuilder
@@ -36,7 +39,7 @@ class EventHandler : EventHandlerIF {
 
     // The UI events called. Used for go back
     private val calledEvents: MutableMap<EventType, MutableList<EventHandlerIF.Event>> = mutableMapOf()
-    private val registeredHandlers: MutableMap<EventHandlerIF, MutableList<EventType>> = mutableMapOf()
+    private val logger = Logger("EventHandler")
 
     companion object {
         private const val MAX_CALLED_EVENTS_IN_QUEUE = 100
@@ -65,12 +68,6 @@ class EventHandler : EventHandlerIF {
             }
         }
         return true
-    }
-
-    fun registerHandler(eventHandler: EventHandlerIF, eventType: EventType) {
-        val registration = registeredHandlers[eventHandler] ?: mutableListOf()
-        registration.add(eventType)
-        registeredHandlers[eventHandler] = registration
     }
 
     /**
@@ -122,6 +119,10 @@ class EventHandler : EventHandlerIF {
 
     }
 
+    override var isDisplayedOn: Pane? = null
+        get() = field // Access the backing field
+        set(value) { field = value } // Modify the backing field
+
     /**
      * Handle all events coming in
      */
@@ -135,13 +136,10 @@ class EventHandler : EventHandlerIF {
         if (calledEvents[event.type] == null)
             calledEvents[event.type] = calledEventsOfType
         if (event.type != EventType.SYSTEM_EVENT)
-            println("EventHandler.handleEvent() -> $event")
+            logger.log(LoggerSeverity.DEBUG, "EventHandler.handleEvent()", event.toString())
 
         // propagate the event to all registered handlers
-        var isHandled = false
-        for (registeredHandler in registeredHandlers.keys)
-            if (registeredHandlers[registeredHandler]?.contains(event.type) ?: false)
-                isHandled = (registeredHandler.handleEvent(event) or isHandled)
+        val isHandled = ViewBuilder.getInstance().handleEvent(event)
 
         // now apply the standard procedures
         when (event.type) {

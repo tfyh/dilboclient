@@ -2,58 +2,90 @@ package org.dilbo.storage
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.tfyh.control.LoggerSeverity
+import org.tfyh.data.Config
 import org.tfyh.util.ResProviderIF
-import kotlin.collections.set
 
-class ResProvider private constructor(override val directories: List<String>): ResProviderIF {
+/**
+ * Provides access to the jar-bundled resources. Because this class is located at org/dilbo/storage within the java
+ * archive, all resource files will also end up there. Make sure the jar includes the sources.
+ */
+class ResProvider private constructor(): ResProviderIF {
 
     companion object {
-        private val resDirectories: List<String> = listOf("css", "drawable", "files", "font")
-        val instance = ResProvider(resDirectories)
+        val instance = ResProvider()
         fun getSingleton() = instance
+
+        val resourceFileList = mutableMapOf(
+            // Because there is no way to list files in the jar archives directory, the list has to
+            // be provided here. Make sure it is the complete list.
+            "drawables" to listOf("app_logo.png",
+                "boat_available.png",
+                "boat_booked.png",
+                "boat_damaged.png",
+                "boat_onthewater.png",
+                "clubLogo.png",
+                "connection_alert.png",
+                "connection_busy.png",
+                "connection_idle.png",
+                "menu_cancelTrip.png",
+                "menu_displayList.png",
+                "menu_displayRanking.png",
+                "menu_editPreferences.png",
+                "menu_editTrip.png",
+                "menu_endTrip.png",
+                "menu_enterTrip.png",
+                "menu_find.png",
+                "menu_reportDamage.png",
+                "menu_requestReservation.png",
+                "menu_sendMessage.png",
+                "none.png"),
+            "fonts" to listOf("prompt_bold.ttf",
+                "prompt_bold_italic.ttf",
+                "prompt_italic.ttf",
+                "prompt_medium.ttf")
+        )
+
     }
 
-    val resources = mutableMapOf<String, ByteArray>()
+    val drawables = mutableMapOf<String, ByteArray>()
+    val fonts = mutableMapOf<String, ByteArray>()
 
     override suspend fun readBytes(path: String): ByteArray {
-        val resourceAsStream = this.javaClass.getResourceAsStream(path) ?: return byteArrayOf()
+        val resourceAsStream = this.javaClass.getResourceAsStream(path)
+        if (resourceAsStream == null) {
+            Config.getInstance().logger.log(LoggerSeverity.WARNING,"ResourceProvider.readBytes()",
+                "Resource not found: $path")
+            return byteArrayOf()
+        }
         return withContext(Dispatchers.IO) {
-            resourceAsStream.readAllBytes() ?: byteArrayOf()
+            resourceAsStream.readAllBytes()
         }
     }
 
-    suspend fun readResourceDir(path: String) {
-        val resourceAsStream = this.javaClass.getResourceAsStream(path)
-        if (resourceAsStream != null) {
-            withContext(Dispatchers.IO) {
-                resources[path] = resourceAsStream.readAllBytes()
-                val resourceNames = (resources[path]?.toString(Charsets.UTF_8) ?: "").split("\n")
-                // if the resource was a String, all lines of that string will be tried to be read
-                // therefore filter criteria are applied
-                val first = resourceNames[0]
-                if ((first.length > 1) && // configuration file names must be longer than 1 character
-                    (first.indexOf(";") < 0) && // typical for csv files
-                    (first.indexOf("/") < 0) && // comment lines
-                    (first.indexOf("#") < 0) && // comment lines
-                    (first.indexOf(" ") < 0)) // configuration file names must not contain spaces
-                    resourceNames.forEach { name -> if (name.isNotEmpty()) readResourceDir("$path/$name") }
-
+    override suspend fun initDrawablesAndFonts() {
+        val directories = mutableListOf("drawables", "fonts")
+        for (resDirectory in directories) {
+            val fileList = resourceFileList[resDirectory]
+            if (fileList != null) {
+                for (file in fileList) {
+                    if (file.isNotEmpty()) {
+                        if (resDirectory == "drawables")
+                            drawables[file] = readBytes("$resDirectory/$file")
+                        else
+                            fonts[file] = readBytes("$resDirectory/$file")
+                    }
+                }
             }
         }
     }
 
-    /**
-     * Initialise the resources of all types.
-     */
-    override suspend fun init() {
-        directories.forEach { readResourceDir(it) }
+    override fun getDrawable(fileName: String): ByteArray {
+        return drawables[fileName] ?: byteArrayOf()
     }
 
-    override fun getBytes(path: String): ByteArray {
-        return resources[path] ?: byteArrayOf()
+    override fun getFont(fileName: String): ByteArray {
+        return fonts[fileName] ?: byteArrayOf()
     }
 
-    override fun getString(path: String): String {
-        return resources[path]?.toString(Charsets.UTF_8) ?: ""
-    }
 }
