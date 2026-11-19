@@ -1,10 +1,23 @@
+/**
+ * dilbo - digital logbook for Rowing and Canoeing
+ * https://www.dilbo.org
+ * Copyright:  2023-2025  Martin Glade
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License. You may obtain a copy of the License at
+ * https://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing permissions and limitations under
+ * the License.
+ */
+
 package org.dilbo.uiProvider
 
 import javafx.application.Platform
 import javafx.scene.control.ScrollPane
 import javafx.scene.image.Image
 import javafx.scene.layout.Pane
-import javafx.scene.layout.Region
 import javafx.scene.layout.VBox
 import org.dilbo.core.AssetInfos
 import org.dilbo.core.EventHandler
@@ -46,7 +59,7 @@ class List(val item: Item, val dimensions: ViewBuilder.Dimensions): UIProviderIF
 
     private val optionsMap: MutableMap<String, String> = mutableMapOf()
     private val tableName = item.getChild("table")?.valueStr() ?: "_noTable_"
-    private val header = appLabel(item.label(), AppFonts.h2)
+    private val header = appLabel(item.label(), item, AppFonts.h2)
     private val collapsed = mutableListOf<String>()
 
     private val listPane = VBox().apply {
@@ -88,7 +101,8 @@ class List(val item: Item, val dimensions: ViewBuilder.Dimensions): UIProviderIF
         val selected = dbc.selectByMatch(tableName, optionsMap)
 
         // apply the asset status filter
-        val statusFilter = optionsMap["asset_status"] ?: ""
+        val statusFilter = optionsMap["asset_status"] ?: // for the available/damaged boats list
+                    (if (optionsMap["end"] == "") "onthewater" else "") // for the open trips list
         val filtered: MutableList<MutableMap<String, String>> =
             if (statusFilter.isNotEmpty()) {
                 val buildIt = mutableListOf<MutableMap<String, String>>()
@@ -145,7 +159,8 @@ class List(val item: Item, val dimensions: ViewBuilder.Dimensions): UIProviderIF
             val group = element[groupBy] ?: ""
             if (group != lastGroup) {
                 listElements.add(
-                    ListItem(group, noneIcon, group, item, headerRow = true, evenRow = false)
+                    ListItem(group, noneIcon, group, item, EventHandler.getSingleton(),
+                        headerRow = true, evenRow = false)
                 )
                 lastGroup = group
                 even = false
@@ -155,7 +170,7 @@ class List(val item: Item, val dimensions: ViewBuilder.Dimensions): UIProviderIF
             if (!collapsedGroup)
                 listElements.add(
                     ListItem(elementUid, icon, UIProviderFactory.fill(template, element), this.item,
-                        headerRow = false, evenRow = even)
+                        EventHandler.getSingleton(), headerRow = false, evenRow = even)
             )
             even = !even
         }
@@ -191,7 +206,7 @@ class List(val item: Item, val dimensions: ViewBuilder.Dimensions): UIProviderIF
         val list = buildList()
         for (element in list)
             listItems.add(element.build().apply {
-                prefWidth = dimensions.widthPx - 2 * AppDimensions.regularSpacing
+                prefWidth = dimensions.widthPx - 2 * AppDimensions.REGULAR_SPACING
             })
         listPane.children.removeAll { true }
         listPane.children.addAll(*listItems.toTypedArray())

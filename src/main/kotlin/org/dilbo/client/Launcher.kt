@@ -62,7 +62,7 @@ suspend fun main() {
 
             // initialise the resource provider and UI provider factory
             val resProvider = ResProvider.getSingleton()
-            val loaded = resProvider.initDrawablesAndFonts()
+            resProvider.initDrawablesAndFonts()
             logger.log(LoggerSeverity.DEBUG, "Launcher.kt", "Resources loaded.")
             AppColours.load() // from configuration
             UIProviderFactory.setHttpClient(httpClient)
@@ -84,8 +84,8 @@ suspend fun main() {
             }
             logger.log(LoggerSeverity.INFO, "App()", "API initialised")
 
-            // instantiate the form handler singleton and add the event handler
-            FormHandler.getInstance()
+            // instantiate the form handler singleton and add the http client for direct posts
+            FormHandler.getInstance().setHttpClient(httpClient)
 
             // try to connect on stored session credentials
             if (!apiHandler.isConnected()) {

@@ -21,20 +21,30 @@
 
 package org.dilbo.core
 
+import io.ktor.client.HttpClient
+import io.ktor.client.network.sockets.ConnectTimeoutException
+import io.ktor.client.network.sockets.SocketTimeoutException
+import io.ktor.client.plugins.HttpRequestTimeoutException
+import io.ktor.client.request.forms.submitForm
+import io.ktor.http.Parameters
+import io.ktor.http.parameters
 import javafx.application.Platform
 import javafx.scene.layout.HBox
 import javafx.scene.layout.Pane
-import javafx.scene.layout.Region
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.ensureActive
+import kotlinx.coroutines.runBlocking
 import org.dilbo.storage.ResProvider
 import org.dilbo.uiProvider.Menu
 import org.tfyh.api.ApiHandler
-import org.tfyh.api.Transaction
 import org.tfyh.control.EventHandlerIF
 import org.tfyh.control.Logger
+import org.tfyh.control.LoggerSeverity
 import org.tfyh.data.*
 import org.tfyh.jfx.design.AppDimensions
 import org.tfyh.jfx.ui.Form
-import org.tfyh.jfx.ui.FormFieldListener
+import org.tfyh.jfx.ui.FormField
 import org.tfyh.jfx.ui.Looper
 import org.tfyh.jfx.ui.ViewBuilder
 import org.tfyh.util.I18n
@@ -51,6 +61,9 @@ class FormHandler private constructor(): EventHandlerIF {
     private var recordItem: Item = config.invalidItem
     private var formDefinition: String = ""
     private lateinit var form : Form
+    private lateinit var httpClient: HttpClient
+    lateinit var postURL: String
+    lateinit var postParameters: Parameters
 
     private var eventUid: String = ""
     private var eventRecord: Record = Record(config.invalidItem)
@@ -62,20 +75,27 @@ class FormHandler private constructor(): EventHandlerIF {
         fun getModalDimensions() = ViewBuilder.getInstance().getModalMaxDimensions(ViewBuilder.modalSizing)
     }
 
+    fun setHttpClient(httpClient: HttpClient) { this.httpClient = httpClient }
+
     // ==============================
     // COMMON PRE- AND POSTPROCESSING
     // ==============================
     /**
      * Set the event context by retrieving the last event's uid from the event handler
      */
-    private fun setEventContext() {
-        eventUid = EventHandler.getSingleton().getLastUid(EventHandlerIF.EventType.MENU_EVENT)
+    private fun setEventContext(event: EventHandlerIF.Event) {
+        eventUid = event.uid
         val db = DataBase.getInstance()
-        val row = db.findByUid(eventUid)
-        val tableRecord = config.getItem(".tables.${db.tableOfFindBy()}")
-        eventRecord = Record(tableRecord)
-        eventRecord.parse(row, Language.CSV, false)
-        eventTableName = eventRecord.item.name()
+        val row = db.findByUid(event.uid)
+        if (row.isNotEmpty()) {
+            val tableRecord = config.getItem(".tables.${db.tableOfFindBy()}")
+            eventRecord = Record(tableRecord)
+            eventRecord.parse(row, Language.CSV, false)
+            eventTableName = eventRecord.item.name()
+        } else {
+            eventRecord = Record(config.invalidItem)
+            eventTableName = "[undefined]"
+        }
         lang = config.language()
     }
     /**
@@ -151,7 +171,7 @@ class FormHandler private constructor(): EventHandlerIF {
      * selected menu option which will be deactivated.
      */
     fun formAndMenu(menuOptions: Array<String>): Pane {
-        val formPane = HBox(AppDimensions.regularSpacing,
+        val formPane = HBox(AppDimensions.REGULAR_SPACING,
             menuItemSet(menuOptions, menuOptions.first()), form.build()).apply {
             prefWidth = form.widthPx * 1.1
         }
@@ -159,19 +179,86 @@ class FormHandler private constructor(): EventHandlerIF {
         return formPane
     }
 
+    // ============
+    // TEXT EDITING
+    // ============
+    fun suggestTextDo(event: EventHandlerIF.Event) {
+        // initialise form
+        recordItem = config.invalidItem
+        formDefinition = "R;~defaultText;\nR;suggestedTranslation;\nr;submit;"
+        val doneEvent = event.clone(name = "suggestTextDone")
+        form = Form(recordItem, formDefinition, ViewBuilder.Dimensions(500, 500))
+            { Looper.getSingleton().append(doneEvent) }
+        form.formHeadline = i18n.t("Please suggest a different translation")
+        form.init()
+        form.presetWithStrings(mapOf(
+            "defaultText" to I18n.getInstance().tDefault(event.sourceItem.labelToken() + "|"),
+            "suggestedTranslation" to I18n.getInstance().t(event.sourceItem.labelToken() + "|")), true)
+        // show form
+        ViewBuilder.getInstance().showEditDialogue(form.build().apply {
+            prefWidth = form.widthPx.toDouble()
+            maxWidth = form.widthPx.toDouble()
+            minWidth = form.widthPx.toDouble()
+        })
+    }
+
+    fun suggestTextDone(event: EventHandlerIF.Event) {
+        // first validate the form
+        if (form.validate(event.clone(name = "noRedoForTextSuggestion")) {}) {
+            hideForm()
+            val token = event.sourceItem.labelToken()
+            val language = config.language()
+            val suggested = form.inputFields["suggestedTranslation"]?.entered?.value ?: ""
+            println("Suggestion submitted (language $language) for $token|... is: $suggested")
+            postURL = "https://www.dilbo.org/translations/suggest_translation.php"
+            postParameters = parameters {
+                append("tk", token)
+                append("lg", language.toString())
+                append("tl", suggested)
+            }
+            val response = runBlocking {
+                try {
+                    httpClient.submitForm (url = postURL, formParameters = postParameters)
+                } catch (e: Exception) {
+                    if (e is CancellationException) {
+                        currentCoroutineContext().ensureActive()
+                    }
+                    if ((e is HttpRequestTimeoutException) ||
+                        (e is ConnectTimeoutException) ||
+                        (e is SocketTimeoutException)) {
+                        val msg = "$postURL: Connection failed, translation suggestion not saved."
+                        logger.log(LoggerSeverity.ERROR,"FormHandler.suggestTextDone()", msg)
+                        ViewBuilder.getInstance().showDialogue(msg)
+                    }
+                    null
+                }
+            }
+            if ((response != null) && (response.status.value >= 300)) {
+                val msg = "$postURL: Connection error $response, translation suggestion not saved."
+                logger.log(LoggerSeverity.ERROR, "FormHandler.suggestTextDone()", msg)
+                ViewBuilder.getInstance().showDialogue(msg)
+            } else {
+                val msg = "Translation suggestion saved."
+                logger.log(LoggerSeverity.INFO, "FormHandler.suggestTextDone()", msg)
+                ViewBuilder.getInstance().showDialogue(msg)
+            }
+        }
+    }
+
     // ==========
     // USER LOGIN
     // ==========
-    fun loginDo(event: EventHandlerIF.Event, firstTime: Boolean = true) {
+    fun loginDo(event: EventHandlerIF.Event, firstTime: Boolean = false, previousErrors: String = "") {
         if (firstTime) {
             // initialise form
             recordItem = config.invalidItem
             formDefinition = "R;*account;\nr;*password;\nR;submit;log in"
             if (!ApiHandler.getInstance().isConnected())
                 formDefinition = "R;url;\n$formDefinition"
-            event.name = "loginDone"
-            form = Form(recordItem, formDefinition, ViewBuilder.Dimensions(500, 500))
-                { Looper.getSingleton().append(event) }
+            val doneEvent = event.clone(name = event.name + "ne")   // for login: loginDo => loginDone
+            form = Form(recordItem, formDefinition,
+                ViewBuilder.Dimensions(500, 500))
+                    { Looper.getSingleton().append(doneEvent) }
             form.formHeadline = i18n.t("pWT7jB|Please log in")
             form.init()
             form.presetWithStrings(mapOf(
@@ -180,6 +267,9 @@ class FormHandler private constructor(): EventHandlerIF {
             ApiHandler.getInstance().setUrl("http://localhost")
         }
         // show form
+        if ((event.type == EventHandlerIF.EventType.API_EVENT) &&
+            previousErrors.isNotEmpty()) // previous errors were provided by the API, after successful form validation.
+            form.previousErrors = previousErrors
         ViewBuilder.getInstance().showModal(form.build().apply {
             prefWidth = form.widthPx.toDouble()
             maxWidth = form.widthPx.toDouble()
@@ -188,16 +278,13 @@ class FormHandler private constructor(): EventHandlerIF {
     }
 
     fun loginDone(event: EventHandlerIF.Event) {
-        // hide form
-        hideForm()
-        form.validate()
-        val apiHandler = ApiHandler.getInstance()
-        if (form.formErrors.isNotEmpty()) {
-            form.previousErrors = form.formErrors
-            form.formErrors = ""
-            event.name = "loginDo"
-            loginDo(event, false)
-        } else {
+        // first validate the form
+        if (form.validate(
+                event.clone(name = event.name.replace("Done", "Do")),
+                ::loginDo)) {
+            hideForm()
+            // validation was successful. Hide form
+            val apiHandler = ApiHandler.getInstance()
             val serverUrl =
                 if (apiHandler.isConnected()) apiHandler.getUrl()
                 else form.inputFields["url"]?.entered?.value ?: ""
@@ -205,27 +292,32 @@ class FormHandler private constructor(): EventHandlerIF {
                 try { form.inputFields["account"]?.entered?.value?.toInt() ?: -1 }
                 catch (_: Exception) { -1 }
             if (userId < 1) {
-                event.name = "loginDo"
-                loginDo(event, false)
+                val redoEvent = event.clone(name = "loginDo")
+                loginDo(redoEvent, false, I18n.getInstance().t("Please use a numeric user id"))
             } else {
                 if (serverUrl.isNotEmpty()) apiHandler.setUrl(serverUrl)
                 apiHandler.setCredentials(userId, form.inputFields["password"]?.entered?.value ?: "")
+                hideForm()
+                // TODO: what was the loginRetryActive flag meant for?
                 if (apiHandler.loginRetryActive)
                     apiHandler.loginRetryActive = false
                 else
                     apiHandler.start()
             }
+        } else {
+            // do nothing on invalid entries or no change. At least the password field must have changed.
         }
     }
 
     // ================
     // USER PREFERENCES
     // ================
-    fun editPreferencesDo(menuEvent: EventHandlerIF.Event) {
-        menuEvent.name += "Done"
+    fun editPreferencesDo(event: EventHandlerIF.Event) {
+        event.clone(name = event.name + "Done")
         // TODO
     }
-    fun editPreferencesDone() {
+    fun editPreferencesDone(event: EventHandlerIF.Event) {
+        event.clone(name = event.name.replace("Done", ""))
         // TODO
     }
 
@@ -233,8 +325,8 @@ class FormHandler private constructor(): EventHandlerIF {
     // ============
     // ASSET DAMAGE
     // ============
-    fun reportDamageDo(menuEvent: EventHandlerIF.Event) {
-        setEventContext()
+    fun reportDamageDo(event: EventHandlerIF.Event) {
+        setEventContext(event)
         // initialise form
         recordItem = config.getItem(".tables.damages")
         formDefinition = "R;~number,;\n" +
@@ -243,9 +335,9 @@ class FormHandler private constructor(): EventHandlerIF {
                 "R;logbook_text;\n" +
                 "R;description;\n" +
                 "R;submit,;"
-        menuEvent.name += "Done"
+        val doneEvent = event.clone(name = event.name + "Done")
         form = Form(recordItem, formDefinition, getModalDimensions())
-            { Looper.getSingleton().append(menuEvent) }
+            { Looper.getSingleton().append(doneEvent) }
         form.formHeadline = i18n.t("ln94nL|Please enter the damage ...")
         form.init()
         // prepare presets
@@ -276,29 +368,20 @@ class FormHandler private constructor(): EventHandlerIF {
         ViewBuilder.getInstance().showModal(modalContent)
     }
 
-    fun reportDamageDone(menuEvent: EventHandlerIF.Event) {
-        ViewBuilder.getInstance().hideModal()
-        form.validate()
-        val tx = form.submit(false)
-        tx.callBack = { reportDamageSaved(tx, menuEvent) }
-    }
-
-    private fun reportDamageSaved(tx: Transaction, menuEvent: EventHandlerIF.Event) {
-        if (tx.resultCode >= 40) {
-            ViewBuilder.getInstance().showDialogue(I18n.getInstance().t("7AX0Uq|The form could not be sa...", tx.resultMessage))
-            reportDamageDo(menuEvent)
-        } else {
+    fun reportDamageDone(event: EventHandlerIF.Event) {
+        if (form.validate(
+                event.clone(name = event.name.replace("Done", "")),
+                ::reportDamageDo)) {
             hideForm()
-            val microTimeNow = Clock.System.now().toEpochMilliseconds() / 1000.0
-            DataBase.getInstance().updateTable("damages", microTimeNow - 3600.0)
+            form.submit()
         }
     }
 
     // =================
     // ASSET RESERVATION
     // =================
-    fun requestReservationDo(menuEvent: EventHandlerIF.Event) {
-        setEventContext()
+    fun requestReservationDo(event: EventHandlerIF.Event) {
+        setEventContext(event)
         // initialise form
         recordItem = config.getItem(".tables.reservations")
         formDefinition = "R;~number,;\n" +
@@ -306,9 +389,9 @@ class FormHandler private constructor(): EventHandlerIF {
                 "r;reason;\n" +
                 "R;asset_uuid,person_uuid;\n" +
                 "R;submit,;"
-        menuEvent.name += "Done"
+        val doneEvent = event.clone(name = event.name + "Done")
         form = Form(recordItem, formDefinition, getModalDimensions())
-            { Looper.getSingleton().append(menuEvent) }
+            { Looper.getSingleton().append(doneEvent) }
         form.formHeadline = i18n.t("fIFMck|Please enter your reserv...")
         form.init()
         // prepare presets
@@ -326,34 +409,24 @@ class FormHandler private constructor(): EventHandlerIF {
         val modalContent =
             if (eventTableName == "assets")
                 formAndMenu(arrayOf("requestReservation", "enterTrip", "reportDamage"))
-            else
-                formAndMenu(arrayOf("requestReservation"))
+            else formAndMenu(arrayOf("requestReservation"))
         ViewBuilder.getInstance().showModal(modalContent)
     }
 
-    fun requestReservationDone(menuEvent: EventHandlerIF.Event) {
-        ViewBuilder.getInstance().hideModal()
-        form.validate()
-        val tx = form.submit(false)
-        tx.callBack = { requestReservationSaved(tx, menuEvent) }
-    }
-
-    private fun requestReservationSaved(tx: Transaction, menuEvent: EventHandlerIF.Event) {
-        if (tx.resultCode >= 40) {
-            ViewBuilder.getInstance().showDialogue(I18n.getInstance().t("ZfSO28|The form could not be sa...", tx.resultMessage))
-            requestReservationDo(menuEvent)
-        } else {
+    fun requestReservationDone(event: EventHandlerIF.Event) {
+        if (form.validate(
+                event.clone(name = event.name.replace("Done", "")),
+                ::requestReservationDo)) {
             hideForm()
-            val microTimeNow = Clock.System.now().toEpochMilliseconds() / 1000.0
-            DataBase.getInstance().updateTable("reservations", microTimeNow - 3600.0)
+            form.submit()
         }
     }
 
     // ===============
     // MESSAGE SENDING
     // ===============
-    fun sendMessageDo(menuEvent: EventHandlerIF.Event) {
-        setEventContext()
+    fun sendMessageDo(event: EventHandlerIF.Event) {
+        setEventContext(event)
         // initialise form
         recordItem = config.getItem(".tables.messages")
         formDefinition = "R;~number,~sent_on;\n" +
@@ -362,9 +435,9 @@ class FormHandler private constructor(): EventHandlerIF {
                 "R;*subject;\n" +
                 "r;body;\n" +
                 "R;submit,;"
-        menuEvent.name += "Done"
+        val doneEvent = event.clone(name = event.name + "Done")
         form = Form(recordItem, formDefinition, getModalDimensions())
-            { Looper.getSingleton().append(menuEvent) }
+            { Looper.getSingleton().append(doneEvent) }
         form.formHeadline = i18n.t("M8hzhW|Please provide your mess...")
         form.init()
 
@@ -386,26 +459,16 @@ class FormHandler private constructor(): EventHandlerIF {
         }
         form.presetWithStrings(presets)
         // show form
-        val modalContent =
-                formAndMenu(arrayOf("sendMessage"))
+        val modalContent = formAndMenu(arrayOf("sendMessage"))
         ViewBuilder.getInstance().showModal(modalContent)
     }
 
-    fun sendMessageDone(menuEvent: EventHandlerIF.Event) {
-        ViewBuilder.getInstance().hideModal()
-        form.validate()
-        val tx = form.submit(false)
-        tx.callBack = { sendMessageSaved(tx, menuEvent) }
-    }
-
-    private fun sendMessageSaved(tx: Transaction, menuEvent: EventHandlerIF.Event) {
-        if (tx.resultCode >= 40) {
-            ViewBuilder.getInstance().showDialogue(I18n.getInstance().t("8g9K2b|The form could not be sa...", tx.resultMessage))
-            sendMessageDo(menuEvent)
-        } else {
+    fun sendMessageDone(event: EventHandlerIF.Event) {
+        if (form.validate(
+                event.clone(name = event.name.replace("Done", "")),
+                ::sendMessageDo)) {
             hideForm()
-            val microTimeNow = Clock.System.now().toEpochMilliseconds() / 1000.0
-            DataBase.getInstance().updateTable("messages", microTimeNow - 3600.0)
+            form.submit()
         }
     }
 
@@ -458,8 +521,8 @@ class FormHandler private constructor(): EventHandlerIF {
         distanceInput?.entered?.value = distance
     }
 
-    fun enterTripDo(menuEvent: EventHandlerIF.Event) {
-        setEventContext()
+    fun enterTripDo(event: EventHandlerIF.Event) {
+        setEventContext(event)
         // initialise form
         recordItem = config.getItem(".tables.logbook")
         formDefinition = "r;~number,~logbookname,;\n" +
@@ -471,9 +534,9 @@ class FormHandler private constructor(): EventHandlerIF {
                 "r;crew#7,crew#8,crew#9;\n" +
                 "R;comments;\n" +
                 "R;submit,;"
-        menuEvent.name += "Done"
+        val doneEvent = event.clone(name = event.name + "Done")
         form = Form(recordItem, formDefinition, getModalDimensions())
-            { Looper.getSingleton().append(menuEvent) }
+            { Looper.getSingleton().append(doneEvent) }
         form.formHeadline = i18n.t("Ozq6QO|Please enter your trip d...")
         form.init()
 
@@ -500,39 +563,27 @@ class FormHandler private constructor(): EventHandlerIF {
         val modalContent =
                 if (eventTableName == "assets")
                     formAndMenu(arrayOf("enterTrip", "reportDamage", "requestReservation"))
-                else
-                    formAndMenu(arrayOf("enterTrip"))
+                else formAndMenu(arrayOf("enterTrip"))
         ViewBuilder.getInstance().showModal(modalContent.apply {
             prefWidth = form.widthPx.toDouble()
         })
     }
 
-    fun enterTripDone(menuEvent: EventHandlerIF.Event) {
+    fun enterTripDone(event: EventHandlerIF.Event) {
         joinCrewField()
-        ViewBuilder.getInstance().hideModal()
-        form.validate()
-        val tx = form.submit(false)
-        menuEvent.name = menuEvent.name.replace("Done", "Saved")
-        tx.callBack = { enterTripSaved(tx, menuEvent) }
-    }
-
-    private fun enterTripSaved(tx: Transaction, menuEvent: EventHandlerIF.Event) {
-        if (tx.resultCode >= 40) {
-            ViewBuilder.getInstance().showDialogue(I18n.getInstance().t("ArEHZd|The form could not be sa...", tx.resultMessage))
-            menuEvent.name = "enterTrip"
-            Looper.getSingleton().append(menuEvent)
-        } else {
-            val microTimeNow = Clock.System.now().toEpochMilliseconds() / 1000.0
-            DataBase.getInstance().updateTable("logbook", microTimeNow - 3600.0)
-            ViewBuilder.getInstance().showDialogue("Trip saved.")
+        if (form.validate(
+                event.clone(name = event.name.replace("Done", "")),
+                ::enterTripDo)) {
+            hideForm()
+            form.submit()
         }
     }
 
     // =========
     // TRIP END
     // =========
-    fun endTripDo(menuEvent: EventHandlerIF.Event) {
-        setEventContext()
+    fun endTripDo(event: EventHandlerIF.Event) {
+        setEventContext(event)
         if (eventTableName != "logbook")
             return
         // initialise form
@@ -546,9 +597,9 @@ class FormHandler private constructor(): EventHandlerIF {
                 "r;crew#7,crew#8,crew#9;\n" +
                 "r;comments;\n" +
                 "R;submit,;"
-        menuEvent.name += "Done"
+        val doneEvent = event.clone(name = event.name + "Done")
         form = Form(recordItem, formDefinition, getModalDimensions())
-            { Looper.getSingleton().append(menuEvent) }
+            { Looper.getSingleton().append(doneEvent) }
         form.formHeadline = i18n.t("JUnXbB|Please check entries and...")
         form.init()
 
@@ -571,34 +622,24 @@ class FormHandler private constructor(): EventHandlerIF {
         ViewBuilder.getInstance().showModal(modalContent)
     }
 
-    fun endTripDone() {
-        ViewBuilder.getInstance().hideModal()
+    fun endTripDone(event: EventHandlerIF.Event) {
         joinCrewField()
-        form.validate()
-        val tx = form.submit(true, eventUid)
-        tx.callBack = { endTripSaved(tx) }
-    }
-
-    private fun endTripSaved(tx: Transaction) {
-        if (tx.resultCode >= 40) {
-            ViewBuilder.getInstance().showDialogue(I18n.getInstance().t("ByvElj|The form could not be sa...", tx.resultMessage))
-            // if failed, do not return to the end trip dialogue
-        } else {
+        if (form.validate(
+                event.clone(name = event.name.replace("Done", "")),
+                ::editTripDo)) {
             hideForm()
-            val microTimeNow = Clock.System.now().toEpochMilliseconds() / 1000.0
-            // use a time lag of 4 hours, because tim zones may not match between server and client.
-            DataBase.getInstance().updateTable("logbook", microTimeNow - 14400.0)
+            form.submit(eventUid)
         }
     }
 
     private fun setBoatAndDestinationListeners() {
         form.inputFields["asset_uuid"]?.addListener(
-            FormFieldListener(onFocusLost = {
+            FormField.FormFieldListener(onFocusLost = {
                 onBoatChange(it)
             })
         )
         form.inputFields["destination"]?.addListener(
-            FormFieldListener(onFocusLost = {
+            FormField.FormFieldListener(onFocusLost = {
                 onDestinationChange(it)
             })
         )
@@ -607,8 +648,8 @@ class FormHandler private constructor(): EventHandlerIF {
     // =========
     // TRIP EDIT
     // =========
-    fun editTripDo(menuEvent: EventHandlerIF.Event) {
-        setEventContext()
+    fun editTripDo(event: EventHandlerIF.Event) {
+        setEventContext(event)
         if (eventTableName != "logbook")
             return
         // initialise form
@@ -622,9 +663,9 @@ class FormHandler private constructor(): EventHandlerIF {
                 "r;crew#7,crew#8,crew#9;\n" +
                 "r;comments;\n" +
                 "R;submit,;"
-        menuEvent.name += "Done"
+        val doneEvent = event.clone(name = event.name + "Done")
         form = Form(recordItem, formDefinition, getModalDimensions())
-            { Looper.getSingleton().append(menuEvent) }
+            { Looper.getSingleton().append(doneEvent) }
         form.formHeadline = i18n.t("rT119B|Please edit your trip de...")
         form.init()
 
@@ -643,38 +684,29 @@ class FormHandler private constructor(): EventHandlerIF {
         ViewBuilder.getInstance().showModal(modalContent)
     }
 
-    fun editTripDone() {
-        ViewBuilder.getInstance().hideModal()
+    fun editTripDone(event: EventHandlerIF.Event) {
         joinCrewField()
-        form.validate()
-        val tx = form.submit(true, eventUid)
-        tx.callBack = { editTripSaved(tx) }
-    }
-
-    private fun editTripSaved(tx: Transaction) {
-        if (tx.resultCode >= 40) {
-            ViewBuilder.getInstance().showDialogue(I18n.getInstance().t("IuPun7|The form could not be sa...", tx.resultMessage))
-            // if failed, do not return to the end trip dialogue
-        } else {
+        if (form.validate(
+                event.clone(name = event.name.replace("Done", "")),
+                ::cancelTripDo)) {
             hideForm()
-            val microTimeNow = Clock.System.now().toEpochMilliseconds() / 1000.0
-            DataBase.getInstance().updateTable("logbook", microTimeNow - 3600.0)
+            form.submit(eventUid)
         }
     }
 
     // ===========
     // TRIP CANCEL
     // ===========
-    fun cancelTripDo(menuEvent: EventHandlerIF.Event) {
-        setEventContext()
+    fun cancelTripDo(event: EventHandlerIF.Event) {
+        setEventContext(event)
         if (eventTableName != "logbook")
             return
         // initialise form
         recordItem = config.getItem(".tables.logbook")
         formDefinition = "R;!number,!asset_uuid;\nr;!start,!end;\nR;!destination,!distance;\nR;comments;\nR;submit;"
-        menuEvent.name += "Done"
+        val doneEvent = event.clone(name = event.name + "Done")
         form = Form(recordItem, formDefinition, getModalDimensions())
-            { Looper.getSingleton().append(menuEvent) }
+            { Looper.getSingleton().append(doneEvent) }
         val tripDetails = eventRecord.recordToTemplate("full")
         form.formHeadline = i18n.t("CXoF90|Really delete trip:...", tripDetails)
         form.init()
@@ -687,21 +719,13 @@ class FormHandler private constructor(): EventHandlerIF {
         ViewBuilder.getInstance().showModal(modalContent)
     }
 
-    fun cancelTripDone() {
-        ViewBuilder.getInstance().hideModal()
+    fun cancelTripDone(event: EventHandlerIF.Event) {
         form.inputFields["destination"]?.entered?.value = I18n.getInstance().t("JUPSpF|Trip cancelled")
-        form.validate()
-        val tx = form.submit(true, eventUid)
-        tx.callBack = { cancelTripSaved(tx) }
-    }
-    private fun cancelTripSaved(tx: Transaction) {
-        if (tx.resultCode >= 40) {
-            ViewBuilder.getInstance().showDialogue(I18n.getInstance().t("l1h4Qy|The form could not be sa...", tx.resultMessage))
-            // if failed, do not return to the end trip dialogue
-        } else {
+        if (form.validate(
+                event.clone(name = event.name.replace("Done", "")),
+                ::cancelTripDo)) {
             hideForm()
-            val microTimeNow = Clock.System.now().toEpochMilliseconds() / 1000.0
-            DataBase.getInstance().updateTable("logbook", microTimeNow - 3600.0)
+            form.submit(eventUid)
         }
     }
 
@@ -713,7 +737,7 @@ class FormHandler private constructor(): EventHandlerIF {
         if (event.type == EventHandlerIF.EventType.MENU_EVENT)
             when (event.name) {
                 "loginDo" -> {
-                    loginDo(event)
+                    loginDo(event, true)
                     return true
                 }
             }

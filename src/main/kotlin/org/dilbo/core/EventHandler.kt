@@ -21,6 +21,7 @@
 
 package org.dilbo.core
 
+
 import javafx.scene.layout.Pane
 import org.dilbo.storage.ResProvider
 import org.dilbo.uiProvider.ApiStatus
@@ -88,11 +89,11 @@ class EventHandler : EventHandlerIF {
                 "enterTrip" -> formHandler.enterTripDo(event)
                 "enterTripDone" -> formHandler.enterTripDone(event)
                 "endTrip" -> formHandler.endTripDo(event)
-                "endTripDone" -> formHandler.endTripDone()
+                "endTripDone" -> formHandler.endTripDone(event)
                 "editTrip" -> formHandler.editTripDo(event)
-                "editTripDone" -> formHandler.editTripDone()
+                "editTripDone" -> formHandler.editTripDone(event)
                 "cancelTrip" -> formHandler.cancelTripDo(event)
-                "cancelTripDone" -> formHandler.cancelTripDone()
+                "cancelTripDone" -> formHandler.cancelTripDone(event)
                 "reportDamage" -> formHandler.reportDamageDo(event)
                 "reportDamageDone" -> formHandler.reportDamageDone(event)
                 "requestReservation" -> formHandler.requestReservationDo(event)
@@ -101,7 +102,7 @@ class EventHandler : EventHandlerIF {
                 "sendMessageDone" -> formHandler.sendMessageDone(event)
                 "displayDetails" -> UIProviderFactory.displayDetails(event)
                 "editPreferences" -> formHandler.editPreferencesDo(event)
-                "editPreferencesDone" -> formHandler.editPreferencesDone()
+                "editPreferencesDone" -> formHandler.editPreferencesDone(event)
                 // go back
                 "backwards" -> { return goBackInMenuEvents(false) }
             }
@@ -146,17 +147,24 @@ class EventHandler : EventHandlerIF {
             EventType.API_EVENT -> {
                 when (event.name) {
                     "httpsError" -> {
-                        // Stage.showDialogue(event.message); return true
+                        ViewBuilder.getInstance().showDialogue(event.message)
+                        return true
                     }
                     "loginDo", "urlConfirmed" -> {
                         // this happens when the user enters the URL as part of the login process
-                        FormHandler.getInstance().loginDo(event, true); return true
+                        FormHandler.getInstance().loginDo(event, true)
+                        return true
                     }
                     "loginDone" -> {
                         FormHandler.getInstance().loginDone(event)
                     }
                     "authenticationFailed", "unknowClient" -> {
-                        FormHandler.getInstance().loginDo(event, false); return true
+                        val previousErrors = if (event.name.startsWith("a"))
+                            I18n.getInstance().t("Error: User authentication failed")
+                        else
+                            I18n.getInstance().t("Error: User unknown")
+                        FormHandler.getInstance().loginDo(event, false, previousErrors)
+                        return true
                     }
                     "sessionStarted", "userChanged" -> {
                         calledEvents.clear()
@@ -179,38 +187,60 @@ class EventHandler : EventHandlerIF {
 
             EventType.UI_EVENT -> {
                 val providerType = event.sourceItem.getChild("type")?.valueStr() ?: ""
-                when (providerType) {
-                    "apiStatus" -> {
-                        ViewBuilder.getInstance().showModal(ApiStatus.buildAbout())
-                    }
-                    "clock" -> {
-                        val dilboAbout = DilboAbout(ResProvider.getSingleton())
-                        ViewBuilder.getInstance().showModal(dilboAbout.build())
-                    }
-                    "list" -> {
-                        val listEvent = EventHandlerIF.Event(EventType.MENU_EVENT, "", event.uid, event.sourceItem)
-                        // typically an event triggered by a list item
-                        if (event.name == "click") {
-                            val indices = Indices.getInstance()
-                            val tableName = indices.getTableForUid(event.uid)
-                            when (tableName) {
-                                "assets" -> listEvent.name = "enterTrip"
-                                "logbook" -> listEvent.name = "endTrip"
-                                // else includes by purpose damages and reservations
-                                else -> listEvent.name = "displayDetails"
-                            }
-                            return handleEvent(listEvent)
-                        } else if (event.name != "collapse") // the collapse event is handled by the registered Lists
-                        {
-                            UIProviderFactory.displayDetails(event)
+                if (providerType.isNotEmpty())
+                    when (providerType) {
+                        "apiStatus" -> {
+                            ViewBuilder.getInstance().showModal(ApiStatus.buildAbout())
                             return true
                         }
+                        "clock" -> {
+                            val dilboAbout = DilboAbout(ResProvider.getSingleton())
+                            ViewBuilder.getInstance().showModal(dilboAbout.build())
+                            return true
+                        }
+                        "list" -> {
+                            val listEventTemplate = EventHandlerIF.Event(EventType.MENU_EVENT, "", event.uid, event.sourceItem)
+                            // typically an event triggered by a list item
+                            if (event.name == "click") {
+                                val indices = Indices.getInstance()
+                                val tableName = indices.getTableForUid(event.uid)
+                                val listEvent = when (tableName) {
+                                    "assets" -> listEventTemplate.clone(name = "enterTrip")
+                                    "logbook" -> listEventTemplate.clone(name = "endTrip")
+                                    // else includes by purpose damages and reservations
+                                    else -> listEventTemplate.clone(name = "displayDetails")
+                                }
+                                return handleEvent(listEvent)
+                            } else if (event.name != "collapse") // the collapse event is handled by the registered Lists
+                            {
+                                UIProviderFactory.displayDetails(event)
+                                return true
+                            }
+                        }
+                        else -> {} // do nothing
                     }
-                    else -> return isHandled
+                else
+                    when (event.name) {
+                        "suggestText" -> {
+                            if (event.sourceItem.isValid())
+                                FormHandler.getInstance().suggestTextDo(event)
+                            else
+                                ViewBuilder.getInstance().showDialogue(
+                                    I18n.getInstance().t("Unfortunately there is no link available to the translation source."))
+                            // even if there is no source item and thus no text to suggest a different translation for
+                            // this is regarded as handled
+                            return true
+                        }
+                        "suggestTextDone" -> {
+                            FormHandler.getInstance().suggestTextDone(event)
+                            return true
+                        }
+                        else -> {} // do nothing
                 }
             }
 
             EventType.SYSTEM_EVENT -> return isHandled // system events will only be handled by registered handlers
+
         }
         return isHandled
     }

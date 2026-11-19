@@ -142,7 +142,7 @@ class UIProviderFactory: UIProviderFactoryIF {
                 record.parse(row, Language.CSV)
 
                 val heading = appLabel(recordItem.label() + ": " + record.recordToTemplate("name"),
-                    AppFonts.h2).apply {
+                    recordItem, AppFonts.h2).apply {
                         border = Border(AppColours.textBorderStroke())
                 }
                 val details = mutableListOf<HBox>()
@@ -155,9 +155,9 @@ class UIProviderFactory: UIProviderFactoryIF {
                                 record.valueToDisplay(field, config.language())
                             else
                                 record.formatValue(field, config.language())
-                        val fieldLabel = appLabel("~*" + field.label() + "*~")
+                        val fieldLabel = appLabel("~*" + field.label() + "*~", field)
                         fieldLabel.prefWidth = modalWidth * 0.4
-                        val valueLabel = appLabel(toShow)
+                        val valueLabel = appLabel(toShow, Config.getInstance().invalidItem)
                         HBox.setHgrow(valueLabel, Priority.ALWAYS)
                         val detail = HBox(fieldLabel, valueLabel).apply {
                             prefWidth = modalWidth.toDouble()
@@ -170,7 +170,7 @@ class UIProviderFactory: UIProviderFactoryIF {
                     }
                 }
 
-                val detailsPane = ScrollPane(VBox(AppDimensions.smallSpacing, *details.toTypedArray())).apply {
+                val detailsPane = ScrollPane(VBox(AppDimensions.SMALL_SPACING, *details.toTypedArray())).apply {
                     vbarPolicy = ScrollPane.ScrollBarPolicy.NEVER
                     hbarPolicy = ScrollPane.ScrollBarPolicy.NEVER
                     isPannable = true
@@ -207,7 +207,7 @@ class UIProviderFactory: UIProviderFactoryIF {
     override fun getProvider(item: Item, dimensions: Dimensions, host: Sector): UIProviderIF? {
 
         if (item == Config.getInstance().invalidItem)
-            return Warning("-???-")
+            return Warning("-???-", item)
 
         val config = Config.getInstance()
         val providerName = item.value()
@@ -222,7 +222,7 @@ class UIProviderFactory: UIProviderFactoryIF {
             val message = if (User.getInstance().userId() > 0)
                 I18n.getInstance().t("aJAUJg|Sorry, no access to °%1°", item.label())
             else ""
-            Warning(message)
+            Warning(message, item)
         } else when (type) {
             "menu" -> Menu(menuItem, dimensions, ResProvider.getSingleton(), host)
             "list" -> List(providerItem, dimensions)
@@ -232,9 +232,8 @@ class UIProviderFactory: UIProviderFactoryIF {
             "textView" -> TextView(providerItem)
             "imageView" -> RemoteImage(providerItem, httpClient, dimensions)
             "noProvider" -> null
-            else -> Warning(
-                I18n.getInstance().t("Cannot display invalid ui-provider type '%1'", type)
-            )
+            else -> Warning(I18n.getInstance().t(
+                "Cannot display invalid ui-provider type '%1'", type), item)
         }
     }
 

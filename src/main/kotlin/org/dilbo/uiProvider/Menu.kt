@@ -1,3 +1,17 @@
+/**
+ * dilbo - digital logbook for Rowing and Canoeing
+ * https://www.dilbo.org
+ * Copyright:  2023-2025  Martin Glade
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License. You may obtain a copy of the License at
+ * https://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing permissions and limitations under
+ * the License.
+ */
+
 package org.dilbo.uiProvider
 
 import javafx.geometry.Insets
@@ -17,7 +31,6 @@ import javafx.scene.layout.HBox
 import javafx.scene.layout.Pane
 import javafx.scene.layout.StackPane
 import javafx.scene.layout.VBox
-import org.dilbo.core.EventHandler
 import org.tfyh.control.EventHandlerIF
 import org.tfyh.control.EventHandlerIF.EventType
 import org.tfyh.data.Item
@@ -82,7 +95,7 @@ class Menu(val item: Item, val dimensions: ViewBuilder.Dimensions, val resProvid
         }
         val menuIcons = mutableListOf<StackPane>()
         // All menu images must be squares, their size is fit to the smaller dimension of the menu sector
-        val hw = (if (horizontal) dimensions.heightPx else dimensions.widthPx) - 4 * AppDimensions.smallSpacing
+        val hw = (if (horizontal) dimensions.heightPx else dimensions.widthPx) - 4 * AppDimensions.SMALL_SPACING
         for (menuOptionName in menuOptions.keys) {
             val menuOption = menuOptions[menuOptionName]
             if (menuOption != null) {
@@ -138,7 +151,7 @@ class Menu(val item: Item, val dimensions: ViewBuilder.Dimensions, val resProvid
     }
 
     companion object {
-        val menuInsets = Insets(AppDimensions.smallSpacing)
+        val menuInsets = Insets(AppDimensions.SMALL_SPACING)
         val menuBackground = Background(BackgroundFill(
             AppColours.background_body, CornerRadii.EMPTY, menuInsets
         ))
